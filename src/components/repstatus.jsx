@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState } from 'react'
-
 import CreateForm from './createForm'
 import CreateModal from './createModal'
 
@@ -12,6 +11,7 @@ export default function repstatus() {
   const toggle= () => {
     setFormToggle(!FormToggle)
   }
+  
 
   return (
     <div className='w-[1050px] h-[100%] border-2 border-black border-dotted flex flex-col justify-center items-center'>

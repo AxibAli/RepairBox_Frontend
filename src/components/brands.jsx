@@ -4,7 +4,6 @@ import { BiStar } from "react-icons/bi"
 import {IoIosArrowDroprightCircle} from "react-icons/io"
 import { AiFillFolderOpen } from "react-icons/ai"
 import { NavLink } from 'react-router-dom'
-
 import brandsData from "./brandsData"
 
 

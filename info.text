@@ -1,2 +1,9 @@
    
      ****install react-icons in dashboard Data entries section**** 
+     ****install formik and Yup package for input field validation
+     ****Create Data Entries Section 
+     ----> Brand section (create brand page,buttons and thier modals)
+     ----> Repair Devices Section applied furqan's Modal create search bar, dropdown and thier 
+     validation through(formink and Yup).
+     sort button and other data fetch through API.
+     ---->repair page is not complete, their elements modals, pagination is remain...
