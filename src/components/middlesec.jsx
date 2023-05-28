@@ -19,7 +19,7 @@ function MiddleSexction() {
   );
   return (
     <Container >
-      <Row style={{ height: "500px" }}>
+      <Row style={{ height: "500px",backgroundColor:'#f9fafb',marginTop:100 }}>
         <Col style={{
           backgroundColor: 'white', margin: '50px 20px', textAlign: 'justify',
         }} sm={5}>
@@ -42,31 +42,55 @@ function MiddleSexction() {
 
 
 
-        <Col style={{ backgroundColor: 'yellow' }} sm={3}>
-          <Card sx={{ minWidth: 275, height: 250 ,boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',marginBottom:5 }}>
+        <Col sm={3}>
+          <Card sx={{ minWidth: 200, height: 300 ,boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',marginBottom:5 }}>
             <CardContent>
               <Box sx={{ backgroundColor: '#cabffd', height: 25, width: 25, borderRadius: 2, color: '#cabffd', marginBottom: 2 }}>s</Box>
-              <h3 style={{ textAlign: 'justify' }}>
+              <h2 style={{ paddingBottom:"20px",textAlign: 'justify',fontSize:'24px',fontWeight:'bold' }}>
                 Excellent services
-              </h3>
-              <p style={{ textAlign: 'justify', color: 'grey' }}>
+              </h2>
+              <p style={{fontSize:"18px", textAlign: 'justify', color: 'grey' }}>
                 We promise to provide excellent repair services with multiple bands and the devices
               </p>
             </CardContent>
           </Card>
-          <Card sx={{ minWidth: 275, height: 250, boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}>
+          <Card sx={{ minWidth: 200, height: 300, boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}>
             <CardContent>
               <Box sx={{ backgroundColor: '#cabffd', height: 25, width: 25, borderRadius: 2, color: '#cabffd', marginBottom: 2 }}>s</Box>
-              <h3 style={{ textAlign: 'justify' }}>
+              <h2 style={{ textAlign: 'justify',fontSize:'24px',fontWeight:'bold',paddingBottom:"20px", }}>
               Expert technical team
-              </h3>
-              <p style={{ textAlign: 'justify', color: 'grey' }}>
+              </h2>
+              <p style={{ fontSize:"18px",textAlign: 'justify', color: 'grey' }}>
               We have well trained and professional experts with relevant experience to fix your devices issues
               </p>
             </CardContent>
           </Card>
         </Col>
-        <Col style={{ backgroundColor: 'greenyellow' }} sm={3}></Col>
+        <Col sm={3}>
+        <Card sx={{ minWidth: 200,marginTop:15, height: 300 ,boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',marginBottom:5 }}>
+            <CardContent>
+              <Box sx={{ backgroundColor: '#cabffd', height: 25, width: 25, borderRadius: 2, color: '#cabffd', marginBottom: 2 }}>s</Box>
+              <h2  style={{ paddingBottom:"20px",textAlign: 'justify',fontSize:'24px',fontWeight:'bold' }}>
+              Track repair status
+              </h2>
+              <p  style={{ fontSize:"18px",textAlign: 'justify', color: 'grey' }}>
+              Track your device repairing status with complete details at any time and from any place or even from your home
+                  </p>
+            </CardContent>
+          </Card>
+          <Card sx={{ minWidth: 200, height: 300, boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}>
+            <CardContent>
+              <Box sx={{ backgroundColor: '#cabffd', height: 25, width: 25, borderRadius: 2, color: '#cabffd', marginBottom: 2 }}>s</Box>
+              <h2  style={{ paddingBottom:"20px",textAlign: 'justify',fontSize:'24px',fontWeight:'bold' }}>
+              Notifications
+              </h2>
+              <p style={{ fontSize:"18px",textAlign: 'justify', color: 'grey' }}>
+              When does a technician update repair status the customer will be notified by email.
+                </p>
+            </CardContent>
+          </Card>
+
+        </Col>
       </Row>
 
     </Container>

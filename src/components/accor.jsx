@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 
 function AllCollapseExample() {
   return (
-    <Box sx={{marginTop:15}}>
+    <Box sx={{marginTop:15,width:'80%',marginLeft:20}}>
     <Accordion  >
       <Accordion.Item  eventKey="0">
         <Accordion.Header>How does it work?</Accordion.Header>
