@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 
 export default function Types() {
   return (
-    <Box sx={{ width: '100%',marginTop:20 }}>
+    <Box sx={{ width: '100%',marginTop:20,textAlign:'center' }}>
       <Typography variant="h4" >
       Frequently Asked Questions
       </Typography>
