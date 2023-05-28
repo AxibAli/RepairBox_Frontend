@@ -158,4 +158,152 @@
        /* Modal Styling End */
        
        /* Repair Devices Styling Start */
-       /* Repair Devices Styling End */
+       .repair-create-button{
+        position: relative;
+        left: 83%;
+        bottom:10%;
+       }
+       /* .repair-top{
+        position: relative;
+        top: 5%;
+       } */
+       .save-button{
+        position: relative;
+        left: 80%;
+       }
+
+       .ant-btn-primary{
+        color: white;
+        background-color: #3aa8f7 !important;
+       }
+       .ant-btn-primary:hover {
+        background: transparent;
+        color: #000;
+       }
+       
+       .bottom-modal{
+        width: 500px;
+        justify-content: center;
+        align-items: center;
+        margin-right: 30%;
+       }
+       
+       .data-section{
+        margin-right: 28rem;
+        background-color: white;
+        /* height: auto; */
+       }
+
+       .data-section ::placeholder{
+        font-weight: 480;
+        font-size: 1.03rem;
+        color: #000 !important;
+        /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+       }
+       .sort{
+        text-align: center;
+       }
+       .brand-section{
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-gap: 5px;
+        border: 1px solid #dedede;
+        width: 100%;
+        align-items: center;
+        padding: 14px 10px;
+        border-radius: 5px;
+       }
+       .brand-logo-info {
+        grid-column: span 5;
+      }
+      .brand-logo-info i{
+        margin-top: 0.2rem;
+        font-size: 2rem;
+      }
+      .brand-desc{
+        grid-column: span 5;
+        
+      }
+      .brand-arrow-icon{
+        grid-column: span 2;
+      }
+      .brand-arrow-icon{
+        margin: auto;
+        text-align: center;
+        margin-left: 4rem;
+        font-size: 1.2rem;
+      }
+       .rep-device-container{
+
+        width: 1090px;
+        height: 100%;
+        overflow: auto;
+        /* background-color: #dedede; */
+       }
+       .rep-devices-section{
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-gap: 93px;
+        /* border: 1px solid #dedede; */
+        width: 100%;
+        align-items: center;
+        padding: 14px 30px;
+        border-radius: 5px;
+       }
+      
+      .rep-name {
+       grid-column: span 8;
+     }
+     .rep-create-button{
+       grid-column: span 4;
+       margin-left: 10rem;
+       float: right !important;
+     }
+    .rep-name{
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    .rep-name i{
+        font-size: 2.4rem;
+    }
+    .rep-name h1{
+        font-size: 1.7rem;
+        font-weight: bold;
+    }
+    .rep-create-button p{
+        background-color: blue;
+        padding: 12px 40px;
+        color: #fff;
+        text-align: center;
+        align-items: center;
+    }
+    .rep-create-button :hover{
+        color: #000;
+        /* background-color: dimgray; */
+    }
+    .search-box form{
+        width: 650px;
+        padding: 12px 30px;
+        display: flex;
+    }
+    .sort-page{
+        background-color: #3aa8f7;
+        color: white;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        /* padding-inline: 20px; */
+        padding: 22px 0px;
+        /* width: 100px; */
+        width: 140px;
+        height: 40px;
+        position: relative;
+        left: 84%;
+        bottom: 3.7rem;
+        font-size: 16px;
+        font-weight: 600;
+    }
+          /* Repair Devices Styling End */
+    
