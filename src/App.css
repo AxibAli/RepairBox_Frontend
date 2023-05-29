@@ -77,8 +77,9 @@
     margin: 0;
   }
 .create-button{
-    padding: 12px 24px;
-    background-color: blue;
+    margin-left: 2rem;
+    padding: 10px 50px;
+    background-color: #3aa8f7;
     color: #fff;
     border-radius: 5px;
 }
@@ -256,9 +257,15 @@
      }
      .rep-create-button{
        grid-column: span 4;
-       margin-left: 10rem;
+       margin-left: 8.3rem;
        float: right !important;
      }
+     .rep-create-button button{
+      background-color: #3aa8f7;
+      color: #fff;
+      padding: 13px 50px;
+     }
+     
     .rep-name{
         display: flex;
         gap: 10px;
@@ -329,3 +336,77 @@
           .sub-name-sec h4{
             color: #000;
           }
+         
+          .create-content{
+            display: grid;
+            grid-template-columns: repeat( 12,1fr);
+            padding: 30px 50px;
+            align-content: center;
+            gap: 20px;
+            max-width: 80%;
+            position: fixed;
+            background-color: #fff;
+            right:9%;
+            top: 20%;
+            height: 50%;
+          }
+          .left-side {
+            grid-column: span 6;
+            margin-right: 10rem;
+          }
+          .right-side{
+            grid-column: span 6;
+            margin-right: 3rem;
+          }
+          .right-side input{
+            width: 350px;
+          }
+          .left-button{
+            background-color: #3aa8f7;
+            color: #fff;
+            padding: 10px 20px;
+          }
+          .right-button{
+            background-color: #3aa8f7;
+            color: #fff;
+            padding: 10px 20px;
+            margin-left: 1rem;
+          }
+          .create-content-button{
+            position: absolute;
+            right: 5%;
+            top: 80%;
+          }
+          .close-button{
+            position: absolute;
+            /* left: 50%; */
+            right: 3%;
+            bottom: 85%;
+            cursor: pointer;
+          }
+          
+         .create-modal-content{
+            display: grid;
+            grid-template-columns: repeat( 12,1fr);
+            padding: 30px 50px;
+            align-content: center;
+            gap: 30px;
+         }
+         .brand-info-content{
+            grid-column: span 6;
+            /* line-height: 2.5rem; */
+         }
+         .brand-input-field{
+            grid-column: span 6;
+         }
+         .brand-input-field input{
+            width: 100%;
+         }
+         .brand-info-content h2{
+            font-size: 1.5rem;
+            font-weight: 600;
+         }
+         .brand-info-content p{
+            font-size: 0.8rem;
+            /* font-weight: 600; */
+         }

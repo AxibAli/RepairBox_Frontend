@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import repDeviceData from "./repDeviceData";
 import {
   AiFillFolderOpen,
   BsSortDownAlt,
@@ -7,16 +8,24 @@ import {
   FaLessThan,
   FaGreaterThan,
 } from "react-icons/all";
-import CreateForm from "./createForm";
-import CreateModal from "./createModal";
-import repDeviceData from "./repDeviceData";
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Input,
+  Label,
+  FormGroup,
+} from "reactstrap";
+
 
 
 
 
 const repdevices = () => {
 
-  // sorting data state
+  // sorting data state Start
   const [sortDirection, setSortDirection] = useState("asc");
   const handleSort = () => {
     const newSortDirection = sortDirection === "asc" ? "desc" : "asc";
@@ -24,11 +33,13 @@ const repdevices = () => {
 
     // sort logic apply here
   };
+    //  sort state end
 
-  //  for search feature state
+  //  for search feature state start
   const [search, setSearch] = useState("");
   const [queryData, setQueryData] = useState(repDeviceData);
   const [repData, setRepData] = useState(repDeviceData);
+  
 
   const handleSearch = (text) => {
     setSearch(text);
@@ -43,21 +54,18 @@ const repdevices = () => {
     }
   };
 
+      //  for search feature state end
   
 
   // for create button modal
-  const [FormToggle, setFormToggle] = useState(false);
-  const [isToggle, isSetToggle] = useState(false);
+   const [repModal,setRepModal] = useState(false);
+   const handleRepToggle = () => setRepModal(!repModal);
 
-  const toggle = () => {
-    setFormToggle(!FormToggle);
-  };
-
-  const toggleButton = () => {
-    isSetToggle(!isToggle);
-  };
-
-  // Code Started after return
+   const [elemModal, setElemModal] = useState(false);
+   const elemHandleToggle = () => setElemModal(!elemModal)
+ 
+   
+            // Code Started after return
   return (
     <>
       {/* create button and thier modal */}
@@ -69,19 +77,149 @@ const repdevices = () => {
             </i>
             <h1>REPAIRABLE DEVICES</h1>
           </div>
-          <div className="rep-create-button">
-            {FormToggle ? (
-              <button onClick={toggle}>
-                <p>Create</p>
-              </button>
-            ) : (
-              <></>
-            )}
+          <div className="rep-create-button" onClick={handleRepToggle}>
+             <button >
+              Create
+             </button>
+             <Modal
+                        isOpen={repModal}
+                        toggle={handleRepToggle}
+                        style={{ maxWidth: "70%" }}
+                      >
+                        <ModalHeader
+                          toggle={handleRepToggle}
+                          style={{
+                            fontSize: "1.2rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                          
+                          CRAETE REPAIRABLE DEVICE
+                        </ModalHeader>
+                        <ModalBody>
+                          <div className="create-modal-content">
+                            <div className="brand-info-content">
+                              <h2>Repairable <br /> Device Information</h2>
+                              <p>Enter information for new repairable device.</p>
+                            </div>
+                                 
+                            
+                            
+                            <div className="brand-input-field">
+                              <Label for="exampleEmail">Brand</Label>
+                              <Input
+                                id="exampleBrand"
+                                name="brand"
+                                placeholder="Select Your Brand "
+                                type="select"
+                              />
+                               <br />
+                              <Label for="exampleName">Name</Label>
+                              <Input
+                                id="exampleName"
+                                name="name"
+                                placeholder="Enter Your Brand Name"
+                                type="name"
+                              />
+                              <br />
+                              <Label for="exampleEmail">Modal</Label>
+                              <Input
+                                id="exampleModal"
+                                name="modal"
+                                placeholder="Enter Your Brand Modal"
+                                type="name"
+                              />
+                              <br />
+                              <FormGroup>
+                            <Label for="exampleFile">
+                              Image
+                            </Label>
+                            <Input
+                              id="exampleFile"
+                              name="file"
+                              type="file"
+                            />
+                          </FormGroup>
+                            </div>
+                            
+                          </div>
+                          
+                        </ModalBody>
+                        <ModalFooter style={{ border: "hidden" }}>
+                          <Button
+                            color="primary"
+                            onClick={handleRepToggle}
+                            style={{ backgroundColor: "blue" }}
+                          >
+                            Save
+                          </Button>{" "}
+                          <Button
+                            color="secondary"
+                            onClick={handleRepToggle}
+                            style={{ backgroundColor: "blue" }}
+                          >
+                            Cancel
+                          </Button>
+                        </ModalFooter>
+
+                        <hr/>
+                        <ModalHeader
+                          toggle={handleRepToggle}
+                          style={{
+                            fontSize: "1.2rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                        </ModalHeader>
+                        <ModalBody>
+                          <div className="create-modal-content">
+                            <div className="brand-info-content">
+                              <h2>Batch Entries With CSV Import</h2>
+                              <p>Upload file for batch entries.
+                               A file should be CSV with format.
+                               A file must have only columns with title of "name","model"</p>
+                            </div>
+                                 
+                            
+                            
+                            <div className="brand-input-field">
+                              <Label for="exampleEmail">Brand</Label>
+                              <Input
+                                id="exampleBrand"
+                                name="brand"
+                                placeholder="Select Your Brand "
+                                type="select"
+                              />
+                               <br />
+                              <FormGroup>
+                            <Label for="exampleFile">
+                              Image
+                            </Label>
+                            <Input
+                              id="exampleFile"
+                              name="file"
+                              type="file"
+                            />
+                          </FormGroup>
+                            </div>
+                            
+                          </div>
+                          
+                        </ModalBody>
+                        <ModalFooter style={{ border: "hidden" }}>
+                          <Button
+                            color="primary"
+                            onClick={handleRepToggle}
+                            style={{ backgroundColor: "blue" }}
+                          >
+                            Upload
+                          </Button>
+                         
+                        </ModalFooter>
+                     </Modal>
           </div>
         </div>
-        {FormToggle ? <CreateForm /> : <></>}
-
-        <CreateModal />
+        
 
         {/* modal end */}
 
@@ -125,8 +263,8 @@ const repdevices = () => {
 
         {queryData.map((elem, index) => (
           <div
-            className="container repdevices-data" key={index}
-            style={{ height: "auto", overflowY: "auto", width: "1050px" }}
+            className="container repdevices-data" key={index} onClick={elemHandleToggle}
+            style={{ height: "auto", overflowY: "auto", width: "1050px"  }}
           >
             <div className="brand-section" key={index}>
               <div className="brand-logo-info" style={{ display: "flex" }}>
@@ -146,14 +284,134 @@ const repdevices = () => {
                   <h5>Added : {new Date().toLocaleString()}</h5>
                 </div>
               </div>
-              <div className="brand-arrow-icon">
-                <button>
+              <div className="brand-arrow-icon" >
+                <button >
                   <i>
                     <IoIosArrowDroprightCircle />
                   </i>
                 </button>
               </div>
             </div>
+            <Modal
+                        isOpen={elemModal}
+                        toggle={elemHandleToggle}
+                        style={{ maxWidth: "70%" }}
+                      >
+                        <ModalHeader
+                          toggle={elemHandleToggle}
+                          style={{
+                            fontSize: "1.2rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                          
+                          CRAETE REPAIRABLE DEVICE
+                        </ModalHeader>
+                        <ModalBody>
+                          <div className="create-modal-content">
+                            <div className="brand-info-content">
+                              <h2>Repairable <br /> Device Information</h2>
+                              <p>Enter information for new repairable device.</p>
+                            </div>
+                                 
+                            
+                            
+                            <div className="brand-input-field">
+                              <Label for="exampleEmail">Brand</Label>
+                              <Input
+                                id="exampleBrand"
+                                name="brand"
+                                placeholder="Select Your Brand "
+                                type="select"
+                              />
+                               <br />
+                              <Label for="exampleName">Name</Label>
+                              <Input
+                                id="exampleName"
+                                name="name"
+                                placeholder="Enter Your Brand Name"
+                                type="name"
+                              />
+                              <br />
+                              <Label for="exampleEmail">Modal</Label>
+                              <Input
+                                id="exampleModal"
+                                name="modal"
+                                placeholder="Enter Your Brand Modal"
+                                type="name"
+                              />
+                              <br />
+                              <FormGroup>
+                            <Label for="exampleFile">
+                              Image
+                            </Label>
+                            <Input
+                              id="exampleFile"
+                              name="file"
+                              type="file"
+                            />
+                          </FormGroup>
+                            </div>
+                            
+                          </div>
+                          
+                        </ModalBody>
+                        <ModalFooter style={{ border: "hidden" }}>
+                        
+                          {/* <Button
+                            color="primary"
+                            onClick={elemHandleToggle}
+                            style={{ backgroundColor: "blue" }}
+                          >
+                            Save
+                          </Button>
+                          <Button
+                            color="secondary"
+                            onClick={elemHandleToggle}
+                            style={{ backgroundColor: "blue" }}
+                          >
+                            Cancel
+                          </Button> */}
+                        </ModalFooter>
+
+                         <hr />
+                        <ModalBody>
+                          <div className="create-modal-content">
+                            <div className="brand-info-content">
+                              <h2>
+                                Batch Entries With <br /> CSV Import
+                              </h2>
+                              <p>
+                                Upload file for batch entries. A file should be
+                                CSV with format. A file must have only one
+                                column with title of "name"
+                              </p>
+                            </div>
+                            <div className="brand-input-field">
+                              <FormGroup>
+                                <Label for="exampleFile">Excel CSV File</Label>
+                                <Input
+                                  id="exampleFile"
+                                  name="file"
+                                  type="file"
+                                />
+                              </FormGroup>
+                            </div>
+                          </div>
+                        </ModalBody>
+                        <ModalFooter>
+                          <Button
+                            color="primary"
+                            onClick={elemHandleToggle}
+                            style={{ backgroundColor: "blue" }}
+                          >
+                            Upload
+                          </Button>
+                        </ModalFooter>
+                        
+
+                        </Modal>
+
           </div>
         ))}
 
