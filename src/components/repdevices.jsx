@@ -25,7 +25,6 @@ const repdevices = () => {
     // sort logic apply here
   };
 
-
   //  for search feature state
   const [search, setSearch] = useState("");
   const [queryData, setQueryData] = useState(repDeviceData);
@@ -33,6 +32,7 @@ const repdevices = () => {
 
   const handleSearch = (text) => {
     setSearch(text);
+    // console.log(text)
     if (search == "") {
       setQueryData(repData);
     } else {
@@ -125,7 +125,7 @@ const repdevices = () => {
 
         {queryData.map((elem, index) => (
           <div
-            className="container repdevices-data"
+            className="container repdevices-data" key={index}
             style={{ height: "auto", overflowY: "auto", width: "1050px" }}
           >
             <div className="brand-section" key={index}>

@@ -307,3 +307,25 @@
     }
           /* Repair Devices Styling End */
     
+          /* Reapair Defects */
+          .sub-name-sec{
+            margin-top: 0.7rem;
+            background-color: #f9f9f9;
+            padding: 3px 6px;
+            width: 360px;
+            display: flex;
+            /* justify-content: center; */
+            align-items: center;
+            gap: 8px;
+          }
+          .sub-name-sec i{
+            color: #3aa8f7;
+            font-size: 1.5rem;
+          }
+          .sub-name-sec h5{
+            color: #3aa8f7;
+            font-size: 1rem;
+          }
+          .sub-name-sec h4{
+            color: #000;
+          }
