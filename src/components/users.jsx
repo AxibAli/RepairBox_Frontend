@@ -1,7 +1,10 @@
 import React from 'react'
 
+
 export default function users() {
   return (
-    <div>users</div>
+    <>
+        <h1>USERS</h1>
+    </>
   )
 }

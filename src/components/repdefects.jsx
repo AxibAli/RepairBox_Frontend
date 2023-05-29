@@ -1,35 +1,49 @@
 import React, { useState } from "react";
-import {AiFillFolderOpen,BsSortDownAlt,IoIosArrowDroprightCircle,BsLink45Deg} from "react-icons/all"
-import CreateForm from "./createForm";
-import CreateModal from "./createModal";
 import {NavLink} from "react-router-dom"
 import repDefectData from "./RepDefectData";
+import {
+  AiFillFolderOpen,
+  BsSortDownAlt,
+  IoIosArrowDroprightCircle,
+  BsLink45Deg
+} from "react-icons/all"
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Input,
+  Label,
+  FormGroup,
+} from "reactstrap";
+
 
 
 export default function repdefects() {
+
+  //  Modals State Start 
+    const [defModal, setDefModal] = useState(false);
+    const defHandleToggle = () =>setDefModal(!defModal)
+
+    const [newModal, setNewModal] =useState(false);
+    const newToggle = () => setNewModal(!newModal);
+    //  MOdals State End
   
+
+    // Sort State Start
   const [sortDirection, setSortDirection] = useState("asc");
   const handleSort = () => {
     const newSortDirection = sortDirection === "asc" ? "desc" : "asc";
     setSortDirection(newSortDirection);
 
+
+
     // sort logic apply here
   };
-
+      // Sort State End
  
-
-   // for create button modal
-   const [FormToggle, setFormToggle] = useState(false);
-   const [isToggle, isSetToggle] = useState(false);
- 
-   const toggle = () => {
-     setFormToggle(!FormToggle);
-   };
- 
-   const toggleButton = () => {
-     isSetToggle(!isToggle);
-   };
-
+      //  Search Box State Start
    const [search, setSearch] = useState("")
    const [query, setQuery] = useState(repDefectData);
    const [repData,setRepData] = useState(repDefectData);
@@ -46,6 +60,12 @@ export default function repdefects() {
       setQuery(newData);
     }
   };
+
+      //  Search Box State End
+     
+
+
+            // Code Start
   return (
     <>
       <div className="rep-device-container">
@@ -56,20 +76,148 @@ export default function repdefects() {
             </i>
             <h1>REPAIRABLE DEFECTS</h1>
           </div>
-          <div className="rep-create-button">
-            {FormToggle ? (
-              <button onClick={toggle}>
-                <p>Create</p>
-              </button>
-            ) : (
-              <></>
-            )}
+          <div className="rep-create-button" onClick={defHandleToggle}>
+            <button>
+              Create
+            </button>
+                 {/* Create Button Modal Start */}
+            <Modal
+                        isOpen={defModal}
+                        toggle={defHandleToggle}
+                        style={{ maxWidth: "70%" }}
+                      >
+                        <ModalHeader
+                          toggle={defHandleToggle}
+                          style={{
+                            fontSize: "1.2rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                          
+                          CRAETE REPAIRABLE DEFECTS
+                        </ModalHeader>
+                        <ModalBody>
+                          <div className="create-modal-content">
+                            <div className="brand-info-content">
+                              <h2> Defect Information</h2>
+                              <p>Defect information and customization.</p>
+                            </div>
+                                 
+                            
+                            <div className="brand-input-field">
+                              <Label for="exampleEmail">Device</Label>
+                              <Input
+                                id="exampleBrand"
+                                name="brand"
+                                placeholder="Select an option "
+                                type="select"
+                              />
+                               <br />
+                              <Label for="exampleDefectTitle">Defect Title</Label>
+                              <Input
+                                id="exampleDefectTitle"
+                                name="name"
+                                placeholder="Defect Title"
+                                type="name"
+                              />
+                              <br />
+                              <Label for="exampleEmail">Repair required time</Label>
+                              <Input
+                                id="exampleModal"
+                                name="modal"
+                                placeholder="Repair required time"
+                                type="name"
+                              />
+                              <br />
+                              <Label for="exampleEmail">Cost</Label>
+                              <Input
+                                id="exampleModal"
+                                name="modal"
+                                placeholder="Cost"
+                                type="name"
+                              />
+                              <br />
+                              <Label for="exampleEmail">Price</Label>
+                              <Input
+                                id="exampleModal"
+                                name="modal"
+                                placeholder="Price"
+                                type="name"
+                              />
+                              
+                            </div>
+                            
+                          </div>
+                          
+                        </ModalBody>
+                        <ModalFooter style={{ border: "hidden" }}>
+                          <Button
+                            color="primary"
+                            onClick={defHandleToggle}
+                            style={{ backgroundColor: "blue" }}
+                          >
+                            Save
+                          </Button>
+                          <Button
+                            color="secondary"
+                            onClick={defHandleToggle}
+                            style={{ backgroundColor: "blue" }}
+                          >
+                            Cancel
+                          </Button>
+                        </ModalFooter>
+
+                        {/* next Create modal */}
+                        <hr />
+                        <ModalBody>
+                          <div className="create-modal-content">
+                            <div className="brand-info-content">
+                              <h2>
+                                Batch Entries With <br /> CSV Import
+                              </h2>
+                              <p>
+                                Upload file for batch entries. A file should be
+                                CSV with format. A file must have only one
+                                column with title of "name"
+                              </p>
+                            </div>
+                            <div className="brand-input-field">
+                              <FormGroup>
+                              <Label for="exampleEmail">Device</Label>
+                              <Input
+                                id="exampleBrand"
+                                name="brand"
+                                placeholder="Select an option "
+                                type="select"
+                              />
+                               <br />
+                                <Label for="exampleFile">Excel CSV File</Label>
+                                <Input
+                                  id="exampleFile"
+                                  name="file"
+                                  type="file"
+                                />
+                              </FormGroup>
+                            </div>
+                          </div>
+                        </ModalBody>
+                        <ModalFooter>
+                          <Button
+                            color="primary"
+                            onClick={defHandleToggle}
+                            style={{ backgroundColor: "blue" }}
+                          >
+                            Upload
+                          </Button>
+                        </ModalFooter>
+                        
+                        </Modal>
+                        {/* Create Button MOdal End */}
           </div>
         </div>
-        {FormToggle ? <CreateForm /> : <></>}
-
-        <CreateModal />
         
+        
+           {/* Search Box Section Start */}
         <div className="search-box">
           {/* search box */}
 
@@ -136,7 +284,7 @@ export default function repdefects() {
                   <h6>Added : {new Date().toLocaleString()}</h6>
                 </div>
               </div>
-              <div className="brand-arrow-icon">
+              <div className="brand-arrow-icon" onClick={newToggle}>
                 <button>
                   <i>
                     <IoIosArrowDroprightCircle />
@@ -144,6 +292,92 @@ export default function repdefects() {
                 </button>
               </div>
             </div>
+            <Modal
+                        isOpen={newModal}
+                        toggle={newToggle}
+                        style={{ maxWidth: "70%" }}
+                      >
+                        <ModalHeader
+                          toggle={newToggle}
+                          style={{
+                            fontSize: "1.2rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                          
+                          CRAETE REPAIRABLE DEFECTS
+                        </ModalHeader>
+                        <ModalBody>
+                          <div className="create-modal-content">
+                            <div className="brand-info-content">
+                              <h2> Defect Information</h2>
+                              <p>Defect information and customization.</p>
+                            </div>
+                                 
+                            
+                            <div className="brand-input-field">
+                              <Label for="exampleEmail">Device</Label>
+                              <Input
+                                id="exampleBrand"
+                                name="brand"
+                                placeholder="Select an option "
+                                type="select"
+                              />
+                               <br />
+                              <Label for="exampleDefectTitle">Defect Title</Label>
+                              <Input
+                                id="exampleDefectTitle"
+                                name="name"
+                                placeholder="Defect Title"
+                                type="name"
+                              />
+                              <br />
+                              <Label for="exampleEmail">Repair required time</Label>
+                              <Input
+                                id="exampleModal"
+                                name="modal"
+                                placeholder="Repair required time"
+                                type="name"
+                              />
+                              <br />
+                              <Label for="exampleEmail">Cost</Label>
+                              <Input
+                                id="exampleModal"
+                                name="modal"
+                                placeholder="Cost"
+                                type="name"
+                              />
+                              <br />
+                              <Label for="exampleEmail">Price</Label>
+                              <Input
+                                id="exampleModal"
+                                name="modal"
+                                placeholder="Price"
+                                type="name"
+                              />
+                              
+                            </div>
+                            
+                          </div>
+                          
+                        </ModalBody>
+                        <ModalFooter style={{ border: "hidden" }}>
+                          <Button
+                            color="primary"
+                            onClick={newToggle}
+                            style={{ backgroundColor: "blue" }}
+                          >
+                            Update
+                          </Button>
+                          <Button
+                            color="secondary"
+                            onClick={newToggle}
+                            style={{ backgroundColor: "blue" }}
+                          >
+                            Cancel
+                          </Button>
+                        </ModalFooter>
+                            </Modal>
           </div>
           ))}
             
