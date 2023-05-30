@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BiStar } from "react-icons/bi";
-import { IoIosArrowDroprightCircle, AiFillPlusCircle } from "react-icons/all";
+import { IoIosArrowDroprightCircle, RxCross2 } from "react-icons/all";
 import { AiFillFolderOpen } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import brandsData from "./brandsData";
@@ -21,6 +21,11 @@ const brands = () => {
   const toggle = () => setModal(!modal);
   const handleToggle = () => setOtherModal(!otherModal);
 
+
+
+    //  useEffect(() =>{
+    //   fetch("")
+    //  })
 
   return (
     <>
@@ -44,17 +49,27 @@ const brands = () => {
                       <Modal
                         isOpen={modal}
                         toggle={toggle}
-                        style={{ maxWidth: "60%" }}
+                        style={{ maxWidth: "50%" }}
                       >
+                      
                         <ModalHeader
-                          toggle={toggle}
                           style={{
-                            fontSize: "1.2rem",
+                            fontSize: "1rem",
                             fontWeight: "500",
                           }}
                         >
-                          
+                              
                           CRAETE BRAND
+
+                          <Button
+                            color="primary"
+                            onClick={toggle}
+                            style={{ backgroundColor: "blue" }}
+                            className="cross-button"
+                          >
+                           <RxCross2/>
+                          </Button>
+                          
                         </ModalHeader>
                         <ModalBody>
                           <div className="create-modal-content">
@@ -79,14 +94,14 @@ const brands = () => {
                             onClick={toggle}
                             style={{ backgroundColor: "blue" }}
                           >
-                            Save
-                          </Button>{" "}
+                            Upload
+                          </Button>
                           <Button
                             color="secondary"
                             onClick={toggle}
                             style={{ backgroundColor: "blue" }}
                           >
-                            Cancel
+                            Save
                           </Button>
                         </ModalFooter>
 
@@ -115,15 +130,7 @@ const brands = () => {
                             </div>
                           </div>
                         </ModalBody>
-                        <ModalFooter>
-                          <Button
-                            color="primary"
-                            onClick={toggle}
-                            style={{ backgroundColor: "blue" }}
-                          >
-                            Upload
-                          </Button>{" "}
-                        </ModalFooter>
+                        
                       </Modal>
                      
                     </div>
@@ -147,17 +154,25 @@ const brands = () => {
             <Modal
                         isOpen={otherModal}
                         toggle={handleToggle}
-                        style={{ maxWidth: "60%" }}
+                        style={{ maxWidth: "50%" }}
                       >
                         <ModalHeader
-                          toggle={handleToggle}
+                          // toggle={handleToggle}
                           style={{
-                            fontSize: "1.2rem",
+                            fontSize: "1rem",
                             fontWeight: "500",
                           }}
                         >
                           
                           CRAETE BRAND
+                          <Button
+                            color="primary"
+                            onClick={handleToggle}
+                            style={{ backgroundColor: "blue" }}
+                            className="cross-button"
+                          >
+                           <RxCross2/>
+                          </Button>
                         </ModalHeader>
                         <ModalBody>
                           <div className="create-modal-content">
@@ -189,7 +204,7 @@ const brands = () => {
                             onClick={handleToggle}
                             style={{ backgroundColor: "blue" }}
                           >
-                            Cancel
+                            Upload
                           </Button>
                         </ModalFooter>
 
@@ -218,15 +233,6 @@ const brands = () => {
                             </div>
                           </div>
                         </ModalBody>
-                        <ModalFooter>
-                          <Button
-                            color="primary"
-                            onClick={handleToggle}
-                            style={{ backgroundColor: "blue" }}
-                          >
-                            Upload
-                          </Button>
-                        </ModalFooter>
                       </Modal>            {/* modal here */}
                 
           </div>

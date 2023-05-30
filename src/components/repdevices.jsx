@@ -7,6 +7,7 @@ import {
   IoIosArrowDroprightCircle,
   FaLessThan,
   FaGreaterThan,
+  RxCross2
 } from "react-icons/all";
 import {
   Button,
@@ -84,10 +85,10 @@ const repdevices = () => {
              <Modal
                         isOpen={repModal}
                         toggle={handleRepToggle}
-                        style={{ maxWidth: "70%" }}
+                        style={{ maxWidth: "60%" }}
                       >
                         <ModalHeader
-                          toggle={handleRepToggle}
+                          // toggle={handleRepToggle}
                           style={{
                             fontSize: "1.2rem",
                             fontWeight: "500",
@@ -95,6 +96,14 @@ const repdevices = () => {
                         >
                           
                           CRAETE REPAIRABLE DEVICE
+                          <Button
+                            color="primary"
+                            onClick={handleRepToggle}
+                            style={{ backgroundColor: "blue" }}
+                            className="cross-button"
+                          >
+                           <RxCross2/>
+                          </Button>
                         </ModalHeader>
                         <ModalBody>
                           <div className="create-modal-content">
@@ -158,7 +167,7 @@ const repdevices = () => {
                             onClick={handleRepToggle}
                             style={{ backgroundColor: "blue" }}
                           >
-                            Cancel
+                            Upload
                           </Button>
                         </ModalFooter>
 
@@ -207,13 +216,6 @@ const repdevices = () => {
                           
                         </ModalBody>
                         <ModalFooter style={{ border: "hidden" }}>
-                          <Button
-                            color="primary"
-                            onClick={handleRepToggle}
-                            style={{ backgroundColor: "blue" }}
-                          >
-                            Upload
-                          </Button>
                          
                         </ModalFooter>
                      </Modal>
@@ -298,7 +300,7 @@ const repdevices = () => {
                         style={{ maxWidth: "70%" }}
                       >
                         <ModalHeader
-                          toggle={elemHandleToggle}
+                          
                           style={{
                             fontSize: "1.2rem",
                             fontWeight: "500",
@@ -306,6 +308,14 @@ const repdevices = () => {
                         >
                           
                           CRAETE REPAIRABLE DEVICE
+                          <Button
+                            color="primary"
+                            onClick={elemHandleToggle}
+                            style={{ backgroundColor: "blue" }}
+                            className="cross-button"
+                          >
+                           <RxCross2/>
+                          </Button>
                         </ModalHeader>
                         <ModalBody>
                           <div className="create-modal-content">
@@ -399,17 +409,6 @@ const repdevices = () => {
                             </div>
                           </div>
                         </ModalBody>
-                        <ModalFooter>
-                          <Button
-                            color="primary"
-                            onClick={elemHandleToggle}
-                            style={{ backgroundColor: "blue" }}
-                          >
-                            Upload
-                          </Button>
-                        </ModalFooter>
-                        
-
                         </Modal>
 
           </div>

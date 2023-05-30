@@ -257,14 +257,20 @@
      }
      .rep-create-button{
        grid-column: span 4;
-       margin-left: 8.3rem;
+       margin-left: 6rem;
        float: right !important;
      }
      .rep-create-button button{
+      margin-left: 2rem;
+      padding: 10px 50px;
       background-color: #3aa8f7;
       color: #fff;
-      padding: 13px 50px;
+      border-radius: 5px;
      }
+  .rep-create-button button:hover{
+      color: #fff;
+      background-color: skyblue;
+  }
      
     .rep-name{
         display: flex;
@@ -397,16 +403,34 @@
             /* line-height: 2.5rem; */
          }
          .brand-input-field{
+            height: 50%;
             grid-column: span 6;
+            /* line-height: 2rem; */
          }
          .brand-input-field input{
             width: 100%;
          }
          .brand-info-content h2{
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 600;
          }
          .brand-info-content p{
-            font-size: 0.8rem;
-            /* font-weight: 600; */
+            font-size: 0.7rem;
+         }
+         .cross-button{
+          position: absolute;
+          right: 3%;
+          /* bottom: 14rem; */
+          outline: none;
+          color: #000 !important;
+          background-color: #f44336 !important;
+          border: 1px solid lightgray !important;
+          border-radius: 10% !important;
+         }
+         .cross-button i:hover {
+          color: #fff !important;
+          background-color: transparent !important; 
+         }
+         .ModalBody{
+          border: hidden;
          }
