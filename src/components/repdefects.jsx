@@ -5,7 +5,8 @@ import {
   AiFillFolderOpen,
   BsSortDownAlt,
   IoIosArrowDroprightCircle,
-  BsLink45Deg
+  BsLink45Deg,
+  RxCross2
 } from "react-icons/all"
 import {
   Button,
@@ -87,7 +88,7 @@ export default function repdefects() {
                         style={{ maxWidth: "70%" }}
                       >
                         <ModalHeader
-                          toggle={defHandleToggle}
+                        
                           style={{
                             fontSize: "1.2rem",
                             fontWeight: "500",
@@ -95,6 +96,14 @@ export default function repdefects() {
                         >
                           
                           CRAETE REPAIRABLE DEFECTS
+                          <Button
+                            color="primary"
+                            onClick={defHandleToggle}
+                            style={{ backgroundColor: "blue" }}
+                            className="cross-button"
+                          >
+                           <RxCross2/>
+                          </Button>
                         </ModalHeader>
                         <ModalBody>
                           <div className="create-modal-content">
@@ -163,7 +172,7 @@ export default function repdefects() {
                             onClick={defHandleToggle}
                             style={{ backgroundColor: "blue" }}
                           >
-                            Cancel
+                            Upload
                           </Button>
                         </ModalFooter>
 
@@ -202,13 +211,7 @@ export default function repdefects() {
                           </div>
                         </ModalBody>
                         <ModalFooter>
-                          <Button
-                            color="primary"
-                            onClick={defHandleToggle}
-                            style={{ backgroundColor: "blue" }}
-                          >
-                            Upload
-                          </Button>
+                          
                         </ModalFooter>
                         
                         </Modal>
@@ -298,7 +301,7 @@ export default function repdefects() {
                         style={{ maxWidth: "70%" }}
                       >
                         <ModalHeader
-                          toggle={newToggle}
+                          
                           style={{
                             fontSize: "1.2rem",
                             fontWeight: "500",
@@ -306,6 +309,14 @@ export default function repdefects() {
                         >
                           
                           CRAETE REPAIRABLE DEFECTS
+                          <Button
+                            color="primary"
+                            onClick={newToggle}
+                            style={{ backgroundColor: "blue" }}
+                            className="cross-button"
+                          >
+                           <RxCross2/>
+                          </Button>
                         </ModalHeader>
                         <ModalBody>
                           <div className="create-modal-content">
