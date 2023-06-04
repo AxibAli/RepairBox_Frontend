@@ -1,14 +1,24 @@
-   
+     ****install formik and Yup package for input field validation
      ****install react-icons in dashboard Data entries section**** 
      ***install ReactStrap for modals
+     ****npm i axios
 
 
 
 
-     ****install formik and Yup package for input field validation
+     
      ****Create Data Entries Section 
      ----> Brand section (create brand page,buttons and thier modals)
      ----> Repair Devices Section applied furqan's Modal create search bar, dropdown and thier 
      validation through(formink and Yup).
      sort button and other data fetch through API.
      ---->repair page is not complete, their elements modals, pagination is remain...
+     
+
+      4th June 2023
+     ---> Work on Brand Page
+     --->Creat, Get, Edit/Update and delete brand functionality is done (deletebrand process in pending due to some minor issues)
+
+
+
+     
