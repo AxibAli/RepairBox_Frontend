@@ -65,7 +65,17 @@ export default function MultipleSelect() {
   //     setAge(event.target.value);
   // };
 
-
+  const items = [
+    {
+      name: 't'
+    }, 
+    {
+      name: 'z'
+    },
+    {
+      name: 'x'
+    }
+  ]
   return (
     <div className='dropdown'>
        <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', textAlign: 'center', fontFamily: 'sans-serif', fontSize: '14px', color: '#4B5563' }}>
@@ -81,6 +91,11 @@ export default function MultipleSelect() {
                     label="Age"
                     onChange={handleChange}
                 >
+                  {
+                    items.map((item) => (
+                      <MenuItem value={item.name}>{item.name}</MenuItem>                      
+                    ))
+                  }
                     <MenuItem value={10}>Ten</MenuItem>
                     <MenuItem value={20}>Twenty</MenuItem>
                     <MenuItem value={30}>Thirty</MenuItem>
