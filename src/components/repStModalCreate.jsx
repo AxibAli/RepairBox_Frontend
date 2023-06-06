@@ -44,7 +44,6 @@ export default function repStModalCreate() {
                         <RxCross2/>
                     </Button>
                 </div>
-
             </ModalHeader>
             <ModalBody>
                 <div className='w-[650px] h-[120px] flex justify-center items-center'>

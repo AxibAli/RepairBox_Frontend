@@ -7,7 +7,7 @@ import {
   IoIosArrowDroprightCircle,
   FaLessThan,
   FaGreaterThan,
-  RxCross2
+  RxCross2,
 } from "react-icons/all";
 import {
   Button,
@@ -20,12 +20,15 @@ import {
   FormGroup,
 } from "reactstrap";
 
-
-
-
-
 const repdevices = () => {
 
+
+
+
+
+
+
+  
   // sorting data state Start
   const [sortDirection, setSortDirection] = useState("asc");
   const handleSort = () => {
@@ -34,20 +37,21 @@ const repdevices = () => {
 
     // sort logic apply here
   };
-    //  sort state end
+  //  sort state end
 
   //  for search feature state start
-  const [search, setSearch] = useState("");
-  const [queryData, setQueryData] = useState(repDeviceData);
+        
   const [repData, setRepData] = useState(repDeviceData);
-  
+  const [search, setSearch] = useState("");  
+  const [queryData, setQueryData] = useState(repDeviceData);
 
   const handleSearch = (text) => {
     setSearch(text);
     // console.log(text)
     if (search == "") {
       setQueryData(repData);
-    } else {
+    } 
+    else {
       const newData = repData.filter((item) =>
         item.name.toLowerCase().includes(search.toLowerCase())
       );
@@ -55,18 +59,16 @@ const repdevices = () => {
     }
   };
 
-      //  for search feature state end
-  
+  //  for search feature state end
 
   // for create button modal
-   const [repModal,setRepModal] = useState(false);
-   const handleRepToggle = () => setRepModal(!repModal);
+  const [repModal, setRepModal] = useState(false);
+  const handleRepToggle = () => setRepModal(!repModal);
 
-   const [elemModal, setElemModal] = useState(false);
-   const elemHandleToggle = () => setElemModal(!elemModal)
- 
-   
-            // Code Started after return
+  const [elemModal, setElemModal] = useState(false);
+  const elemHandleToggle = () => setElemModal(!elemModal);
+
+  // Code Started after return
   return (
     <>
       {/* create button and thier modal */}
@@ -79,149 +81,128 @@ const repdevices = () => {
             <h1>REPAIRABLE DEVICES</h1>
           </div>
           <div className="rep-create-button" onClick={handleRepToggle}>
-             <button >
-              Create
-             </button>
-             <Modal
-                        isOpen={repModal}
-                        toggle={handleRepToggle}
-                        style={{ maxWidth: "60%" }}
-                      >
-                        <ModalHeader
-                          // toggle={handleRepToggle}
-                          style={{
-                            fontSize: "1.2rem",
-                            fontWeight: "500",
-                          }}
-                        >
-                          
-                          CRAETE REPAIRABLE DEVICE
-                          <Button
-                            color="primary"
-                            onClick={handleRepToggle}
-                            style={{ backgroundColor: "blue" }}
-                            className="cross-button"
-                          >
-                           <RxCross2/>
-                          </Button>
-                        </ModalHeader>
-                        <ModalBody>
-                          <div className="create-modal-content">
-                            <div className="brand-info-content">
-                              <h2>Repairable <br /> Device Information</h2>
-                              <p>Enter information for new repairable device.</p>
-                            </div>
-                                 
-                            
-                            
-                            <div className="brand-input-field">
-                              <Label for="exampleEmail">Brand</Label>
-                              <Input
-                                id="exampleBrand"
-                                name="brand"
-                                placeholder="Select Your Brand "
-                                type="select"
-                              />
-                               <br />
-                              <Label for="exampleName">Name</Label>
-                              <Input
-                                id="exampleName"
-                                name="name"
-                                placeholder="Enter Your Brand Name"
-                                type="name"
-                              />
-                              <br />
-                              <Label for="exampleEmail">Modal</Label>
-                              <Input
-                                id="exampleModal"
-                                name="modal"
-                                placeholder="Enter Your Brand Modal"
-                                type="name"
-                              />
-                              <br />
-                              <FormGroup>
-                            <Label for="exampleFile">
-                              Image
-                            </Label>
-                            <Input
-                              id="exampleFile"
-                              name="file"
-                              type="file"
-                            />
-                          </FormGroup>
-                            </div>
-                            
-                          </div>
-                          
-                        </ModalBody>
-                        <ModalFooter style={{ border: "hidden" }}>
-                          <Button
-                            color="primary"
-                            onClick={handleRepToggle}
-                            style={{ backgroundColor: "blue" }}
-                          >
-                            Save
-                          </Button>{" "}
-                          <Button
-                            color="secondary"
-                            onClick={handleRepToggle}
-                            style={{ backgroundColor: "blue" }}
-                          >
-                            Upload
-                          </Button>
-                        </ModalFooter>
+            <button>Create</button>
+            <Modal
+              isOpen={repModal}
+              toggle={handleRepToggle}
+              style={{ maxWidth: "60%" }}
+            >
+              <ModalHeader
+                // toggle={handleRepToggle}
+                style={{
+                  fontSize: "1.2rem",
+                  fontWeight: "500",
+                }}
+              >
+                CREATE REPAIRABLE DEVICE
+                <Button
+                  color="primary"
+                  onClick={handleRepToggle}
+                  style={{ backgroundColor: "blue" }}
+                  className="cross-button"
+                >
+                  <RxCross2 />
+                </Button>
+              </ModalHeader>
+              <ModalBody>
+                <div className="create-modal-content">
+                  <div className="brand-info-content">
+                    <h2>
+                      Repairable <br /> Device Information
+                    </h2>
+                    <p>Enter information for new repairable device.</p>
+                  </div>
 
-                        <hr/>
-                        <ModalHeader
-                          toggle={handleRepToggle}
-                          style={{
-                            fontSize: "1.2rem",
-                            fontWeight: "500",
-                          }}
-                        >
-                        </ModalHeader>
-                        <ModalBody>
-                          <div className="create-modal-content">
-                            <div className="brand-info-content">
-                              <h2>Batch Entries With CSV Import</h2>
-                              <p>Upload file for batch entries.
-                               A file should be CSV with format.
-                               A file must have only columns with title of "name","model"</p>
-                            </div>
-                                 
-                            
-                            
-                            <div className="brand-input-field">
-                              <Label for="exampleEmail">Brand</Label>
-                              <Input
-                                id="exampleBrand"
-                                name="brand"
-                                placeholder="Select Your Brand "
-                                type="select"
-                              />
-                               <br />
-                              <FormGroup>
-                            <Label for="exampleFile">
-                              Image
-                            </Label>
-                            <Input
-                              id="exampleFile"
-                              name="file"
-                              type="file"
-                            />
-                          </FormGroup>
-                            </div>
-                            
-                          </div>
-                          
-                        </ModalBody>
-                        <ModalFooter style={{ border: "hidden" }}>
-                         
-                        </ModalFooter>
-                     </Modal>
+                  <div className="brand-input-field">
+                    <Label for="exampleEmail">Brand</Label>
+                    <Input
+                      id="exampleBrand"
+                      name="brand"
+                      placeholder="Select Your Brand "
+                      type="select"
+                    />
+                    <br />
+                    <Label for="exampleName">Name</Label>
+                    <Input
+                      id="exampleName"
+                      name="name"
+                      placeholder="Enter Your Brand Name"
+                      type="name"
+                    />
+                    <br />
+                    <Label for="exampleEmail">Modal</Label>
+                    <Input
+                      id="exampleModal"
+                      name="modal"
+                      placeholder="Enter Your Brand Modal"
+                      type="name"
+                    />
+                    <br />
+                    <FormGroup>
+                      <Label for="exampleFile">Image</Label>
+                      <Input id="exampleFile" name="file" type="file" />
+                    </FormGroup>
+                  </div>
+                </div>
+              </ModalBody>
+              <ModalFooter style={{ border: "none" }}>
+                <Button
+                  color="primary"
+                  onClick={handleRepToggle}
+                  style={{ backgroundColor: "blue" }}
+                >
+                  Save
+                </Button>
+              </ModalFooter>
+
+              <hr />
+              <ModalHeader
+                toggle={handleRepToggle}
+                style={{
+                  fontSize: "1.2rem",
+                  fontWeight: "500",
+                  border: "none",
+                }}
+              ></ModalHeader>
+              <ModalBody style={{ border: "none" }}>
+                <div className="create-modal-content">
+                  <div className="brand-info-content">
+                    <h2>Batch Entries With CSV Import</h2>
+                    <p>
+                      Upload file for batch entries. A file should be CSV with
+                      format. A file must have only columns with title of
+                      "name","model"
+                    </p>
+                  </div>
+
+                  <div className="brand-input-field">
+                    <Label for="exampleEmail">Brand</Label>
+                    <Input
+                      id="exampleBrand"
+                      name="brand"
+                      placeholder="Select Your Brand "
+                      type="select"
+                    />
+                    <br />
+                    <FormGroup>
+                      <Label for="exampleFile">Image</Label>
+                      <Input id="exampleFile" name="file" type="file" />
+                    </FormGroup>
+                  </div>
+                </div>
+              </ModalBody>
+              <ModalFooter style={{ border: "hidden" }}>
+                <Button
+                  color="secondary"
+                  onClick={handleRepToggle}
+                  style={{ backgroundColor: "blue" }}
+                >
+                  Upload
+                </Button>
+              </ModalFooter>
+            </Modal>
           </div>
         </div>
-        
 
         {/* modal end */}
 
@@ -265,8 +246,10 @@ const repdevices = () => {
 
         {queryData.map((elem, index) => (
           <div
-            className="container repdevices-data" key={index} onClick={elemHandleToggle}
-            style={{ height: "auto", overflowY: "auto", width: "1050px"  }}
+            className="container repdevices-data"
+            key={index}
+            onClick={elemHandleToggle}
+            style={{ height: "auto", overflowY: "auto", width: "1050px" }}
           >
             <div className="brand-section" key={index}>
               <div className="brand-logo-info" style={{ display: "flex" }}>
@@ -286,136 +269,97 @@ const repdevices = () => {
                   <h5>Added : {new Date().toLocaleString()}</h5>
                 </div>
               </div>
-              <div className="brand-arrow-icon" >
-                <button >
+              <div className="brand-arrow-icon">
+                <button>
                   <i>
                     <IoIosArrowDroprightCircle />
                   </i>
                 </button>
               </div>
             </div>
-            <Modal
-                        isOpen={elemModal}
-                        toggle={elemHandleToggle}
-                        style={{ maxWidth: "70%" }}
-                      >
-                        <ModalHeader
-                          
-                          style={{
-                            fontSize: "1.2rem",
-                            fontWeight: "500",
-                          }}
-                        >
-                          
-                          CRAETE REPAIRABLE DEVICE
-                          <Button
-                            color="primary"
-                            onClick={elemHandleToggle}
-                            style={{ backgroundColor: "blue" }}
-                            className="cross-button"
-                          >
-                           <RxCross2/>
-                          </Button>
-                        </ModalHeader>
-                        <ModalBody>
-                          <div className="create-modal-content">
-                            <div className="brand-info-content">
-                              <h2>Repairable <br /> Device Information</h2>
-                              <p>Enter information for new repairable device.</p>
-                            </div>
-                                 
-                            
-                            
-                            <div className="brand-input-field">
-                              <Label for="exampleEmail">Brand</Label>
-                              <Input
-                                id="exampleBrand"
-                                name="brand"
-                                placeholder="Select Your Brand "
-                                type="select"
-                              />
-                               <br />
-                              <Label for="exampleName">Name</Label>
-                              <Input
-                                id="exampleName"
-                                name="name"
-                                placeholder="Enter Your Brand Name"
-                                type="name"
-                              />
-                              <br />
-                              <Label for="exampleEmail">Modal</Label>
-                              <Input
-                                id="exampleModal"
-                                name="modal"
-                                placeholder="Enter Your Brand Modal"
-                                type="name"
-                              />
-                              <br />
-                              <FormGroup>
-                            <Label for="exampleFile">
-                              Image
-                            </Label>
-                            <Input
-                              id="exampleFile"
-                              name="file"
-                              type="file"
-                            />
-                          </FormGroup>
-                            </div>
-                            
-                          </div>
-                          
-                        </ModalBody>
-                        <ModalFooter style={{ border: "hidden" }}>
-                        
-                          {/* <Button
-                            color="primary"
-                            onClick={elemHandleToggle}
-                            style={{ backgroundColor: "blue" }}
-                          >
-                            Save
-                          </Button>
-                          <Button
-                            color="secondary"
-                            onClick={elemHandleToggle}
-                            style={{ backgroundColor: "blue" }}
-                          >
-                            Cancel
-                          </Button> */}
-                        </ModalFooter>
-
-                         <hr />
-                        <ModalBody>
-                          <div className="create-modal-content">
-                            <div className="brand-info-content">
-                              <h2>
-                                Batch Entries With <br /> CSV Import
-                              </h2>
-                              <p>
-                                Upload file for batch entries. A file should be
-                                CSV with format. A file must have only one
-                                column with title of "name"
-                              </p>
-                            </div>
-                            <div className="brand-input-field">
-                              <FormGroup>
-                                <Label for="exampleFile">Excel CSV File</Label>
-                                <Input
-                                  id="exampleFile"
-                                  name="file"
-                                  type="file"
-                                />
-                              </FormGroup>
-                            </div>
-                          </div>
-                        </ModalBody>
-                        </Modal>
-
           </div>
         ))}
+        <Modal
+          isOpen={elemModal}
+          toggle={elemHandleToggle}
+          style={{ maxWidth: "70%" }}
+        >
+          <ModalHeader
+            style={{
+              fontSize: "1.2rem",
+              fontWeight: "500",
+            }}
+          >
+            CRAETE REPAIRABLE DEVICE
+            <Button
+              color="primary"
+              onClick={elemHandleToggle}
+              style={{ backgroundColor: "blue" }}
+              className="cross-button"
+            >
+              <RxCross2 />
+            </Button>
+          </ModalHeader>
+          <ModalBody>
+            <div className="create-modal-content">
+              <div className="brand-info-content">
+                <h2>
+                  Repairable <br /> Device Information
+                </h2>
+                <p>Enter information for new repairable device.</p>
+              </div>
+
+              <div className="brand-input-field">
+                <Label for="exampleEmail">Brand</Label>
+                <Input
+                  id="exampleBrand"
+                  name="brand"
+                  placeholder="Select Your Brand "
+                  type="select"
+                />
+                <br />
+                <Label for="exampleName">Name</Label>
+                <Input
+                  id="exampleName"
+                  name="name"
+                  placeholder="Enter Your Brand Name"
+                  type="name"
+                />
+                <br />
+                <Label for="exampleEmail">Modal</Label>
+                <Input
+                  id="exampleModal"
+                  name="modal"
+                  placeholder="Enter Your Brand Modal"
+                  type="name"
+                />
+                <br />
+                <FormGroup>
+                  <Label for="exampleFile">Image</Label>
+                  <Input id="exampleFile" name="file" type="file" />
+                </FormGroup>
+              </div>
+            </div>
+          </ModalBody>
+          <ModalFooter style={{ border: "hidden" }}>
+            <Button
+              color="primary"
+              onClick={elemHandleToggle}
+              style={{ backgroundColor: "blue" }}
+            >
+              Edit
+            </Button>
+            <Button
+              color="secondary"
+              onClick={elemHandleToggle}
+              style={{ backgroundColor: "blue" }}
+            >
+              Update
+            </Button>
+          </ModalFooter>
+        </Modal>
 
         {/* map methond End */}
-
 
         {/* Pagination start */}
 
@@ -434,7 +378,6 @@ const repdevices = () => {
           </button>
         </div>
         {/* pagination End */}
-
       </div>
 
       {/* repair section end */}
