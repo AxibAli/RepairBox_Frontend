@@ -5,6 +5,7 @@ import CModal from './repPrModalCreate'
 import UModal from './repPrModalUpdate'
 
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 
@@ -50,7 +51,10 @@ export default function repstatus() {
                   <p className='text-[18px] font-light'>${item.charge}</p>    
                 </div>
               </div>
-              <UModal name={item.name} value={item.value} price={item.charge}/>
+              <div className='w-[80px] flex justify-between items-center'>
+                <DeleteIcon className='hover:text-red-600' style={{fontSize: '30px' }}/>
+                <UModal name={item.name} value={item.value} price={item.charge}/>
+              </div>
             </div>            
           ))
         }

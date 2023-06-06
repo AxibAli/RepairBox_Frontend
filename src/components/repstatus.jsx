@@ -6,6 +6,7 @@ import UModal from './repStModalUpdate'
 
 
 import StyleIcon from '@mui/icons-material/Style';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 
@@ -40,7 +41,11 @@ export default function repstatus() {
           Data.map((item) => (
             <div className='pl-[20px] pr-[20px] w-[1000px] h-[60px] bg-slate-50 hover:bg-slate-100 border-[#E0E0E0] border-[1px] rounded-sm flex justify-between items-center hover:cursor-pointer'>
               <p className='text-[18px] font-medium'>{item.name}</p>
-              <UModal status={item.name}/>
+              <div className='w-[80px] flex justify-between items-center'>
+                <DeleteIcon className='hover:text-red-600' style={{fontSize: '30px' }}/>
+                <UModal status={item.name}/>
+              </div>
+
             </div>            
           ))
         }
