@@ -78,11 +78,11 @@ export default function MultipleSelect() {
   ]
   return (
     <div className='dropdown'>
-       <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', textAlign: 'center', fontFamily: 'sans-serif', fontSize: '14px', color: '#4B5563' }}>
+       <Box sx={{ paddingLeft:'100px',width: '100%', display: 'flex', justifyContent: 'center', textAlign: 'justify',marginTop:'30px', fontFamily: 'sans-serif', fontSize: '14px', color: '#4B5563' }}>
             <Box sx={{ width: '30%' }} ><h4 >Select Your Device Brand</h4>
                 <p>Brands we repair.</p>
             </Box>
-            <FormControl sx={{ width: "70%", float: 'left' }} fullWidth>
+            <FormControl sx={{ width: "70%",  }} fullWidth>
                 <InputLabel id="demo-simple-select-label">Brands</InputLabel>
                 <Select
                     labelId="demo-simple-select-label"

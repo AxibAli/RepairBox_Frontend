@@ -1,8 +1,9 @@
-import React from 'react'
+
 import { useState, useEffect } from 'react'
 import dataI from './repstatusData'
 import CModal from './repStModalCreate'
 import UModal from './repStModalUpdate'
+
 
 import StyleIcon from '@mui/icons-material/Style';
 
@@ -15,6 +16,7 @@ export default function repstatus() {
     setData(dataI)
     console.log('render')
   }
+  
 
   useEffect(() => {
     fetchdata()

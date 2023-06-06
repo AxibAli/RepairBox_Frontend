@@ -31,7 +31,7 @@ export default function BasicSelect() {
 
     return (
         <>
-            <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', textAlign: 'center', fontFamily: 'sans-serif', fontSize: '14px', color: '#4B5563' }}>
+            <Box sx={{ paddingLeft:'100px',width: '100%', display: 'flex', justifyContent: 'center', textAlign: 'justify',marginTop:'30px', fontFamily: 'sans-serif', fontSize: '14px', color: '#4B5563'}}>
                 <Box sx={{ width: '30%' }} ><h4 >Select Your Device</h4>
                     <p>Available devices for selected brand.</p>
                 </Box>
