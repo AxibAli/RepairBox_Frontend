@@ -35,7 +35,6 @@ export default function repStModalCreate() {
                 fontWeight: "500",
                 }}
             >       
-
                 <div className='w-[650px] flex justify-between items-center'>
                     <p>Create Repair Status</p>
                     <Button
