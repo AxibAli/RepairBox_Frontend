@@ -21,11 +21,11 @@ export default function HomePage() {
       <AllCollapseExample />
       <MiddleSexction /> 
     
-    <div>HomePage</div>
+    {/* <div>HomePage</div>
 
     <Stack spacing={2}>
     <h1>Book your defective or repairable device</h1>
- </Stack>
+ </Stack> */}
  </Box>
   )
 }
