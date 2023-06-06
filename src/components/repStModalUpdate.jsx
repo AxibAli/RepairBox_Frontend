@@ -22,8 +22,8 @@ export default function repStModalUpdate(props) {
     };
   return (
     <div>
-        <div className='w-[60px] h-[60px] flex justify-end items-center group' onClick={toggle}>
-            <ArrowForward className=' group-hover:text-blue-400'/>
+        <div className='w-[50px] h-[60px] flex justify-end items-center group' onClick={toggle}>
+            <ArrowForward className=' group-hover:text-blue-400' style={{fontSize: '25px' }}/>
         </div>
         <Modal
             isOpen={modal}
@@ -66,17 +66,17 @@ export default function repStModalUpdate(props) {
                 </div>
             </ModalBody>
             <ModalFooter style={{border: "hidden"}}>
-                <button
+                {/* <button
                     onClick={toggle}
                     // style={{ backgroundColor: "blue" }}
                     className='w-[60px] h-[40px] bg-red-600 rounded-[10px] hover:bg-red-500 border-none text-white text-[16px] font-light'
                 >
                 Delete
-                </button>
+                </button> */}
                 <button
                     onClick={toggle}
                     // style={{ backgroundColor: "blue" }}
-                    className='w-[60px] h-[40px] bg-[#0096FF] rounded-[10px] hover:bg-[#3aa8f7] border-none text-white text-[16px] font-light'
+                    className='w-[70px] h-[40px] bg-[#0096FF] rounded-[10px] hover:bg-[#3aa8f7] border-none text-white text-[16px] font-normal'
                 >
                 Update
                 </button>

@@ -95,7 +95,7 @@ export default function repStModalCreate() {
                 <button
                     onClick={toggle}
                     // style={{ backgroundColor: "blue" }}
-                    className='w-[60px] h-[40px] bg-[#0096FF] rounded-[10px] hover:bg-[#3aa8f7] border-none text-white text-[16px] font-light'
+                    className='w-[60px] h-[40px] bg-[#0096FF] rounded-[10px] hover:bg-[#3aa8f7] border-none text-white text-[16px] font-normal'
                 >
                 Save
                 </button>
