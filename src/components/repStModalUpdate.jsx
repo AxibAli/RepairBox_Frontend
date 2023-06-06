@@ -22,8 +22,8 @@ export default function repStModalUpdate(props) {
     };
   return (
     <div>
-        <div className='w-[60px] h-[60px] flex justify-end items-center group' >
-            <ArrowForward onClick={toggle} className=' group-hover:text-blue-400'/>
+        <div className='w-[60px] h-[60px] flex justify-end items-center group' onClick={toggle}>
+            <ArrowForward className=' group-hover:text-blue-400'/>
         </div>
         <Modal
             isOpen={modal}
@@ -36,15 +36,15 @@ export default function repStModalUpdate(props) {
                 fontWeight: "500",
                 }}
             >       
-                Update Repair Status
-                <Button
-                    color="primary"
-                    onClick={toggle}
-                    style={{ backgroundColor: "blue" }}
-                    className="cross-button"
-                >
-                    <RxCross2/>
-                </Button>
+                <div className='w-[650px] flex justify-between items-center'>
+                    <p>Update Repair Status</p>
+                    <Button
+                        onClick={toggle}
+                        className='bg-red-600 hover:bg-red-500'
+                    >
+                        <RxCross2/>
+                    </Button>
+                </div>
             </ModalHeader>
             <ModalBody>
                 <div className='w-[650px] h-[120px] flex justify-center items-center'>
