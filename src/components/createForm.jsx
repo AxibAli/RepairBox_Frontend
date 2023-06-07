@@ -12,16 +12,16 @@ export default function createForm() {
   return (
     <div className='w-[1000px] h-[220px] '>
         <div className='w-[1000px] h-[60px] flex items-center justify-normal'>
-            <p className='ml-[10px] text-[#505050] text-[26px] font-semibold'>Add a Repair Status</p>
+            <p className='ml-[10px] text-[#505050] text-[26px] font-semibold'>Add a Repair Device</p>
         </div>
         <form className='w-[1000px] h-[150px] bg-white flex justify-center items-center rounded-lg border-[rgba(229,231,235,1)] border-[1px]'>
             <div className='mt-[20px] h-[130px] flex justify-between items-center w-[900px]'>
                 <div className='ml-[20px] h-[100%] w-[300px]'>
-                    <p className='ml-[10px] text-[#505050] text-[20px] font-semibold'>Repair Status Details</p>
+                    <p className='ml-[10px] text-[#505050] text-[20px] font-semibold'>Repair Device Details</p>
                     <p className='ml-[10px] mt-[5px] text-[#505050] text-[16px] font-normal'>Add Details and Customizations in the given field</p>
                 </div>
                 <div className='mr-[20px] h-[100%] w-[480px] flex flex-col items-start'>
-                    <label htmlFor='body' className='text-[#505050] text-[18px] font-semibold'>Details: </label>
+                    <label htmlFor='body' className='text-[#505050] text-[18px] font-semibold'>Name </label>
                     <input
                         type='text'
                         id='body'

@@ -1,40 +1,55 @@
-import React from 'react'
-import { useState } from 'react'
 
-import CreateForm from './createForm'
-import CreateModal from './createModal'
+import { useState, useEffect } from 'react'
+import dataI from './repstatusData'
+import CModal from './repStModalCreate'
+import UModal from './repStModalUpdate'
+
 
 import StyleIcon from '@mui/icons-material/Style';
+import DeleteIcon from '@mui/icons-material/Delete';
+
+
 
 export default function repstatus() {
-  const [FormToggle, setFormToggle] = useState(false);
+  const [Data, setData] = useState([])
 
-  const toggle= () => {
-    setFormToggle(!FormToggle)
+  function fetchdata(){
+    setData(dataI)
+    console.log('render')
   }
+  
 
+  useEffect(() => {
+    fetchdata()
+  }, []);
+
+  console.log(Data)
+  
   return (
-    <div className='w-[1050px] h-[100%] border-2 border-black border-dotted flex flex-col justify-center items-center'>
-      <div className='w-[1010px] h-[60px] flex items-center justify-between'>
+    <div className='w-[1050px] h-[100%] flex flex-col justify-start items-center'>
+      <div className='w-[1010px] h-[60px] mt-[20px] flex items-center justify-between'>
         <div class='w-[350px] h-[100%] flex items-center justify-normal'>
           <StyleIcon style={{ color: '#505050', fontSize: '40px' }}/>
           <p className='ml-[10px] text-[#505050] text-[30px] font-semibold'>REPAIR STATUSES</p>
         </div>
         <div class='w-[250px] h-[100%] mr-[10px] flex items-center justify-end'>
-          {FormToggle? 
-          <button class='w-[160px] h-[40px] bg-[#FF0000] rounded-[10px] hover:bg-[#e04c4c] text-white text-[16px] font-semibold' onClick={toggle}>Close</button>
-          :
-          <button class='w-[160px] h-[40px] bg-[#0096FF] rounded-[10px] hover:bg-[#3aa8f7] text-white text-[16px] font-semibold' onClick={toggle}>Create</button>
-          }
-          
-          {/* <div className='w-[1px] h-[40px] bg-[#2385ca]'></div>
-          <button class='w-[80px] h-[40px] bg-[#0096FF] rounded-r-[10px] hover:bg-[#3aa8f7] text-white text-[16px] font-semibold'>Back</button> */}
+          <CModal/>
         </div>
       </div>
-      <p>Hello</p>
-      {FormToggle ? <CreateForm/> : <></>}
+      <div className='w-[1050px] h-[auto] overflow-y-auto mt-[20px] pl-[25px]'>
+        {
+          Data.map((item) => (
+            <div className='pl-[20px] pr-[20px] w-[1000px] h-[60px] bg-slate-50 hover:bg-slate-100 border-[#E0E0E0] border-[1px] rounded-sm flex justify-between items-center hover:cursor-pointer'>
+              <p className='text-[18px] font-medium'>{item.name}</p>
+              <div className='w-[80px] flex justify-between items-center'>
+                <DeleteIcon className='hover:text-red-600' style={{fontSize: '30px' }}/>
+                <UModal status={item.name}/>
+              </div>
 
-      <CreateModal/>
+            </div>            
+          ))
+        }
+      </div>
 
     </div>
   )
