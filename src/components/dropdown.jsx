@@ -63,7 +63,7 @@ export default function MultipleSelect() {
   ]
   return (
     <div className='dropdown'>
-        </Box>
+        <Box>
         <FormControl sx={{ width: "70%", }} fullWidth>
           <InputLabel id="demo-simple-select-label">Brands</InputLabel>
           {/* <Select
