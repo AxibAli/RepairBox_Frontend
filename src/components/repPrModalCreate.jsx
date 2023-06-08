@@ -30,9 +30,13 @@ export default function repStModalCreate() {
     };
   return (
     <div>
-      <button className='w-[160px] h-[40px] bg-[#0096FF] focus-visible:bg-[#0096FF] rounded-[10px] hover:bg-[#3aa8f7] border-none text-white text-[16px] font-semibold' onClick={toggle}>
-        Create
-      </button>
+        <div className="brand-create-button">
+            <button         
+            //   className='w-[160px] h-[40px] bg-[#0096FF] focus-visible:bg-[#0096FF] rounded-[10px] hover:bg-[#3aa8f7] border-none text-white text-[16px] font-semibold' 
+                onClick={toggle}>
+                Create
+            </button>
+        </div>
         <Modal
             isOpen={modal}
             toggle={toggle}

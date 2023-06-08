@@ -1,6 +1,6 @@
 import React, { useState} from 'react';
 import {RxCross2 } from "react-icons/all";
-import ArrowForward from '@mui/icons-material/ArrowForwardIos';
+import { IoIosArrowDroprightCircle} from "react-icons/all";
 import {   
     Button,
     Modal,
@@ -22,8 +22,8 @@ export default function repStModalUpdate(props) {
     };
   return (
     <div>
-        <div className='w-[50px] h-[60px] flex justify-end items-center group' onClick={toggle}>
-            <ArrowForward className=' group-hover:text-blue-400' style={{fontSize: '25px' }}/>
+        <div className='w-[50px] h-[50] flex justify-center items-center group' onClick={toggle}>
+            <IoIosArrowDroprightCircle className='text-blue-500 group-hover:text-black' style={{fontSize: '20px' }}/>
         </div>
         <Modal
             isOpen={modal}

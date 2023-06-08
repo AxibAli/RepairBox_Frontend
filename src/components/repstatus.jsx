@@ -7,6 +7,8 @@ import UModal from './repStModalUpdate'
 
 import StyleIcon from '@mui/icons-material/Style';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { BiStar } from "react-icons/bi";
+import {BsFillTrashFill } from "react-icons/all";
 
 
 
@@ -38,12 +40,15 @@ export default function repstatus() {
       </div>
       <div className='w-[1050px] h-[auto] overflow-y-auto mt-[20px] pl-[25px]'>
         {
-          Data.map((item) => (
-            <div className='pl-[20px] pr-[20px] w-[1000px] h-[60px] bg-slate-50 hover:bg-slate-100 border-[#E0E0E0] border-[1px] rounded-sm flex justify-between items-center hover:cursor-pointer'>
-              <p className='text-[18px] font-medium'>{item.name}</p>
+          Data.map((item,index) => (
+            <div className='pl-[20px] pr-[20px] w-[1000px] h-[60px] bg-slate-50 hover:bg-slate-100 border-[#E0E0E0] border-[1px] rounded-sm flex justify-between items-center hover:cursor-pointer' key={index}>
+              <div className='flex justify-between items-center'>
+                <BiStar style={{fontSize:"20px"}}/>
+                <p className='ml-[15px] text-[18px] font-medium'>{item.name}</p>
+              </div>
               <div className='w-[80px] flex justify-between items-center'>
-                <DeleteIcon className='hover:text-red-600' style={{fontSize: '30px' }}/>
                 <UModal status={item.name}/>
+                <BsFillTrashFill className='text-red-500' style={{fontSize:"18px"}}/>
               </div>
 
             </div>            
