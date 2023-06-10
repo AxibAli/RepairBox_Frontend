@@ -21,7 +21,7 @@ function MiddleSexction() {
     <Container >
       <Row style={{ height: "500px",backgroundColor:'#f9fafb',marginTop:100 }}>
         <Col style={{
-          backgroundColor: 'white', margin: '50px 20px', textAlign: 'justify',
+          backgroundColor: '#f9fafb',fontWeight:600, margin: '50px 20px', textAlign: 'justify',
         }} sm={5}>
           <h1 style={{ fontSize: 50 }}>
             Services we love to provide

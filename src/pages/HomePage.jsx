@@ -7,7 +7,10 @@ import MultipleSelect from '../components/dropdown';
 import AllCollapseExample from '../components/accor';
 import MiddleSexction from '../components/middlesec';
 import Types from '../components/typo';
-import  Navbar  from '../components/navber';
+import Nextbtn from '../components/Nextbtn';
+import Contact from '../components/Contact';
+import Footer from '../components/Footer';
+// import  Navbar  from '../components/navber';
 export default function HomePage() {
   return (
 
@@ -16,10 +19,13 @@ export default function HomePage() {
       {/* <Navbar /> */}
      <BasicStack />
       <HorizontalLabelPositionBelowStepper />
-      <MultipleSelect />
+      {/* <MultipleSelect /> */}
+      {/* <Nextbtn/> */}
       <Types />
       <AllCollapseExample />
       <MiddleSexction /> 
+      <Contact/>
+      <Footer/>
     
     {/* <div>HomePage</div>
 

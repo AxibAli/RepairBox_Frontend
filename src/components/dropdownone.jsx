@@ -1,4 +1,4 @@
-import * as React from 'react';
+import  React,{useEffect} from 'react';
 import { Box } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -10,6 +10,8 @@ import Basic from './dropdowntwo';
 export default function BasicSelect() {
     const [age, setAge] = React.useState('');
   const [new_value,setnew_value]= React.useState("")
+  const [showData, SetshowData] = React.useState([]);
+
     
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -28,26 +30,43 @@ export default function BasicSelect() {
     // const handleChange = (event) => {
     //     setAge(event.target.value);
     // };
+    // useEffect(() => {
+    //     FetchApiData();
+    //   }, [])
+    //   const FetchApiData = async () => {
+    //     try {
+    //       const response = await axios.get("http://18.221.148.248:84/api/v1/Brand/GetBrandModels?pageNo=1");
+    //       console.log(response.data);
+    
+    //       SetshowData(response.data);
+    //     } catch (err) {
+    //       console.log(err)
+    //     }
+    //   }
+    //   console.log(showData, "showData")
 
     return (
-        <>
+        <div  className='dropdown'>
             <Box sx={{ paddingLeft:'100px',width: '100%', display: 'flex', justifyContent: 'center', textAlign: 'justify',marginTop:'30px', fontFamily: 'sans-serif', fontSize: '14px', color: '#4B5563'}}>
-                <Box sx={{ width: '30%' }} ><h4 >Select Your Device</h4>
+                <Box sx={{ width: '30%' }} ><h4 className="DropSelect">Select Your Device</h4>
                     <p>Available devices for selected brand.</p>
                 </Box>
-                <FormControl sx={{ width: "70%", float: 'left' }} fullWidth>
+                <FormControl sx={{ width: "70%",  marginRight:30 }} fullWidth>
                     <InputLabel id="demo-simple-select-label">Device</InputLabel>
                     <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={age}
-                        label="Age"
-                        onChange={handleChange}
-                    >
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
-                    </Select>
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={age}
+            label="Age"
+            onChange={handleChange}
+          >
+            <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+            {/* {showData && showData.map((item, value) => (
+              <MenuItem value={item.value} key={value}>{item.text}</MenuItem>
+            ))} */}
+          </Select>
                 </FormControl>
 
             </Box>
@@ -57,7 +76,7 @@ export default function BasicSelect() {
                 <Basic /> : null
             }
 
-        </>
+        </div>
 
     );
 }
