@@ -64,7 +64,7 @@ export default function Basic() {
 
     return (
         <Box sx={{marginTop:'30px', paddingLeft:'100px',width: '100%', display: 'flex', justifyContent: 'center', textAlign: 'justify', fontFamily: 'sans-serif', fontSize: '14px', color: '#4B5563'}}>
-            <Box sx={{ width: '30%' }} ><h4 >Select Repairable Issues</h4>
+            <Box sx={{ width: '30%' }} ><h4  className="DropSelect">Select Repairable Issues</h4>
                 <p>Available services/defect for selected device.</p>
             </Box>
             {/* <FormControl  fullWidth>
@@ -81,7 +81,7 @@ export default function Basic() {
                     <MenuItem value={30}>Thirty</MenuItem>
                 </Select>
             </FormControl> */}
-            <FormControl sx={{ width: "70%", float: 'left' }}>
+            <FormControl sx={{ width: "70%",  marginRight:30 }}>
         <InputLabel id="demo-multiple-checkbox-label">Issues</InputLabel>
         <Select
           labelId="demo-multiple-checkbox-label"
