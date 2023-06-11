@@ -129,20 +129,20 @@
 // }
 // export default ResponsiveAppBar;
 import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 
 function ColorSchemesExample() {
   return (
     <div>     
       <Navbar style={{backgroundColor:'#a855f7',padding:20}} variant="dark">
         <Container>
-          <Navbar.Brand href="#home">Joytel</Navbar.Brand>
+          <Navbar.Brand href="/">Joytel</Navbar.Brand>
           <Nav style={{float:'right',color:'#fff',fontSize:'18px',fontWeight:'700'}}>
-            <Nav.Link href="#home">Booking W2</Nav.Link>
-            <Nav.Link href="#features">Booking</Nav.Link>
-            <Nav.Link href="#pricing">Track</Nav.Link>
-            <Nav.Link href="#pricing">WorkShop</Nav.Link>
+            <Nav.Link href="book-repair-widget-2">Booking W2</Nav.Link>
+            <Nav.Link href="/book-repair">Booking</Nav.Link>
+            <Nav.Link href="/track">Track</Nav.Link>
+            <Nav.Link href="/auth/login">WorkShop</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
