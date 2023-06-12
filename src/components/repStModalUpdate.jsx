@@ -11,14 +11,39 @@ import {
     Label, 
 } from 'reactstrap';
 
+import axios from "axios"
+
 export default function repStModalUpdate(props) {
     const [modal, setModal] = useState(false);
     const [text, settext] = useState(props.status);
+    const [id, setid] = useState(props.Iid);
 
     const toggle = () => setModal(!modal);
 
     const handleChange = (event) => {
         settext(event.target.value);
+    };
+
+    const handleUpdate = async (e) =>{
+        e.preventDefault();
+        try {
+            const response = await axios.put(`http://18.221.148.248:84/api/v1/Order/UpdateStatus`, {id:`${id}`, name:`${text}`});
+            // Handle the response
+            // console.log(response.data);
+            
+            if (response.status==200) {
+                console.log(response?.data?.message)
+                toggle()
+                // state b khali kr do
+                // handleBrandData()
+                props.getData()
+                // settext() 
+                // this.reset()
+            }
+        } catch (error) {
+            // Handle any errors
+            console.error(error);
+        }
     };
   return (
     <div>
@@ -62,6 +87,13 @@ export default function repStModalUpdate(props) {
                             value={text}
                             onChange={handleChange}
                         />
+                        {/* <Input
+                            id="StatusId"
+                            name="id"
+                            placeholder="Enter Your Status Id"
+                            type="id"
+                            value={id}
+                        /> */}
                     </div>
                 </div>
             </ModalBody>
@@ -74,7 +106,7 @@ export default function repStModalUpdate(props) {
                 Delete
                 </button> */}
                 <button
-                    onClick={toggle}
+                    onClick={handleUpdate}
                     // style={{ backgroundColor: "blue" }}
                     className='w-[70px] h-[40px] bg-[#0096FF] rounded-[10px] hover:bg-[#3aa8f7] border-none text-white text-[16px] font-normal'
                 >

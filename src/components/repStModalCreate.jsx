@@ -10,7 +10,9 @@ import {
     Label, 
 } from 'reactstrap';
 
-export default function repStModalCreate() {
+import axios from "axios"
+
+export default function repStModalCreate(props) {
     const [modal, setModal] = useState(false);
     const [text, settext] = useState();
 
@@ -18,6 +20,29 @@ export default function repStModalCreate() {
 
     const handleChange = (event) => {
         settext(event.target.value);
+    };
+
+          //  Create brand API
+    const handleSave = async (e) =>{
+        e.preventDefault();
+        try {
+            const response = await axios.post(`http://18.221.148.248:84/api/v1/Order/AddStatus`, {name:`${text}`});
+            // Handle the response
+            // console.log(response.data);
+            
+            if (response.status==200) {
+                console.log(response?.data?.message)
+                toggle()
+                // state b khali kr do
+                // handleBrandData()
+                props.getData()
+                settext("") 
+                // this.reset()
+            }
+        } catch (error) {
+            // Handle any errors
+            console.error(error);
+        }
     };
   return (
     <div>
@@ -72,7 +97,7 @@ export default function repStModalCreate() {
             </ModalBody>
             <ModalFooter style={{border: "hidden"}}>
                 <button
-                    onClick={toggle}
+                    onClick={handleSave}
                     // style={{ backgroundColor: "blue" }}
                     // className="brand-create-button"
                     className='w-[60px] h-[40px] bg-[#0096FF] rounded-[10px] hover:bg-[#3aa8f7] border-none text-white text-[16px] font-normal'
