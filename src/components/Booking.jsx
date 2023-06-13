@@ -37,10 +37,10 @@ export default function Booking() {
       <HorizontalLabelPositionBelowStepper />
       {/* <MultipleSelect /> */}
       {/* <Nextbtn/> */}
-      <Types />
+      {/* <Types />
       <AllCollapseExample />
       <MiddleSexction /> 
-      <Contact/>
+      <Contact/> */}
       <Footer/>
     
     {/* <div>HomePage</div>

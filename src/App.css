@@ -98,6 +98,9 @@ margin-bottom: 20px;
   /* font-size: 2.5rem; */
   
 }
+.Purchase:hover{
+color: black
+}
 /* ========================Stepper========================= */
 .step-item {
   @apply relative flex flex-col justify-center items-center w-36;
