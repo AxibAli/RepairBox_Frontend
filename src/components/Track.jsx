@@ -1,10 +1,12 @@
 import React from "react";
+import Footer from "./Footer";
 
 const TrackPage=()=>{
     return(
-        <>
-        <h1>Track Page</h1>
-        </>
+        <div>
+        {/* <h1>Track Page</h1> */}
+        <Footer/>
+        </div>
     );
 }
 export default TrackPage;

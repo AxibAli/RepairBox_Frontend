@@ -131,18 +131,19 @@
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import HomeLogo from '../images/logohome.png'
 
 function ColorSchemesExample() {
   return (
     <div>     
-      <Navbar style={{backgroundColor:'#a855f7',padding:20}} variant="dark">
+      <Navbar style={{backgroundColor:'#fff',padding:20}} variant="dark">
         <Container>
-          <Navbar.Brand href="/">Joytel</Navbar.Brand>
-          <Nav style={{float:'right',color:'#fff',fontSize:'18px',fontWeight:'700'}}>
-            <Nav.Link href="book-repair-widget-2">Booking W2</Nav.Link>
-            <Nav.Link href="/book-repair">Booking</Nav.Link>
-            <Nav.Link href="/track">Track</Nav.Link>
-            <Nav.Link href="/auth/login">WorkShop</Nav.Link>
+          <Navbar.Brand href="/" style={{color:'#7642FF'}}><img src={HomeLogo} style={{height:'100px',width:'100px'}} /></Navbar.Brand>
+          <Nav style={{float:'right',fontSize:'18px',fontWeight:'400'}}>
+            <Nav.Link  style={{color:'grey'}} href="/about">About Us</Nav.Link>
+            <Nav.Link  style={{color:'grey'}} href="/book-repair">Booking</Nav.Link>
+            <Nav.Link  style={{color:'grey'}} href="/track">Track</Nav.Link>
+            <Nav.Link  style={{color:'grey'}} href="/auth/login">Login</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
