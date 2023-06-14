@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link} from "react-router-dom"
-import { useState } from 'react'
+import { Link, useNavigate} from "react-router-dom"
+import { useState, useEffect } from 'react'
 import SpeedIcon from '@mui/icons-material/Speed';
 import HandymanIcon from '@mui/icons-material/Handyman';
 import FolderIcon from '@mui/icons-material/Folder';
@@ -17,7 +17,16 @@ import StorageIcon from '@mui/icons-material/Storage';
 import LanguageIcon from '@mui/icons-material/Language';
 
 export default function Admin() {
+    let history = useNavigate();
     const [active, setactive] = useState(1)
+
+    function FirstHandle() {
+        history("/admin/Dashboard");
+    }
+
+    useEffect(() => {
+        FirstHandle()
+    }, []);
 
     return ( 
         <div className='w-[270px] h-[89vh] bg-[#1c3053] overflow-y-auto'>
