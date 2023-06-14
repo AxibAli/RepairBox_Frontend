@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react'
 import dataI from './repstatusData'
 import CModal from './repStModalCreate'
@@ -10,22 +9,51 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { BiStar } from "react-icons/bi";
 import {BsFillTrashFill } from "react-icons/all";
 
-
+import axios from "axios"
 
 export default function repstatus() {
   const [Data, setData] = useState([])
+  const [Id, setId] = useState(null)
 
-  function fetchdata(){
-    setData(dataI)
-    console.log('render')
+  const handleStatusData = async () =>{
+    try {
+       const getResponse = await axios.get(`http://18.221.148.248:84/api/v1/Order/GetStatuses`)
+      //  console.log(getResponse.data.data?.data,"response")
+       if (getResponse.status==200) {
+        console.log("Render")
+        let data=getResponse.data.data
+          setData(data)
+       }
+    } catch (error) {
+       console.log("Errors", error) 
+    }
   }
+
+  const handleStatusDataDelete = async (e) =>{
+    const ID = e.currentTarget.getAttribute('ID');
+    console.log(ID);
+    try {
+       const getResponse = await axios.delete(`http://18.221.148.248:84/api/v1/Order/DeleteStatus?statusId=${ID}`)
+      //  console.log(getResponse.data.data?.data,"response")
+       if (getResponse.status==200) {
+          handleStatusData()
+       }
+    } catch (error) {
+       console.log("Errors", error) 
+    }
+  }
+  
+  // function fetchdata(){
+  //   setData(dataI)
+  //   console.log('render')
+  // }
   
 
   useEffect(() => {
-    fetchdata()
+    handleStatusData()
   }, []);
 
-  console.log(Data)
+  // console.log(Data)
   
   return (
     <div className='w-[1050px] h-[100%] flex flex-col justify-start items-center'>
@@ -35,7 +63,7 @@ export default function repstatus() {
           <p className='ml-[10px] text-[#505050] text-[30px] font-semibold'>REPAIR STATUSES</p>
         </div>
         <div class='w-[250px] h-[100%] mr-[10px] flex items-center justify-end'>
-          <CModal/>
+          <CModal getData={handleStatusData}/>
         </div>
       </div>
       <div className='w-[1050px] h-[auto] overflow-y-auto mt-[20px] pl-[25px]'>
@@ -47,8 +75,8 @@ export default function repstatus() {
                 <p className='ml-[15px] text-[18px] font-medium'>{item.name}</p>
               </div>
               <div className='w-[80px] flex justify-between items-center'>
-                <UModal status={item.name}/>
-                <BsFillTrashFill className='text-red-500' style={{fontSize:"18px"}}/>
+                <UModal status={item.name} Iid={item.id} getData={handleStatusData}/>
+                <BsFillTrashFill className='text-red-500' style={{fontSize:"18px"}} ID={item.id} onClick={handleStatusDataDelete}/>
               </div>
 
             </div>            

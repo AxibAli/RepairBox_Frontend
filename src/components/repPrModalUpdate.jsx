@@ -10,6 +10,7 @@ import {
     Input,
     Label, 
 } from 'reactstrap';
+import axios from "axios"
 
 export default function repStModalUpdate(props) {
     const [modal, setModal] = useState(false);
@@ -29,6 +30,30 @@ export default function repStModalUpdate(props) {
     const handleChangeCharge = (event) => {
         setCharge(event.target.value);
     };
+
+
+    const handleUpdate = async (e) =>{
+        e.preventDefault();
+        try {
+            const response = await axios.put(`http://18.221.148.248:84/api/v1/Order/UpdatePriority`, {id:`${value}`, name:`${name}`, processCharges:`${charge}`});
+            // Handle the response
+            // console.log(response.data);
+            
+            if (response.status==200) {
+                console.log(response?.data?.message)
+                // toggle()
+                // state b khali kr do
+                // handleBrandData()
+                props.getData()
+                toggle()
+                // settext() 
+                // this.reset()
+            }
+        } catch (error) {
+            // Handle any errors
+            console.error(error);
+        }
+    };
   return (
     <div>
         <div className='w-[50px] h-[50] flex justify-center items-center group' onClick={toggle}>
@@ -41,8 +66,8 @@ export default function repStModalUpdate(props) {
         >
             <ModalHeader
                 style={{
-                fontSize: "1rem",
-                fontWeight: "500",
+                    fontSize: "1rem",
+                    fontWeight: "500",
                 }}
             >       
                 <div className='w-[650px] flex justify-between items-center'>
@@ -78,7 +103,6 @@ export default function repStModalUpdate(props) {
                             placeholder="Enter Your Priority Value"
                             type="number"
                             value={value}
-                            onChange={handleChangeValue}
                         />
                         <Label for="PriorityCharge" className='text-[18px] font-semibold mt-[15px]'>Charge :</Label>
                         <Input
@@ -101,7 +125,7 @@ export default function repStModalUpdate(props) {
                 Delete
                 </button> */}
                 <button
-                    onClick={toggle}
+                    onClick={handleUpdate}
                     // style={{ backgroundColor: "blue" }}
                     className='w-[70px] h-[40px] bg-[#0096FF] rounded-[10px] hover:bg-[#3aa8f7] border-none text-white text-[16px] font-normal'
                 >
