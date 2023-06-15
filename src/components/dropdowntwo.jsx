@@ -1,4 +1,4 @@
-import * as React from 'react';
+import  React,{useEffect} from 'react';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -6,6 +6,8 @@ import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
 import Select from '@mui/material/Select';
 import {Checkbox,Box} from '@mui/material';
+import axios from "axios";
+
 
 
 
@@ -20,7 +22,21 @@ export default function Basic() {
         },
       },
     };
-
+    const [showData, SetshowData] = React.useState([]);
+    useEffect(() => {
+      FetchApiData();
+    }, [])
+    const FetchApiData = async () => {
+      try {
+        const response = await axios.get("http://18.221.148.248:84/api/v1/Brand/GetModelDefectsforDropdown?modelId=1");
+        console.log(response.data.data);
+  
+        SetshowData(response.data.data);
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    console.log(showData, "showData")
     // const handleChange = (event) => {
     //     setAge(event.target.value);
     //     // console.log(event)
@@ -50,13 +66,14 @@ export default function Basic() {
         'Virginia Andrews',
         'Kelly Snyder',
       ];
-    const [personName, setPersonName] = React.useState([]);
+    const [issueName, setissueName] = React.useState([]);
+
 
     const handleChange = (event) => {
       const {
         target: { value },
       } = event;
-      setPersonName(
+      setissueName(
         // On autofill we get a stringified value.
         typeof value === 'string' ? value.split(',') : value,
       );
@@ -87,16 +104,16 @@ export default function Basic() {
           labelId="demo-multiple-checkbox-label"
           id="demo-multiple-checkbox"
           multiple
-          value={personName}
+          value={issueName}
           onChange={handleChange}
           input={<OutlinedInput label="Tag" />}
           renderValue={(selected) => selected.join(', ')}
           MenuProps={MenuProps}
         >
-          {names.map((name) => (
-            <MenuItem key={name} value={name}>
-              <Checkbox checked={personName.indexOf(name) > -1} />
-              <ListItemText primary={name} />
+          {showData.map((item, value) => (
+            <MenuItem key={value} value={item.value}>
+              <Checkbox checked={issueName.indexOf(item.value) > -1} />
+              <ListItemText primary={value} />
             </MenuItem>
           ))}
         </Select>
