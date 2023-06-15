@@ -68,7 +68,7 @@ export default function repStModalCreate(props) {
         <Modal
             isOpen={modal}
             toggle={toggle}
-            style={{ maxWidth: "50%", maxHeight:"250px"}}
+            style={{ maxWidth: "50%"}}
         >
             <ModalHeader
                 style={{
@@ -76,23 +76,24 @@ export default function repStModalCreate(props) {
                 fontWeight: "500",
                 }}
             >       
-                <div className='w-[650px] flex justify-between items-center'>
-                    <p>Create Repair Priority</p>
+                <div className='w-[100%] flex justify-between items-center'>
                     <Button
                         onClick={toggle}
                         className='bg-red-600 hover:bg-red-500'
                     >
                         <RxCross2/>
                     </Button>
+                    <p className='ml-[5px]'>Create Repair Priority</p>
+
                 </div>
             </ModalHeader>
             <ModalBody>
-                <div className='w-[650px] h-[250px] flex justify-center items-center'>
-                    <div className="w-[300px] h-[100%]">
+                <div className='w-[100%] h-[250px] flex justify-center items-center'>
+                    <div className="w-[50%] h-[100%]">
                         <p className='text-[18px] font-semibold'>Priority Information</p>
                         <p className='text-[16px] font-normal'>Enter information for new priority.</p>
                     </div>
-                    <div className="w-[350px] h-[100%]">
+                    <div className="w-[50%] h-[100%]">
                         <Label for="PriorityName" className='text-[18px] font-semibold'>Name :</Label>
                         <Input
                             id="PriorityName"
