@@ -18,7 +18,6 @@ import Translations from './components/translations'
 import Users from './components/users'
 // import routes from "./routes"
 import UserRole from './components/userrole'
-import Navbar from './components/navbar'
 import Navber from './components/navber'
 // import { createBrowserRouter } from 'react-router-dom';
 import HomePage from './components/HomePageBook';
@@ -48,9 +47,9 @@ let navbarCheck = () => {
   // else if(window.location.pathname == "/"){
   //   return <Navber />
   // }
-  else {
-    return <Navbar />
-  }
+  // else {
+  //   return <Navbar />
+  // }
 
 }
 
