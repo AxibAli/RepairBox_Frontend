@@ -17,14 +17,14 @@ export default function MultipleSelect() {
 
   const handleChange = (event) => {
     setAge(event.target.value);
-    // console.log(event.target.value)
+    console.log(event.target.value)
     const {
       target: { value },
     } = event;
     setAge(
       typeof value === 'string' ? value.split(',') : value,
-      // console.log(value, "value"),
-      // console.log(value, "value"),
+      console.log(value, "value"),
+      console.log(value, "value"),
 
       setnew_value(value)
 

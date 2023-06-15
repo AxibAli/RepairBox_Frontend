@@ -5,7 +5,8 @@ import '../App.css'
 function Footer() {
   return (
     
-
+   <>
+    <Row xs="auto" style={{display:'flex',color:'grey',backgroundColor:'#f8faff',fontSize:'18px',fontWeight:400,justifyContent:'space-around',alignItems:'center',marginTop:'24px',paddingBottom:'50px',paddingTop:"50px"}}>
       <Col> <ul>
         <li style={{fontSize:'26px',fontWeight:400}}><h3>START.LY</h3></li>
         <li>Start.ly is a SASS software landing page <br/>  template.</li>
@@ -31,7 +32,6 @@ function Footer() {
         <li>Facebook</li>
         <li>Twitter</li>
         <li>Linkedin</li>
-
         
        
       </ul></Col>
