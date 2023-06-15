@@ -1,40 +1,35 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import img1 from '../images/img1.jpg'
-import Button from 'react-bootstrap/Button';
-// import { Diversity1Outlined } from '@mui/icons-material';
+import * as React from 'react';
+import '../App.css'
+
 
 function Contact() {
   return (
     <Container>
       <Row>
-        <Col >
-            <div style={{marginTop:250,textAlign:'center'}}>
-        <h1  style={{lineheight: 1.25,fontWeight: 700,fontSize:'60px',color:'#000'}}>Contact Us</h1> 
-        <p style={{fontWeight: 500,fontSize:'20px',color:'#000'}}>We do love to hear from you.</p>
-        </div>
-        <img style={{marginTop:100,marginBottom:20,paddingLeft:70,height:250,width:600,}} src={img1} />
-        </Col>
         <Col>
-        <div>
-        <Form.Label style={{fontWeight: 700,marginTop:250,fontSize:20,color:'#69717c'}}>Full NAME</Form.Label>
-      <Form.Control style={{backgroundColor:'#d1d5db'}} size="lg" type="email" placeholder="FULL NAME" />
-      <Form.Label style={{fontWeight: 700,marginTop:30,fontSize:20,color:'#69717c'}}>EMAIL</Form.Label>
-      <Form.Control style={{backgroundColor:'#d1d5db'}}  size="lg" type="text" placeholder="Email" />
-      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-      <Form.Label style={{fontWeight: 700,marginTop:30,fontSize:20,color:'#69717c'}}>MESSAGE</Form.Label>
-        <Form.Control style={{backgroundColor:'#d1d5db'}}  as="textarea" rows={8} />
-        <Form.Control  style={{fontWeight: 700,marginTop:30,fontSize:20,background:'#4338ca',color:'#fff'}} name='SEND MESSAGE' size="lg" type="Submit"  />
-      </Form.Group>
-      <br />
-     
-    </div>
+          <div style={{ marginTop: 250, color: '#69717c', }}>
+            <h2 style={{ fontSize: "30px", color: '#3e396b', lineHeight: '2.5', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Start your free trial</h2>
+            <h3 style={{ fontSize: "15px", fontWeight: '400', color: '#3e396b', lineHeight: '0.5', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Signup now. Its free and takes less than 3 minutes</h3>
+            <div>
+            <div style={{textAlign:'center'}} >
+      <input style={{width:'500px',height:50,padding:20,margin:10,marginTop:40,border:"1px solid grey",borderRadius:'200px'}}   name='Fullname' type="text" placeholder="Full NAME"  /> <br />
+      <input style={{width:'500px',height:50,padding:20,margin:5,border:"1px solid grey",borderRadius:'200px'}}   name='email' type="email" placeholder="Email Address"  /> <br />
+      <input style={{width:'500px',height:50,padding:20,margin:5,border:"1px solid grey",borderRadius:'200px'}}   name='password' type="password" placeholder="Password"  /> <br />
+      <button style={{width:'500px',color:'#fff',backgroundColor:'#7642ff',height:60,margin:5,border:"1px solid grey",borderRadius:'200px',fontSize:'18px',fontWeight:'500'}}>GET STARTED FOR FREE</button>
+       <br />
+       
+        </div>
+            </div>
+           
+
+          </div>
 
 
 
-            </Col>
+        </Col>
       </Row>
     </Container>
   );

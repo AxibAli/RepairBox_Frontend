@@ -1,12 +1,12 @@
 import React from "react";
+import Footer from "./Footer";
 
-<<<<<<< Updated upstream
 const TrackPage=()=>{
     return(
         <>
         <h1>Track Page</h1>
         </>
-=======
+
 const TrackPage = () => {
     return (
         <div>
@@ -25,7 +25,10 @@ const TrackPage = () => {
             </div>
             <Footer />
         </div>
->>>>>>> Stashed changes
+        <div>
+        {/* <h1>Track Page</h1> */}
+        <Footer/>
+        </div>
     );
 }
 export default TrackPage;

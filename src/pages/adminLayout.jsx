@@ -7,7 +7,7 @@ export default function adminLayout() {
   return (
     <div className='w-[100%] h-[89vh] flex justify-between items-center'>  
         <Sidebar/>
-        <div className='w-[1110px] h-[89vh] flex justify-center items-center'>
+        <div className='w-[1110px] h-[89vh] overflow-y-auto flex justify-center items-center'>
           <Outlet/>
         </div>
     </div>

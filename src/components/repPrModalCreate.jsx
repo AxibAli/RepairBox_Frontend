@@ -10,7 +10,9 @@ import {
     Label, 
 } from 'reactstrap';
 
-export default function repStModalCreate() {
+import axios from "axios"
+
+export default function repStModalCreate(props) {
     const [modal, setModal] = useState(false);
     const [name, setName] = useState();
     const [value, setValue] = useState();
@@ -28,6 +30,32 @@ export default function repStModalCreate() {
     const handleChangeCharge = (event) => {
         setCharge(event.target.value);
     };
+
+    const handleCreate = async (e) =>{
+        e.preventDefault();
+        try {
+            const response = await axios.post(`http://18.221.148.248:84/api/v1/Order/AddPriority`, {id:`${value}`, name:`${name}`, processCharges:`${charge}`});
+            // Handle the response
+            // console.log(response.data);
+            
+            if (response.status==200) {
+                console.log(response?.data?.message)
+                // toggle()
+                // state b khali kr do
+                // handleBrandData()
+                props.getData()
+                toggle()
+                setName("")
+                setValue("")
+                setCharge("") 
+                // this.reset()
+            }
+        } catch (error) {
+            // Handle any errors
+            console.error(error);
+        }
+    };
+
   return (
     <div>
         <div className="brand-create-button">
@@ -97,7 +125,7 @@ export default function repStModalCreate() {
             </ModalBody>
             <ModalFooter style={{border: "hidden"}}>
                 <button
-                    onClick={toggle}
+                    onClick={handleCreate}
                     // style={{ backgroundColor: "blue" }}
                     className='w-[60px] h-[40px] bg-[#0096FF] rounded-[10px] hover:bg-[#3aa8f7] border-none text-white text-[16px] font-normal'
                 >
