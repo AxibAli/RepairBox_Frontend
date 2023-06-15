@@ -17,7 +17,6 @@ export default function navbar() {
                 <AccountCircleIcon fontSize='large'/>
             </div>
         </div>
-
     </div>
   )
 }

@@ -5,6 +5,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Basic from './dropdowntwo';
+import axios from "axios";
+
 
 
 export default function BasicSelect() {
@@ -27,23 +29,21 @@ export default function BasicSelect() {
       
     );
   };
-    // const handleChange = (event) => {
-    //     setAge(event.target.value);
-    // };
-    // useEffect(() => {
-    //     FetchApiData();
-    //   }, [])
-    //   const FetchApiData = async () => {
-    //     try {
-    //       const response = await axios.get("http://18.221.148.248:84/api/v1/Brand/GetBrandModels?pageNo=1");
-    //       console.log(response.data);
-    
-    //       SetshowData(response.data);
-    //     } catch (err) {
-    //       console.log(err)
-    //     }
-    //   }
-    //   console.log(showData, "showData")
+  
+    useEffect(() => {
+      FetchApiData();
+    }, [])
+    const FetchApiData = async () => {
+      try {
+        const response = await axios.get("http://18.221.148.248:84/api/v1/Brand/GetModelsforDropdown");
+        console.log(response.data.data);
+  
+        SetshowData(response.data.data);
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    console.log(showData, "showData")
 
     return (
         <div  className='dropdown'>
@@ -60,12 +60,12 @@ export default function BasicSelect() {
             label="Age"
             onChange={handleChange}
           >
-            <MenuItem value={10}>Ten</MenuItem>
+            {/* <MenuItem value={10}>Ten</MenuItem>
                     <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-            {/* {showData && showData.map((item, value) => (
+                    <MenuItem value={30}>Thirty</MenuItem> */}
+            {showData && showData.map((item, value) => (
               <MenuItem value={item.value} key={value}>{item.text}</MenuItem>
-            ))} */}
+            ))}
           </Select>
                 </FormControl>
 
