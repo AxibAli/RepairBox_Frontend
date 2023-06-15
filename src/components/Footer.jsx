@@ -1,12 +1,9 @@
-import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import '../App.css'
 
 function Footer() {
   return (
-    
-   <>
-    <Row xs="auto" style={{display:'flex',color:'grey',backgroundColor:'#f8faff',fontSize:'18px',fontWeight:400,justifyContent:'space-around',alignItems:'center',marginTop:'24px',paddingBottom:'50px',paddingTop:"50px"}}>
+   
+    <Row xs="auto" style={{display:'flex',flexWrap:'wrap',color:'grey',backgroundColor:'#f8faff',fontSize:'18px',fontWeight:400,justifyContent:'space-around',alignItems:'center',marginTop:'24px',paddingBottom:'50px',paddingTop:"50px"}}>
       <Col> <ul>
         <li style={{fontSize:'26px',fontWeight:400}}><h3>START.LY</h3></li>
         <li>Start.ly is a SASS software landing page <br/>  template.</li>
@@ -31,17 +28,9 @@ function Footer() {
       <Col> <ul>
         <li>Facebook</li>
         <li>Twitter</li>
-        <li>Linkedin</li>
-        
-       
-      </ul></Col>
-    </Row>
-    <Row xs="auto" style={{display:'flex',color:'grey',backgroundColor:'#f8faff',fontSize:'18px',fontWeight:400,justifyContent:'space-around',alignItems:'center',paddingBottom:'50px',paddingTop:"50px"}}>
-      <p>Copyright © 2023 All rights reserved. Start.ly</p>
-    </Row>
-    </>
-   
+        <li>Linkedin</li>  
+        </ul>    
+        </Col>
+      </Row>
   );
 }
-
-export default Footer;
