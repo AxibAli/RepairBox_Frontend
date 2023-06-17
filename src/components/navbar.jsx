@@ -4,7 +4,7 @@ import WidgetsIcon from '@mui/icons-material/Widgets';
 export default function navbar() {
   return (
     <div className='w-[100%] h-[70px] flex justify-between items-center'>
-        <div className='w-[270px] h-[100%] bg-[#152238] flex justify-start items-center '>
+        <div className='w-[20%] h-[100%] bg-[#152238] flex justify-start items-center '>
             <div className='ml-[15px] border-1 border-white'>
                 <WidgetsIcon fontSize='large' style={{ color: '#FFFF' }}/>
             </div>
@@ -12,7 +12,7 @@ export default function navbar() {
                 <p className='text-white text-[24px]'>Joytel</p>
             </div>      
         </div>
-        <div className='w-[1100px] h-[100%] flex justify-end items-center border-b-4 border-[#0096FF]'>
+        <div className='w-[80%] h-[100%] flex justify-end items-center border-b-4 border-[#0096FF]'>
             <div className='w-[40px] h-[40px] rounded-full bg-gray-100 mr-[50px] flex justify-center items-center'>
                 <AccountCircleIcon fontSize='large'/>
             </div>

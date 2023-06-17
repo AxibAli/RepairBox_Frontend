@@ -42,8 +42,10 @@ export default function adminLayout() {
         <>
           <Navbar/>
           <div className='w-[100%] h-[89vh] flex justify-between items-center'>
-                <Sidebar/>
-              <div className='w-[1110px] h-[89vh] overflow-y-auto flex justify-center items-center'>
+              <div className='w-[20%] h-[89vh] overflow-y-auto'>
+                <Sidebar/>                
+              </div>
+              <div className='w-[80%] h-[89vh] overflow-y-auto flex justify-center items-center'>
                 <Outlet/>
               </div>
           </div> 
