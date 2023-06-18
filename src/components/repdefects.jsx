@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import repDefectData from "./RepDefectData";
 import {
@@ -17,55 +18,31 @@ import {
   Input,
   Label,
   FormGroup,
+  Col
 } from "reactstrap";
 
-
-
 export default function repdefects() {
+  const [getDefects, setGetDefetcs] = useState([])
+  const [getDefectsData, setGetDefectData] = useState("")
+  const [dropData, setDropData] = useState([]);
 
-const [addDevice, setAddDevice] = useState("");
-const [defectTitle, setDefectTitle]= useState("");
-const [time, setTime] = useState("");
-const [cost, setCost] = useState("");
-const [price, setPrice] = useState("");
-
-const saveForm = async () =>{
-  const data = {
-    brand : addDevice,
-    title : defectTitle,
-    time : time,
-    cost : cost,
-    price : price
+  const dropDownData = async () => {
+    try {
+      const getDrop = await axios.get(
+        `http://18.221.148.248:84/api/v1/Brand/GetBrandsforDropdown`);
+      //  console.log(getDrop)
+      if (getDrop.status == 200) {
+        let data = getDrop.data.data;
+        setDropData(data);
+      }
+    } catch (error) {}
   };
-  try {
-    const response = await fetch("http://18.221.148.248:84/api/v1/Brand/AddDefects" ,{
-      method : "POST",
-      headers : {
-        "Accept" : "application/json",
-        "Content-Type" : "application/json"
-      },
-      body : JSON.stringify(data)
-    })
-    if(response.ok){
-      console.log("Brand Created!")
-
-     setAddDevice(""),
-     setDefectTitle(""),
-     setTime(""),
-     setCost(""),
-     setPrice("")
-    }else{
-        console.log("Failed to create Brand")
-    }
-  } catch (error) {
-     console.log("Error" , error)
-  }
-}
-
 
   //  Modals State Start
   const [defModal, setDefModal] = useState(false);
-  const defHandleToggle = () => setDefModal(!defModal);
+  const defHandleToggle = () => {
+    setDefModal(!defModal)
+  };
 
   const [newModal, setNewModal] = useState(false);
   const newToggle = () => setNewModal(!newModal);
@@ -83,14 +60,14 @@ const saveForm = async () =>{
 
   //  Search Box State Start
   const [search, setSearch] = useState("");
-  const [query, setQuery] = useState(repDefectData);
+  const [query, setQuery] = useState(getDefects);
   const [repData, setRepData] = useState(repDefectData);
 
   const handleSearch = (text) => {
     setSearch(text);
     // console.log(text)
     if (search == "") {
-      setQuery(repData);
+      setQuery(getDefects);
     } else {
       const newData = repData.filter((item) =>
         item.name.toLowerCase().includes(search.toLowerCase())
@@ -144,62 +121,65 @@ const saveForm = async () =>{
                   </div>
 
                   <div className="brand-input-field">
-                    <Label for="exampleEmail">Device</Label>
-                    <Input
-                      id="exampleBrand"
-                      name="brand"
-                      placeholder="Select an option "
-                      type="select"
-                      value={addDevice}
-                      onChange={(e) => setAddDevice(e.target.value)}
-                    />
-                    <br />
-                    <Label for="exampleDefectTitle">Defect Title</Label>
-                    <Input
-                      id="exampleDefectTitle"
-                      name="title"
-                      placeholder="Defect Title"
-                      value={defectTitle}
-                      onChange={(e) => setDefectTitle(e.target.value)}
-                      type="name"
-                    />
-                    <br />
-                    <Label for="exampleEmail">Repair required time</Label>
-                    <Input
-                      id="exampleModal"
-                      name="time"
-                      placeholder="Repair required time"
-                      // type="name"
-                    />
-                    <br />
-                    <Label for="exampleEmail">Cost</Label>
-                    <Input
-                      id="exampleModal"
-                      name="cost"
-                      placeholder="Cost"
-                      type="name"
-                    />
-                    <br />
-                    <Label for="exampleEmail">Price</Label>
-                    <Input
-                      id="exampleModal"
-                      name="price"
-                      placeholder="Price"
-                      type="name"
-                    />
+                    <FormGroup>
+                      <Label for="exampleSelect" sm={2}>
+                        Select
+                      </Label>
+                      <Col sm={10}>
+                        <Input id="exampleSelect" name="select" type="select" 
+                        >
+                          <option></option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </Input>
+                      </Col>
+                      <br />
+                      <Label for="exampleDefectTitle">Defect Title</Label>
+                      <Input
+                        id="exampleDefectTitle"
+                        name="title"
+                        placeholder="Defect Title"
+                        type="name"
+                      />
+
+                      <br />
+                      <Label for="exampleEmail">Repair required time</Label>
+                      <Input
+                        id="exampleModal"
+                        name="time"
+                        placeholder="Repair required time"
+                        type="name"
+                      />
+                      <br />
+                      <Label for="exampleEmail">Cost</Label>
+                      <Input
+                        id="exampleModal"
+                        name="cost"
+                        placeholder="Cost"
+                        type="name"
+                      />
+                      <br />
+                      <Label for="exampleEmail">Price</Label>
+                      <Input
+                        id="exampleModal"
+                        name="price"
+                        placeholder="Price"
+                        type="name"
+                      />
+                      <Button
+                        color="primary"
+                        // onClick={defHandleToggle}
+                        style={{ backgroundColor: "blue" }}
+                      >
+                        Save
+                      </Button>
+                    </FormGroup>
                   </div>
                 </div>
               </ModalBody>
-              <ModalFooter style={{ border: "hidden" }}>
-                <Button
-                  color="primary"
-                  // onClick={defHandleToggle}
-                    onClick={saveForm}
-                  style={{ backgroundColor: "blue" }}
-                >
-                  Save
-                </Button>
-              </ModalFooter>
+              <ModalFooter style={{ border: "hidden" }}></ModalFooter>
 
               {/* next Create modal */}
               <hr />
@@ -232,7 +212,7 @@ const saveForm = async () =>{
                 </div>
               </ModalBody>
               <ModalFooter>
-              <Button
+                <Button
                   color="secondary"
                   onClick={defHandleToggle}
                   style={{ backgroundColor: "blue" }}
@@ -328,97 +308,92 @@ const saveForm = async () =>{
                 </button>
               </div>
             </div>
-            
           </div>
         ))}
-        <Modal
-              isOpen={newModal}
-              toggle={newToggle}
-              style={{ maxWidth: "70%" }}
+        <Modal isOpen={newModal} toggle={newToggle} style={{ maxWidth: "70%" }}>
+          <ModalHeader
+            style={{
+              fontSize: "1.2rem",
+              fontWeight: "500",
+            }}
+          >
+            CREATE REPAIRABLE DEFECTS
+            <Button
+              color="primary"
+              onClick={newToggle}
+              style={{ backgroundColor: "blue" }}
+              className="cross-button"
             >
-              <ModalHeader
-                style={{
-                  fontSize: "1.2rem",
-                  fontWeight: "500",
-                }}
-              >
-                CREATE REPAIRABLE DEFECTS
-                <Button
-                  color="primary"
-                  onClick={newToggle}
-                  style={{ backgroundColor: "blue" }}
-                  className="cross-button"
-                >
-                  <RxCross2 />
-                </Button>
-              </ModalHeader>
-              <ModalBody>
-                <div className="create-modal-content">
-                  <div className="brand-info-content">
-                    <h2> Defect Information</h2>
-                    <p>Defect information and customization.</p>
-                  </div>
+              <RxCross2 />
+            </Button>
+          </ModalHeader>
+          <ModalBody>
+            <div className="create-modal-content">
+              <div className="brand-info-content">
+                <h2> Defect Information</h2>
+                <p>Defect information and customization.</p>
+              </div>
 
-                  <div className="brand-input-field">
-                    <Label for="exampleEmail">Device</Label>
-                    <Input
-                      id="exampleBrand"
-                      name="brand"
-                      placeholder="Select an option "
-                      type="select"
-                    />
-                    <br />
-                    <Label for="exampleDefectTitle">Defect Title</Label>
-                    <Input
-                      id="exampleDefectTitle"
-                      name="name"
-                      placeholder="Defect Title"
-                      type="name"
-                    />
-                    <br />
-                    <Label for="exampleEmail">Repair required time</Label>
-                    <Input
-                      id="exampleModal"
-                      name="modal"
-                      placeholder="Repair required time"
-                      type="name"
-                    />
-                    <br />
-                    <Label for="exampleEmail">Cost</Label>
-                    <Input
-                      id="exampleModal"
-                      name="modal"
-                      placeholder="Cost"
-                      type="name"
-                    />
-                    <br />
-                    <Label for="exampleEmail">Price</Label>
-                    <Input
-                      id="exampleModal"
-                      name="modal"
-                      placeholder="Price"
-                      type="name"
-                    />
-                  </div>
-                </div>
-              </ModalBody>
-              <ModalFooter style={{ border: "hidden" }}>
-                <Button
-                  color="primary"
-                  onClick={newToggle}
-                  style={{ backgroundColor: "blue" }}
-                >
-                  Edit
-                </Button>
-                <Button
-                  color="secondary"
-                  onClick={newToggle}
-                  style={{ backgroundColor: "blue" }}
-                >
-                  Update
-                </Button>
-              </ModalFooter>
-            </Modal>
+              <div className="brand-input-field">
+                <Label for="exampleEmail">Device</Label>
+                <Input
+                  id="exampleBrand"
+                  name="brand"
+                  placeholder="Select an option "
+                  type="select"
+                />
+                <br />
+                <Label for="exampleDefectTitle">Defect Title</Label>
+                <Input
+                  id="exampleDefectTitle"
+                  name="name"
+                  placeholder="Defect Title"
+                  type="name"
+                />
+                <br />
+                <Label for="exampleEmail">Repair required time</Label>
+                <Input
+                  id="exampleModal"
+                  name="modal"
+                  placeholder="Repair required time"
+                  type="name"
+                />
+                <br />
+                <Label for="exampleEmail">Cost</Label>
+                <Input
+                  id="exampleModal"
+                  name="modal"
+                  placeholder="Cost"
+                  type="name"
+                />
+                <br />
+                <Label for="exampleEmail">Price</Label>
+                <Input
+                  id="exampleModal"
+                  name="modal"
+                  placeholder="Price"
+                  type="name"
+                />
+              </div>
+            </div>
+          </ModalBody>
+          <ModalFooter style={{ border: "hidden" }}>
+            <Button
+              color="primary"
+              onClick={newToggle}
+              style={{ backgroundColor: "blue" }}
+            >
+              Edit
+            </Button>
+            <Button
+              color="secondary"
+              onClick={newToggle}
+              style={{ backgroundColor: "blue" }}
+            >
+              Update
+            </Button>
+          </ModalFooter>
+        </Modal>
       </div>
     </>
   );
