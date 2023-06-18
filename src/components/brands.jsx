@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { BiStar } from "react-icons/bi";
 import { IoIosArrowDroprightCircle, RxCross2,BsFillTrashFill } from "react-icons/all";
 import { AiFillFolderOpen } from "react-icons/ai";
-import { NavLink } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios"
-// import brandsData from "./brandsData";
 import {
   Button,
   Modal,
@@ -17,24 +17,19 @@ import {
   Form,
 } from "reactstrap";
 
-
 const brands = () => {
     const [name, setName] = useState("");
-    const [getBrand, setGetBrand] =useState([])
-    const [image, setImage] = useState("");
-    const [brandId, setBrandId] = useState("");
-    const [modal, setModal] = useState(false)
-    const[otherModal, setOtherModal] =useState("")
+    const [getBrand, setGetBrand] =useState([]);
+    const [modal, setModal] = useState(false);
+    const [otherModal, setOtherModal] = useState(false);
+    const [brandId, setBrandId] = useState('')
+    const [selectedFile, setSelectedFile] = useState(null)
 
     useEffect(()=>{
         handleBrandData();
     },[])
-    const toggle = () =>{ 
-      // alert("check")
-      setModal(!modal)
-    };
-
-
+    
+   
         // arrow button modal
       const handleToggle = (item,type) => {
         // console.log(item,"kjddjjdkjdkjdkjdkjdjk");
@@ -46,24 +41,35 @@ const brands = () => {
       };
 
       //  Create brand API
+      
   const saveForm = async (e) =>{
     e.preventDefault();
     try {
-      const response = await axios.post(`http://18.221.148.248:84/api/v1/Brand/AddBrand?Name=${name}`);
-      // Handle the response
-      // console.log(response.data);
-      if (response.status==200) {
-        console.log(response?.data?.message)
-        toggle()
-        // state b khali kr do
-        handleBrandData()
-        setName("") 
-        this.reset()
+      const formData = new FormData();
+      formData.append("Csv File", selectedFile);
+      console.log("file", selectedFile)
+      const response = await axios.post(`http://18.221.148.248:84/api/v1/Brand/AddBrand?Name=${name}`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+      if (response.status===200) {
+        toast.success('Brand Created Successfully');
+        setSelectedFile(null);
+        handleBrandData();
+        setName("") ;
+        toggle();
       }
     } catch (error) {
-      // Handle any errors
       console.error(error);
     }
+  };
+  const toggle = () =>{ 
+    // alert("check")
+    setModal(!modal)
   };
 
   //  Get Brand API
@@ -72,6 +78,7 @@ const brands = () => {
       try {
          const getResponse = await axios.get(`http://18.221.148.248:84/api/v1/Brand/GetBrands?pageNo=${1}`)
         //  console.log(getResponse.data.data?.data,"response")
+        // console.log(getResponse.data)
          if (getResponse.status==200) {
           let data=getResponse.data.data?.data.reverse()
             setGetBrand(data)
@@ -80,7 +87,7 @@ const brands = () => {
          console.log("Errors", error) 
       }
     }
-
+    
     // Update API
     const EditForm = async (e) =>{
       e.preventDefault();
@@ -90,6 +97,7 @@ const brands = () => {
         // console.log(response.data,"datatttattatt");
         if (response.status==200) {
           // console.log(response?.data?.message)
+          toast.success("Brand Update Successfully!")
          handleToggle();
          handleBrandData();
          setName("")
@@ -100,24 +108,46 @@ const brands = () => {
         console.error(error);
       }
     };
-
+ 
       //  delete brand
-    const deleteBrand = async (id) =>{
-      try {
-      const response = await axios.post(`http://18.221.148.248:84/api/v1/Brand/DeleteBrand?Id=${id}`);
-        // Handle the response
-        if (response.status==200) {
-         handleBrandData();
+      const deleteBrand = async (brandId) => {
+        // console.log(brandId)
+        try {
+          const response = await axios.post(
+            `http://18.221.148.248:84/api/v1/Brand/DeleteBrand?Id=${brandId}`
+          );
+          if (response.status === 200) {
+            console.log("deleted brand successfully");
+            toast.success('Brand deleted successfully');
+            handleBrandData();
+          } 
+        } catch (error) {
+          console.error("Error", error);
         }
-      } catch (error) {
-        // Handle any errors
-        console.error(error);
-      }
-    };
-   
+      };
+
+       
+        //  CSV FILE function
+      const handleFileChange = (event) => {
+        setSelectedFile(event.target.files[0]);
+      };
+
+    
   return ( 
     <>
-    
+                <ToastContainer
+            position="top-center"
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            progressBarStyle={{ backgroundColor: 'red' }}
+            />
       <div className="main-brand-container">
        <div className="container brand-container p-3 mt-3">
         <div className="row">
@@ -205,8 +235,8 @@ const brands = () => {
                                   id="exampleFile"
                                   name="file"
                                   type="file"
-                                  value={image}
-                                  onChange={(e) => setImage(e.target.value)}
+                                  onChange={handleFileChange}
+
                                 />
                               </FormGroup>
                             </div>
@@ -233,7 +263,7 @@ const brands = () => {
        
         
         {
-          getBrand?.map((brand, index) => (
+          getBrand && getBrand.map((brand, index) => (
             <div className="brandSection" key={index}>
                <div className="container">
                   <div className="row">
@@ -251,9 +281,12 @@ const brands = () => {
                          <button className="arrow-button" onClick={()=>handleToggle(brand,"edit")}>      
                          <IoIosArrowDroprightCircle />
                             </button>
-                            <button className="trash-button" onClick={deleteBrand}>
-                            <BsFillTrashFill/>
-                            </button>
+                            <button
+                            className="trash-button"
+                           onClick={()=>deleteBrand(brand.id)}
+                          >
+                            <BsFillTrashFill />
+                          </button>
                          </div>
                         </div>
                            
@@ -262,9 +295,9 @@ const brands = () => {
                   </div>
                </div>   
                </div>      
-        ))}
-        
-
+        ))} 
+         {/* handlePageChange={handlePageChange} */}
+        {/* <repdevices getBrands= {getBrand}/> */}
         <Modal
               isOpen={otherModal}
               toggle={handleToggle}
@@ -325,7 +358,9 @@ const brands = () => {
                 </Button> */}
               </ModalFooter>
             </Modal>
+            
       </div>
+      
     </>
   );
 };

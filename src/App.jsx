@@ -47,6 +47,7 @@ function App() {
           <Route path="RepairOrders" element={<RepOrder />} />
           <Route path="Brands" element={<Brands />} />
           <Route path="RepairableDevices" element={<RepDevices />} />
+          {/* <Route path="RepairableDevices" element={<RepairDevices />} /> */}
           <Route path="RepairableDefects" element={<RepDefects />} />
           <Route path="QuickReplies" element={<QuickReplies />} />
           <Route path="RepairStatus" element={<RepStatus />} />
