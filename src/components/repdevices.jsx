@@ -39,15 +39,15 @@ const repdevices = () => {
     e.preventDefault()
     try {
       const response = await axios.post('http://18.221.148.248:84/api/v1/Brand/AddModel', {
-        name: singleModelName,
-        modal: singleModel,
-        select: selectedBrand
+        name: `${singleModelName}`,
+        model: `${singleModel}`,
+        brandId: `${selectedBrand}`
       },
     
       );
       if (response.status === 200) {
         console.log(response)
-            getDevicesData(); 
+        getDevicesData(); 
         console.log('Success:', response.data);
       } else {
         console.log('Unexpected response status:', response.status);
