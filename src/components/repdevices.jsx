@@ -31,23 +31,50 @@ const repdevices = () => {
   // const [singleRepModel, setSingleRepModel] = useState("")
   const[singleModelName, setSingleModelName] = useState('')
   const[singleModel, setSingleModel] = useState('')
+  const [elemBrandId, setElemBrandId] = useState('')
 
 
-
+  const [elemModal, setElemModal] = useState(false);
+  const elemHandleToggle = (item, type) =>
+  // console.log(item)
+   {
+    if(type =='edit'){
+     setSingleModelName(item.name)
+     setElemBrandId(item.id)
+     console.log(item.name, item.id)
+    }
+    setElemModal(!elemModal)
+  }
+  
+     const updateModel = async () =>{
+      try {
+        const editForm = await axios.post(`http://18.221.148.248:84/api/v1/Brand/UpdateModel?Id=${elemBrandId}&Name=${singleModelName}`);
+        if(editForm.status ===200){
+          getDevicesData()
+          elemHandleToggle();
+        }
+      } catch (error) {
+        
+      }
+     }
+     
 
   const singleModelData = async (e) =>{
     e.preventDefault()
     try {
-      const response = await axios.post('http://18.221.148.248:84/api/v1/Brand/AddModel', {
-        name: singleModelName,
-        modal: singleModel,
-        select: selectedBrand
+      const response = await axios.post(`http://18.221.148.248:84/api/v1/Brand/AddModel`, {
+        name: `${singleModelName}`,
+        model: `${singleModel}`,
+        brandId: `${selectedBrand}`
       },
-    
+
       );
       if (response.status === 200) {
         console.log(response)
-            getDevicesData(); 
+            getDevicesData();
+            setSingleModelName('')
+            setSingleModel('')
+            handleRepToggle();
         console.log('Success:', response.data);
       } else {
         console.log('Unexpected response status:', response.status);
@@ -57,10 +84,6 @@ const repdevices = () => {
     }
   };
   
-
-
-
-
 
   const saveModel = async (e) => {
     e.preventDefault();
@@ -105,11 +128,11 @@ const repdevices = () => {
   const getDevicesData = async () => {
     try {
       const response = await axios.get(
-        `http://18.221.148.248:84/api/v1/Brand/GetModels?query=${getDevices}& pageNo=${1}`
+        `http://18.221.148.248:84/api/v1/Brand/GetModels?query=&pageNo=${1}`
       );
       // console.log(response.data.data.data);
 
-      if (response.status == 200) {
+      if (response.status === 200) {
         let data = response?.data?.data?.data;
         setGetDevices(data);
         setQueryData(data);
@@ -152,8 +175,7 @@ const repdevices = () => {
     setRepModal(!repModal);
   };
 
-  const [elemModal, setElemModal] = useState(false);
-  const elemHandleToggle = () => setElemModal(!elemModal);
+
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -210,7 +232,7 @@ const repdevices = () => {
                       <Input
                         type="select"
                         name="select"
-                        id="exampleSelect"
+                        id="select"
                         value={selectedBrand}
                         onChange={(e) => setSelectedBrand(e.target.value)}
                       >
@@ -345,7 +367,7 @@ const repdevices = () => {
 
             {/*dropDOWN  */}
 
-            <select
+            {/* <select
               className="form-select"
               aria-label="Default select example"
               id="repdevicesDrop"
@@ -355,7 +377,7 @@ const repdevices = () => {
               <option value="1">Name</option>
               <option value="2">Modal</option>
               <option value="3">Created At</option>
-            </select>
+            </select> */}
           </form>
 
           {/* Sorting Page */}
@@ -394,7 +416,7 @@ const repdevices = () => {
                 </div>
               </div>
               <div className="brand-arrow-icon">
-                <button>
+                <button onClick={()=> elemHandleToggle(elem, 'edit')}>
                   <i>
                     <IoIosArrowDroprightCircle />
                   </i>
@@ -449,6 +471,8 @@ const repdevices = () => {
                   name="name"
                   placeholder="Enter Your Brand Name"
                   type="name"
+                  value={singleModelName}
+                  onChange={(e)=> setSingleModelName(e.target.value)}
                 />
                 <br />
                 <Label for="exampleEmail">Modal</Label>
@@ -469,8 +493,9 @@ const repdevices = () => {
           <ModalFooter style={{ border: "hidden" }}>
             <Button
               color="primary"
-              onClick={elemHandleToggle}
+              // onClick={elemHandleToggle}
               style={{ backgroundColor: "blue" }}
+              onClick={updateModel}
             >
               Edit
             </Button>

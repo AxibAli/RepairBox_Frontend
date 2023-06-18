@@ -278,7 +278,7 @@ const brands = () => {
                         
                         <div className="col-10 col-md-2 mx-auto">
                          <div className="brand-arrow d-flex ">
-                         <button className="arrow-button" onClick={()=>handleToggle(brand,"edit")}>      
+                         <button className="arrow-button" onClick={()=>handleToggle(brand,"edit")}>
                          <IoIosArrowDroprightCircle />
                             </button>
                             <button
