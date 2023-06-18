@@ -479,13 +479,24 @@ const repdevices = () => {
               </div>
 
               <div className="brand-input-field">
-                <Label for="exampleEmail">Brand</Label>
-                <Input
-                  id="exampleBrand"
-                  name="brand"
-                  placeholder="Select Your Brand "
-                  type="select"
-                />
+              <FormGroup>
+                      <Label for="exampleSelect">Select Brand</Label>
+                      <Input
+                        type="select"
+                        name="select"
+                        id="select"
+                        value={selectedBrand}
+                        onChange={(e) => setSelectedBrand(e.target.value)}
+                      >
+                        <option value="">Select a brand</option>
+                        {dropData &&
+                          dropData.map((item, index) => (
+                            <option key={index} value={item.value}>
+                              {item.text}
+                            </option>
+                          ))}
+                      </Input>
+                    </FormGroup>
                 <br />
                 <Label for="exampleName">Name</Label>
                 <Input
