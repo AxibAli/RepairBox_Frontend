@@ -585,6 +585,9 @@ color: black
           grid-column: span 6;
           font-size: 2rem;
          }
+         .users-name i{
+          font-size: 2.7rem;
+         }
          .users-name h1{
           margin-left: 0.8rem;
           font-weight: 600;
@@ -606,3 +609,9 @@ color: black
          .ModalFooter{
           border: none;
          }
+         .Toastify__progress-bar {
+          background: #3aa8f7 !important; 
+        }
+        .Toastify__toast--success .Toastify__toast-body::before {
+          color: blue !important; /* Change the color here */
+        }

@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import repDeviceData from "./repDeviceData";
+import React, { useEffect, useState } from "react";
 import {
   AiFillFolderOpen,
   BsSortDownAlt,
@@ -19,16 +18,157 @@ import {
   Label,
   FormGroup,
 } from "reactstrap";
+import axios from "axios";
+import { Pagination } from 'antd'
 
 const repdevices = () => {
+  const [getDevices, setGetDevices] = useState([]);
+  const [search, setSearch] = useState("");
+  const [queryData, setQueryData] = useState([]);
+  const [repData, setRepData] = useState([]);
+  const [dropData, setDropData] = useState([]);
+  const [selectedBrand, setSelectedBrand] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
+  // const [singleRepModel, setSingleRepModel] = useState("")
+  const[singleModelName, setSingleModelName] = useState('')
+  const[singleModel, setSingleModel] = useState('')
+  const [elemBrandId, setElemBrandId] = useState('')
 
 
+  // Pagination Code States 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPage, setTotalPage] = useState();     
+  const [pagesize, setpagesize] = useState(10);     
 
-
-
-
-
+  const [elemModal, setElemModal] = useState(false);
+  const elemHandleToggle = (item, type) =>
+  // console.log(item)
+   {
+    if(type =='edit'){
+     setSingleModelName(item.name)
+     setElemBrandId(item.id)
+     console.log(item.name, item.id)
+    }
+    setElemModal(!elemModal)
+  }
   
+     const updateModel = async () =>{
+      try {
+        const editForm = await axios.post(`http://18.221.148.248:84/api/v1/Brand/UpdateModel?Id=${elemBrandId}&Name=${singleModelName}`);
+        if(editForm.status ===200){
+          getDevicesData()
+          elemHandleToggle();
+        }
+      } catch (error) {
+        
+      }
+     }
+     
+
+  const singleModelData = async (e) =>{
+    e.preventDefault()
+    try {
+      const response = await axios.post(`http://18.221.148.248:84/api/v1/Brand/AddModel`, {
+        name: `${singleModelName}`,
+        model: `${singleModel}`,
+        brandId: `${selectedBrand}`
+      },
+
+      );
+      if (response.status === 200) {
+        console.log(response)
+            getDevicesData();
+            setSingleModelName('')
+            setSingleModel('')
+            handleRepToggle();
+        console.log('Success:', response.data);
+      } else {
+        console.log('Unexpected response status:', response.status);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  
+
+  const saveModel = async (e) => {
+    e.preventDefault();
+    try {
+      let formData = new FormData()
+    formData.append('file',selectedFile)
+    formData.append('brandId', selectedBrand)
+    console.log([...formData])
+      const response = await axios.post(
+        "http://18.221.148.248:84/api/v1/Brand/AddModels",
+       formData
+      );
+      if (response.status === 200) {
+        setSelectedBrand("");
+        setSelectedFile(null);
+        getDevicesData();
+        handleRepToggle();
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+  const dropDownData = async () => {
+    try {
+      const getDrop = await axios.get(
+        `http://18.221.148.248:84/api/v1/Brand/GetBrandsforDropdown`);
+      //  console.log(getDrop)
+      if (getDrop.status == 200) {
+        let data = getDrop.data.data;
+        setDropData(data);
+      }
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    getDevicesData();
+    dropDownData();
+  }, [currentPage]);
+
+  const getDevicesData = async () => {
+    try {
+      const response = await axios.get(
+        `http://18.221.148.248:84/api/v1/Brand/GetModels?query=&pageNo=${currentPage}`
+      );
+      // console.log(response.data.data.data);
+
+      if (response.status === 200) {
+        let data = response?.data?.data?.data;
+        setGetDevices(data);
+        setQueryData(data);
+        setRepData(data);
+
+        let cPage = response.data.data.currentPage
+        let tPage = response.data.data.totalPages
+        tPage= tPage*pagesize
+        // console.log("Current: ", cPage)
+        // console.log("Total: ", tPage)
+        setCurrentPage(cPage)
+        setTotalPage(tPage)
+      }
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
+  const handleSearch = (text) => {
+    setSearch(text);
+    // console.log(text)
+    if (search == "") {
+      setQueryData(repData);
+    } else {
+      const newData = repData.filter((item) =>
+        item.name.toLowerCase().includes(search.toLowerCase())
+      );
+      setQueryData(newData);
+    }
+  };
+
   // sorting data state Start
   const [sortDirection, setSortDirection] = useState("asc");
   const handleSort = () => {
@@ -40,33 +180,20 @@ const repdevices = () => {
   //  sort state end
 
   //  for search feature state start
-        
-  const [repData, setRepData] = useState(repDeviceData);
-  const [search, setSearch] = useState("");  
-  const [queryData, setQueryData] = useState(repDeviceData);
-
-  const handleSearch = (text) => {
-    setSearch(text);
-    // console.log(text)
-    if (search == "") {
-      setQueryData(repData);
-    } 
-    else {
-      const newData = repData.filter((item) =>
-        item.name.toLowerCase().includes(search.toLowerCase())
-      );
-      setQueryData(newData);
-    }
-  };
 
   //  for search feature state end
 
   // for create button modal
   const [repModal, setRepModal] = useState(false);
-  const handleRepToggle = () => setRepModal(!repModal);
+  const handleRepToggle = () => {
+    setRepModal(!repModal);
+  };
 
-  const [elemModal, setElemModal] = useState(false);
-  const elemHandleToggle = () => setElemModal(!elemModal);
+
+
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
 
   // Code Started after return
   return (
@@ -114,13 +241,25 @@ const repdevices = () => {
                   </div>
 
                   <div className="brand-input-field">
-                    <Label for="exampleEmail">Brand</Label>
-                    <Input
-                      id="exampleBrand"
-                      name="brand"
-                      placeholder="Select Your Brand "
-                      type="select"
-                    />
+                    <FormGroup>
+                      <Label for="exampleSelect">Select Brand</Label>
+                      <Input
+                        type="select"
+                        name="select"
+                        id="select"
+                        value={selectedBrand}
+                        onChange={(e) => setSelectedBrand(e.target.value)}
+                      >
+                        <option value="">Select a brand</option>
+                        {dropData &&
+                          dropData.map((item, index) => (
+                            <option key={index} value={item.value}>
+                              {item.text}
+                            </option>
+                          ))}
+                      </Input>
+                    </FormGroup>
+
                     <br />
                     <Label for="exampleName">Name</Label>
                     <Input
@@ -128,6 +267,8 @@ const repdevices = () => {
                       name="name"
                       placeholder="Enter Your Brand Name"
                       type="name"
+                      value={singleModelName}
+                      onChange={(e)=>setSingleModelName(e.target.value)}
                     />
                     <br />
                     <Label for="exampleEmail">Modal</Label>
@@ -135,21 +276,25 @@ const repdevices = () => {
                       id="exampleModal"
                       name="modal"
                       placeholder="Enter Your Brand Modal"
-                      type="name"
+                      type="text"
+                      value={singleModel}
+                      onChange={(e)=>setSingleModel(e.target.value)}
                     />
                     <br />
                     <FormGroup>
                       <Label for="exampleFile">Image</Label>
-                      <Input id="exampleFile" name="file" type="file" />
-                    </FormGroup>
+                      <Input id="exampleFile" name="file"
+                      value={selectedFile}
+                       />
+                    </FormGroup> 
                   </div>
                 </div>
               </ModalBody>
               <ModalFooter style={{ border: "none" }}>
                 <Button
                   color="primary"
-                  onClick={handleRepToggle}
                   style={{ backgroundColor: "blue" }}
+                  onClick={singleModelData}
                 >
                   Save
                 </Button>
@@ -176,17 +321,31 @@ const repdevices = () => {
                   </div>
 
                   <div className="brand-input-field">
-                    <Label for="exampleEmail">Brand</Label>
-                    <Input
-                      id="exampleBrand"
-                      name="brand"
-                      placeholder="Select Your Brand "
-                      type="select"
-                    />
+                    <FormGroup>
+                      <Label for="exampleSelect">Select Brand</Label>
+                      <Input
+                        type="select"
+                        name="select"
+                        id="exampleSelect"
+                        value={selectedBrand}
+                        onChange={(e) => setSelectedBrand(e.target.value)}
+                      >
+                        <option value="">Select a brand</option>{" "}
+                        {/* Add an initial empty option */}
+                        {dropData &&
+                          dropData.map((item, index) => (
+                            <option key={index} value={item.id}>
+                              {item.text}
+                            </option>
+                          ))}
+                      </Input>
+                    </FormGroup>
                     <br />
                     <FormGroup>
                       <Label for="exampleFile">Image</Label>
-                      <Input id="exampleFile" name="file" type="file" />
+                      <Input id="exampleFile" name="file" type="file" accept={".csv"}
+                      onChange={handleFileChange}
+                      />
                     </FormGroup>
                   </div>
                 </div>
@@ -194,7 +353,7 @@ const repdevices = () => {
               <ModalFooter style={{ border: "hidden" }}>
                 <Button
                   color="secondary"
-                  onClick={handleRepToggle}
+                  onClick={saveModel}
                   style={{ backgroundColor: "blue" }}
                 >
                   Upload
@@ -222,7 +381,7 @@ const repdevices = () => {
 
             {/*dropDOWN  */}
 
-            <select
+            {/* <select
               className="form-select"
               aria-label="Default select example"
               id="repdevicesDrop"
@@ -232,7 +391,7 @@ const repdevices = () => {
               <option value="1">Name</option>
               <option value="2">Modal</option>
               <option value="3">Created At</option>
-            </select>
+            </select> */}
           </form>
 
           {/* Sorting Page */}
@@ -264,13 +423,14 @@ const repdevices = () => {
               <div className="brand-desc">
                 <div className="available-service">
                   <h3>
-                    {elem.desc}: <strong>9</strong>
+                    Available services: {elem.desc}
+                    <strong>9</strong>
                   </h3>
                   <h5>Added : {new Date().toLocaleString()}</h5>
                 </div>
               </div>
               <div className="brand-arrow-icon">
-                <button>
+                <button onClick={()=> elemHandleToggle(elem, 'edit')}>
                   <i>
                     <IoIosArrowDroprightCircle />
                   </i>
@@ -279,6 +439,15 @@ const repdevices = () => {
             </div>
           </div>
         ))}
+        <Pagination
+          total={totalPage}
+          current={currentPage}
+          onChange={(page)=>{
+            setCurrentPage(page)
+            // handleBrandData()
+          }}
+        />
+        
         <Modal
           isOpen={elemModal}
           toggle={elemHandleToggle}
@@ -290,7 +459,7 @@ const repdevices = () => {
               fontWeight: "500",
             }}
           >
-            CRAETE REPAIRABLE DEVICE
+            CREATE REPAIRABLE DEVICE
             <Button
               color="primary"
               onClick={elemHandleToggle}
@@ -310,13 +479,24 @@ const repdevices = () => {
               </div>
 
               <div className="brand-input-field">
-                <Label for="exampleEmail">Brand</Label>
-                <Input
-                  id="exampleBrand"
-                  name="brand"
-                  placeholder="Select Your Brand "
-                  type="select"
-                />
+              <FormGroup>
+                      <Label for="exampleSelect">Select Brand</Label>
+                      <Input
+                        type="select"
+                        name="select"
+                        id="select"
+                        value={selectedBrand}
+                        onChange={(e) => setSelectedBrand(e.target.value)}
+                      >
+                        <option value="">Select a brand</option>
+                        {dropData &&
+                          dropData.map((item, index) => (
+                            <option key={index} value={item.value}>
+                              {item.text}
+                            </option>
+                          ))}
+                      </Input>
+                    </FormGroup>
                 <br />
                 <Label for="exampleName">Name</Label>
                 <Input
@@ -324,6 +504,8 @@ const repdevices = () => {
                   name="name"
                   placeholder="Enter Your Brand Name"
                   type="name"
+                  value={singleModelName}
+                  onChange={(e)=> setSingleModelName(e.target.value)}
                 />
                 <br />
                 <Label for="exampleEmail">Modal</Label>
@@ -344,8 +526,9 @@ const repdevices = () => {
           <ModalFooter style={{ border: "hidden" }}>
             <Button
               color="primary"
-              onClick={elemHandleToggle}
+              // onClick={elemHandleToggle}
               style={{ backgroundColor: "blue" }}
+              onClick={updateModel}
             >
               Edit
             </Button>
@@ -363,7 +546,7 @@ const repdevices = () => {
 
         {/* Pagination start */}
 
-        <div className="pagination">
+        {/* <div className="pagination">
           <button
             className="less-than"
             onChange={() => handlePageChange(currentPage - 1)}
@@ -376,7 +559,7 @@ const repdevices = () => {
           >
             <FaGreaterThan />
           </button>
-        </div>
+        </div> */}
         {/* pagination End */}
       </div>
 
