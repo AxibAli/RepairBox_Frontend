@@ -98,6 +98,9 @@ margin-bottom: 20px;
   /* font-size: 2.5rem; */
   
 }
+.PriorityCss:hover{
+background-color: #f3f4f6;
+}
 .Purchase:hover{
 color: black
 }

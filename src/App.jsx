@@ -21,6 +21,7 @@ import UserRole from './components/userrole'
 import Navber from './components/navber'
 // import { createBrowserRouter } from 'react-router-dom';
 import HomePage from './components/HomePageBook';
+// import Priority from "./components/Priority"
 import TrackPage from './components/Track';
 import Login from './components/Login';
 import Booking from './components/Booking';
@@ -66,6 +67,7 @@ function App() {
         <Route path="/track" element={<TrackPage />} />
         <Route path="/auth/login" element={<Login />} />
         <Route path="/about" element={<About />} />
+        {/* <Route path="/priority" element={ <Priority/>} /> */}
 
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="Dashboard" element={<Dashboard />} />

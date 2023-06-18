@@ -35,7 +35,8 @@ export default function BasicSelect() {
     }, [])
     const FetchApiData = async () => {
       try {
-        const response = await axios.get("http://18.221.148.248:84/api/v1/Brand/GetModelsforDropdown");
+        const response = await axios.get(`http://18.221.148.248:84/api/v1/Brand/GetModelsforDropdown?id=${new_value}`);
+        console.log(new_value)
         console.log(response.data.data);
   
         SetshowData(response.data.data);
@@ -62,10 +63,10 @@ export default function BasicSelect() {
           >
             {/* <MenuItem value={10}>Ten</MenuItem>
                     <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem> */}
-            {showData && showData.map((item, value) => (
-              <MenuItem value={item.value} key={value}>{item.text}</MenuItem>
-            ))}
+                     <MenuItem value={30}>Thirty</MenuItem> */}
+             {showData && showData.map((item, index) => (
+               <MenuItem value={item.value} key={index}>{item.text}</MenuItem>
+             ))}
           </Select>
                 </FormControl>
 

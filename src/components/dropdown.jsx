@@ -41,6 +41,8 @@ export default function MultipleSelect() {
       // console.log(response.data.data);
 
       SetshowData(response.data.data);
+      console.log(response.data['id']);
+      
     } catch (err) {
       console.log(err)
     }
@@ -54,20 +56,7 @@ export default function MultipleSelect() {
         </Box>
         <FormControl sx={{ width: "70%", marginRight:30 }} fullWidth>
           <InputLabel id="demo-simple-select-label">Brands</InputLabel>
-          {/* <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={age}
-            label="Age"
-            onChange={handleChange}
-          >
-            {
-              age.map((item,index) => (
-                <MenuItem value={item.index}>{item.text}</MenuItem>
-              ))
-            }
-              
-          </Select> */}
+        
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"

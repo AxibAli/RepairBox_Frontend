@@ -28,7 +28,7 @@ export default function Basic() {
     }, [])
     const FetchApiData = async () => {
       try {
-        const response = await axios.get("http://18.221.148.248:84/api/v1/Brand/GetModelDefectsforDropdown?modelId=1");
+        const response = await axios.get("http://18.221.148.248:84/api/v1/Brand/GetModelDefectsforDropdown");
         console.log(response.data.data);
   
         SetshowData(response.data.data);
@@ -110,10 +110,10 @@ export default function Basic() {
           renderValue={(selected) => selected.join(', ')}
           MenuProps={MenuProps}
         >
-          {showData.map((item, value) => (
-            <MenuItem key={value} value={item.value}>
+          {showData.map((item, index) => (
+            <MenuItem key={index} value={item.text}>
               <Checkbox checked={issueName.indexOf(item.value) > -1} />
-              <ListItemText primary={value} />
+              <ListItemText primary={item.text} />
             </MenuItem>
           ))}
         </Select>
