@@ -19,6 +19,7 @@ import {
   FormGroup,
 } from "reactstrap";
 import axios from "axios";
+import { Pagination } from 'antd'
 
 const repdevices = () => {
   const [getDevices, setGetDevices] = useState([]);
@@ -33,6 +34,11 @@ const repdevices = () => {
   const[singleModel, setSingleModel] = useState('')
   const [elemBrandId, setElemBrandId] = useState('')
 
+
+  // Pagination Code States 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPage, setTotalPage] = useState();     
+  const [pagesize, setpagesize] = useState(10);     
 
   const [elemModal, setElemModal] = useState(false);
   const elemHandleToggle = (item, type) =>
@@ -123,12 +129,12 @@ const repdevices = () => {
   useEffect(() => {
     getDevicesData();
     dropDownData();
-  }, []);
+  }, [currentPage]);
 
   const getDevicesData = async () => {
     try {
       const response = await axios.get(
-        `http://18.221.148.248:84/api/v1/Brand/GetModels?query=&pageNo=${1}`
+        `http://18.221.148.248:84/api/v1/Brand/GetModels?query=&pageNo=${currentPage}`
       );
       // console.log(response.data.data.data);
 
@@ -137,6 +143,14 @@ const repdevices = () => {
         setGetDevices(data);
         setQueryData(data);
         setRepData(data);
+
+        let cPage = response.data.data.currentPage
+        let tPage = response.data.data.totalPages
+        tPage= tPage*pagesize
+        // console.log("Current: ", cPage)
+        // console.log("Total: ", tPage)
+        setCurrentPage(cPage)
+        setTotalPage(tPage)
       }
     } catch (error) {
       console.log("Error", error);
@@ -425,6 +439,14 @@ const repdevices = () => {
             </div>
           </div>
         ))}
+        <Pagination
+          total={totalPage}
+          current={currentPage}
+          onChange={(page)=>{
+            setCurrentPage(page)
+            // handleBrandData()
+          }}
+        />
         
         <Modal
           isOpen={elemModal}

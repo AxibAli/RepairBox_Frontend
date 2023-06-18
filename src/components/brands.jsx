@@ -5,6 +5,7 @@ import { AiFillFolderOpen } from "react-icons/ai";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios"
+import { Pagination } from 'antd'
 import {
   Button,
   Modal,
@@ -25,9 +26,14 @@ const brands = () => {
     const [brandId, setBrandId] = useState('')
     const [selectedFile, setSelectedFile] = useState(null)
 
+    // Pagination Code States 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPage, setTotalPage] = useState();     
+    const [pagesize, setpagesize] = useState(10);     
+
     useEffect(()=>{
         handleBrandData();
-    },[])
+    },[currentPage])
     
    
         // arrow button modal
@@ -76,12 +82,19 @@ const brands = () => {
 
     const handleBrandData = async () =>{
       try {
-         const getResponse = await axios.get(`http://18.221.148.248:84/api/v1/Brand/GetBrands?pageNo=${1}`)
+         const getResponse = await axios.get(`http://18.221.148.248:84/api/v1/Brand/GetBrands?pageNo=${currentPage}`)
         //  console.log(getResponse.data.data?.data,"response")
         // console.log(getResponse.data)
          if (getResponse.status==200) {
           let data=getResponse.data.data?.data.reverse()
-            setGetBrand(data)
+          setGetBrand(data)
+          let cPage = getResponse.data.data.currentPage
+          let tPage = getResponse.data.data.totalPages
+          tPage= tPage*pagesize
+          // console.log("Current: ", cPage)
+          // console.log("Total: ", tPage)
+          setCurrentPage(cPage)
+          setTotalPage(tPage)
          }
       } catch (error) {
          console.log("Errors", error) 
@@ -296,6 +309,16 @@ const brands = () => {
                </div>   
                </div>      
         ))} 
+
+        <Pagination
+          total={totalPage}
+          current={currentPage}
+          onChange={(page)=>{
+            setCurrentPage(page)
+            // handleBrandData()
+          }}
+        />
+
          {/* handlePageChange={handlePageChange} */}
         {/* <repdevices getBrands= {getBrand}/> */}
         <Modal
