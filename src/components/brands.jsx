@@ -41,24 +41,36 @@ const brands = () => {
       };
 
       //  Create brand API
+      const saveModels = async (e) => {
+        e.preventDefault();
+        try {
+          let formData = new FormData()
+        formData.append('file',selectedFile)
+        // formData.append('brandId', selectedBrand)
+        console.log([...formData])
+          const response = await axios.post(
+            'http://18.221.148.248:84/api/v1/Brand/AddBrands',
+           formData
+          );
+          if (response.status === 200) {
+            // setSelectedBrand("");
+            setSelectedFile();
+            handleBrandData();
+            toggle()
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      };
       
   const saveForm = async (e) =>{
     e.preventDefault();
     try {
-      const formData = new FormData();
-      formData.append("Csv File", selectedFile);
-      console.log("file", selectedFile)
       const response = await axios.post(`http://18.221.148.248:84/api/v1/Brand/AddBrand?Name=${name}`,
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
     );
       if (response.status===200) {
         toast.success('Brand Created Successfully');
-        setSelectedFile(null);
+        // setSelectedFile(null);
         handleBrandData();
         setName("") ;
         toggle();
@@ -235,6 +247,7 @@ const brands = () => {
                                   id="exampleFile"
                                   name="file"
                                   type="file"
+                                  // value={selectedFile}
                                   onChange={handleFileChange}
 
                                 />
@@ -247,7 +260,7 @@ const brands = () => {
                             color="secondary"
                             type="upload"
                             style={{ backgroundColor: "blue" }}
-                            onClick={saveForm}
+                            onClick={saveModels}
                           >
                             Upload
                           </Button>
