@@ -28,7 +28,7 @@ export default function Basic() {
     }, [])
     const FetchApiData = async () => {
       try {
-        const response = await axios.get("http://18.221.148.248:84/api/v1/Brand/GetModelDefectsforDropdown");
+        const response = await axios.get("http://18.221.148.248:84/api/v1/Brand/GetModelsforDropdown");
         console.log(response.data.data);
   
         SetshowData(response.data.data);

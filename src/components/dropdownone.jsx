@@ -35,7 +35,7 @@ export default function BasicSelect() {
     }, [])
     const FetchApiData = async () => {
       try {
-        const response = await axios.get(`http://18.221.148.248:84/api/v1/Brand/GetModelsforDropdown?id=${new_value}`);
+        const response = await axios.get(`http://18.221.148.248:84/api/v1/Brand/GetModelsforDropdown`);
         console.log(new_value)
         console.log(response.data.data);
   
