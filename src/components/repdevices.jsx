@@ -7,6 +7,7 @@ import {
   FaLessThan,
   FaGreaterThan,
   RxCross2,
+  BsFillTrashFill
 } from "react-icons/all";
 import {
   Button,
@@ -29,6 +30,7 @@ const repdevices = () => {
   const [dropData, setDropData] = useState([]);
   const [selectedBrand, setSelectedBrand] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
+  // console.log(selectedBrand)
   // const [singleRepModel, setSingleRepModel] = useState("")
   const[singleModelName, setSingleModelName] = useState('')
   const[singleModel, setSingleModel] = useState('')
@@ -96,10 +98,10 @@ const repdevices = () => {
     try {
       let formData = new FormData()
     formData.append('file',selectedFile)
-    formData.append('brandId', selectedBrand)
+    // formData.append('brandId', selectedBrand)
     console.log([...formData])
       const response = await axios.post(
-        "http://18.221.148.248:84/api/v1/Brand/AddModels",
+        `http://18.221.148.248:84/api/v1/Brand/AddModels?brandId=${selectedBrand}`,
        formData
       );
       if (response.status === 200) {
@@ -118,7 +120,7 @@ const repdevices = () => {
     try {
       const getDrop = await axios.get(
         `http://18.221.148.248:84/api/v1/Brand/GetBrandsforDropdown`);
-      //  console.log(getDrop)
+       console.log(getDrop)
       if (getDrop.status == 200) {
         let data = getDrop.data.data;
         setDropData(data);
@@ -189,7 +191,22 @@ const repdevices = () => {
     setRepModal(!repModal);
   };
 
-
+    //  delete brand
+    const deleteModel = async (brandId) => {
+      // console.log(brandId)
+      try {
+        const response = await axios.post(
+          `http://18.221.148.248:84/api/v1/Brand/DeleteModel?Id=${brandId}`
+        );
+        if (response.status === 200) {
+          console.log("deleted brand successfully");
+          toast.success('Brand deleted successfully');
+          getDevicesData();
+        } 
+      } catch (error) {
+        console.error("Error", error);
+      }
+    };
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -334,7 +351,7 @@ const repdevices = () => {
                         {/* Add an initial empty option */}
                         {dropData &&
                           dropData.map((item, index) => (
-                            <option key={index} value={item.id}>
+                            <option key={index} value={item.value}>
                               {item.text}
                             </option>
                           ))}
@@ -434,6 +451,12 @@ const repdevices = () => {
                   <i>
                     <IoIosArrowDroprightCircle />
                   </i>
+                </button>
+                <button
+                    className="trash-button"
+                    onClick={()=>deleteModel(elem.id)}
+                  >
+                    <BsFillTrashFill />
                 </button>
               </div>
             </div>
