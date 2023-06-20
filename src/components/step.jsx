@@ -6,9 +6,11 @@ import Nextbtn from "./Nextbtn";
 import { TiTick } from "react-icons/ti";
 
 const Stepper = () => {
+  const [selectedPriority, setSelectedPriority] = useState("$0.00");
   const steps = ["REPAIR DEVICE", "PRIORITY LEVEL", "INFORMATION & PAYMENT"];
   const [currentStep, setCurrentStep] = useState(1);
   const [complete, setComplete] = useState(false);
+  const [isbrand, setIsbrand] = useState(false);
   const [currentComponent, setCurrentComponent] = useState("MultipleSelect");
 
   const NextBtn = () => {
@@ -44,11 +46,11 @@ const Stepper = () => {
   const renderComponent = () => {
     switch (currentComponent) {
       case "MultipleSelect":
-        return <MultipleSelect />;
+        return <MultipleSelect setisbrand={setIsbrand} />;
       case "Priority":
-        return <Priority/>;
+        return <Priority  setSelectedPriority={setSelectedPriority}/>;
       case "Information":
-        return <Information   />;
+        return <Information  selectedPriority={selectedPriority} />;
       default:
         return null;
     }
@@ -72,7 +74,7 @@ const Stepper = () => {
         ))}
       </div>
       {renderComponent()}
-      {!complete && <Nextbtn t={PrevBtn} n={NextBtn}  />}
+      {!complete && <Nextbtn t={PrevBtn} n={isbrand?NextBtn:()=>{alert("select firsts")}}  />}
     </>
   );
 };

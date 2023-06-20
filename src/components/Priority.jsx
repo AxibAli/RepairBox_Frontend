@@ -4,8 +4,7 @@ import Container from 'react-bootstrap/Container';
 import '../App.css';
 import Information from './Information';
 
-function Priority() {
-  const [selectedPriority, setSelectedPriority] = useState("$0.00");
+function Priority({setSelectedPriority}) {
 
   const handlePriorityChange = (event) => {
     setSelectedPriority(event.target.value);
@@ -63,7 +62,6 @@ function Priority() {
         <div className="p-2">High</div>
         <div className="p-2 ms-auto">$5.00</div>
       </Stack>
-       {console.log(selectedPriority)}
     </Container>
   );
 }

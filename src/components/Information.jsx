@@ -7,7 +7,8 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 
 
-function Information() {
+function Information({selectedPriority}) {
+  console.log(selectedPriority,"========+")
   return (
     <Container>
       <Form>
