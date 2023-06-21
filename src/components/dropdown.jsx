@@ -9,7 +9,7 @@ import '../App.css'
 import axios from "axios";
 
 
-export default function MultipleSelect() {
+export default function MultipleSelect({setisbrand}) {
 
   const [age, setAge] = React.useState([]);
   const [showData, SetshowData] = React.useState([]);
@@ -23,7 +23,7 @@ export default function MultipleSelect() {
     } = event;
     setAge(
       typeof value === 'string' ? value.split(',') : value,
-      // console.log(value, "value"),
+      console.log(value, "value"),
       // console.log(value, "value"),
 
       setnew_value(value)
@@ -31,17 +31,24 @@ export default function MultipleSelect() {
     );
 
   };
+useEffect(()=>{
+  if(new_value){
+    setisbrand(true)
+  }else{
+    setisbrand(false)
+  }
+},[new_value])
 
   useEffect(() => {
     FetchApiData();
-  }, [])
+  }, [new_value])
   const FetchApiData = async () => {
     try {
       const response = await axios.get("http://18.221.148.248:84/api/v1/Brand/GetBrandsforDropdown");
       // console.log(response.data.data);
 
       SetshowData(response.data.data);
-      console.log(response.data['id']);
+      // console.log("==================>data",response?.data?.data)
       
     } catch (err) {
       console.log(err)
@@ -74,7 +81,7 @@ export default function MultipleSelect() {
       {new_value ?
 
 
-        <BasicSelect /> : null
+        <BasicSelect value={new_value} /> : null
       }
     </div>
   );

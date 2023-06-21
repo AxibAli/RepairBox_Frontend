@@ -1,4 +1,4 @@
-import  React,{useEffect} from 'react';
+import  React,{useEffect,useState} from 'react';
 import { Box } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -9,12 +9,13 @@ import axios from "axios";
 
 
 
-export default function BasicSelect() {
+export default function BasicSelect({value}) {
     const [age, setAge] = React.useState('');
-  const [new_value,setnew_value]= React.useState("")
+  const [new_value,setnew_value]= React.useState("");
+  // const [setOff, SetOn] = useState(false);
   const [showData, SetshowData] = React.useState([]);
 
-    
+
   const handleChange = (event) => {
     setAge(event.target.value);
     // console.log(event)
@@ -24,7 +25,7 @@ export default function BasicSelect() {
     setAge(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
-      // console.log(value,"value"),
+      console.log(value,"value"),
       setnew_value(value)
       
     );
@@ -32,19 +33,28 @@ export default function BasicSelect() {
   
     useEffect(() => {
       FetchApiData();
-    }, [])
+    }, [value])
     const FetchApiData = async () => {
       try {
-        const response = await axios.get(`http://18.221.148.248:84/api/v1/Brand/GetModelsforDropdown?id=${new_value}`);
-        console.log(new_value)
-        console.log(response.data.data);
-  
+        const response = await axios.get(`http://18.221.148.248:84/api/v1/Brand/GetBrandModelsforDropdown?brandId=${value}`);
+        console.log(value)
+        // console.log(new_value)
+        // console.log(response.data.data);
+        // ?.filter((val)=>val.value==value)
         SetshowData(response.data.data);
       } catch (err) {
         console.log(err)
       }
     }
     console.log(showData, "showData")
+    // useEffect(()=>{
+    //   if(new_value){
+    //     setisbrand(true)
+    //   }else{
+    //     setisbrand(false)
+    //   }
+    // },[new_value])
+    
 
     return (
         <div  className='dropdown'>
@@ -74,7 +84,7 @@ export default function BasicSelect() {
             {new_value ?
 
 
-                <Basic /> : null
+                <Basic value={new_value}  /> : null
             }
 
         </div>
