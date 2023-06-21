@@ -24,19 +24,28 @@ import {
 export default function repdefects() {
   const [getDefects, setGetDefetcs] = useState([])
   const [getDefectsData, setGetDefectData] = useState("")
-  const [dropData, setDropData] = useState([]);
+   const [brandModel, setGetBrandModel] = useState();
 
-  const dropDownData = async () => {
+    useEffect(()=>{
+      getBrandModels();
+    },[])
+   const getBrandModels = async () =>{
     try {
-      const getDrop = await axios.get(
-        `http://18.221.148.248:84/api/v1/Brand/GetBrandsforDropdown`);
-      //  console.log(getDrop)
-      if (getDrop.status == 200) {
-        let data = getDrop.data.data;
-        setDropData(data);
-      }
-    } catch (error) {}
-  };
+        const response = await axios.get('http://18.221.148.248:84/api/v1/Brand/GetModelsforDropdown');
+        if(response.status ===200){
+          // console.log(response.data)
+          const data = response.data;
+          if(Array.isArray(data)){
+          setGetBrandModel(data);
+          }else{
+            console.log('invalid syntax')
+          }
+        }
+    } catch (error) {
+      console.log('error', error)
+    }
+   }
+   
 
   //  Modals State Start
   const [defModal, setDefModal] = useState(false);
@@ -126,13 +135,15 @@ export default function repdefects() {
                         Select
                       </Label>
                       <Col sm={10}>
-                        <Input id="exampleSelect" name="select" type="select" 
+                        <Input id="select" name="select" type="select" 
                         >
-                          <option></option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
+                          <option>Select A Brand</option>
+                          {
+                            Array.isArray(brandModel) && brandModel.map((model, index) =>{
+                              <option key={index} value={model.id}>{model.text}</option>
+                            })
+                          }
+                          
                         </Input>
                       </Col>
                       <br />

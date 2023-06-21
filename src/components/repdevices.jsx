@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   AiFillFolderOpen,
   BsSortDownAlt,
@@ -7,7 +9,7 @@ import {
   FaLessThan,
   FaGreaterThan,
   RxCross2,
-  BsFillTrashFill
+  BsFillTrashFill,
 } from "react-icons/all";
 import {
   Button,
@@ -20,7 +22,7 @@ import {
   FormGroup,
 } from "reactstrap";
 import axios from "axios";
-import { Pagination } from 'antd'
+import { Pagination } from "antd";
 
 const repdevices = () => {
   const [getDevices, setGetDevices] = useState([]);
@@ -30,83 +32,106 @@ const repdevices = () => {
   const [dropData, setDropData] = useState([]);
   const [selectedBrand, setSelectedBrand] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
-  // console.log(selectedBrand)
   // const [singleRepModel, setSingleRepModel] = useState("")
-  const[singleModelName, setSingleModelName] = useState('')
-  const[singleModel, setSingleModel] = useState('')
-  const [elemBrandId, setElemBrandId] = useState('')
+  const [singleModelName, setSingleModelName] = useState("");
+  const [singleModel, setSingleModel] = useState("");
+  // const [elemBrandId, setElemBrandId] = useState('')
+  const [idDelete, setIdDelete] = useState("");
 
-
-  // Pagination Code States 
+  // Pagination Code States
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPage, setTotalPage] = useState();     
-  const [pagesize, setpagesize] = useState(10);     
+  const [totalPage, setTotalPage] = useState();
+  const [pagesize, setpagesize] = useState(10);
 
   const [elemModal, setElemModal] = useState(false);
   const elemHandleToggle = (item, type) =>
-  // console.log(item)
-   {
-    if(type =='edit'){
-     setSingleModelName(item.name)
-     setElemBrandId(item.id)
-     console.log(item.name, item.id)
-    }
-    setElemModal(!elemModal)
-  }
-  
-     const updateModel = async () =>{
-      try {
-        const editForm = await axios.post(`http://18.221.148.248:84/api/v1/Brand/UpdateModel?Id=${elemBrandId}&Name=${singleModelName}`);
-        if(editForm.status ===200){
-          getDevicesData()
-          elemHandleToggle();
-        }
-      } catch (error) {
-        
+    // console.log(item)
+    {
+      if (type == "edit") {
+        setSingleModelName(item.name);
+        setIdDelete(item.id);
+        //  console.log(item.name, item.id)
       }
-     }
-     
+      setElemModal(!elemModal);
+    };
 
-  const singleModelData = async (e) =>{
-    e.preventDefault()
+  const updateModel = async () => {
     try {
-      const response = await axios.post(`http://18.221.148.248:84/api/v1/Brand/AddModel`, {
-        name: `${singleModelName}`,
-        model: `${singleModel}`,
-        brandId: `${selectedBrand}`
-      },
+      const editForm = await axios.post(
+        `http://18.221.148.248:84/api/v1/Brand/UpdateModel?Id=${idDelete}&Name=${singleModelName}`
+      );
+      if (editForm.status === 200) {
+        toast.success('Model Update Successfully');
 
+        getDevicesData();
+        elemHandleToggle();
+      }
+    } catch (error) {}
+  };
+
+  const deleteModel = async (idDelete) => {
+    // console.log(brandId)
+    try {
+      const response = await axios.post(
+        `http://18.221.148.248:84/api/v1/Brand/DeleteModel?Id=${idDelete}`
       );
       if (response.status === 200) {
-        console.log(response)
-            getDevicesData();
-            setSingleModelName('')
-            setSingleModel('')
-            handleRepToggle();
-        console.log('Success:', response.data);
-      } else {
-        console.log('Unexpected response status:', response.status);
+        // console.log("deleted brand successfully");
+        toast.success("Model deleted successfully");
+        getDevicesData();
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error", error);
     }
   };
-  
+
+  const singleModelData = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `http://18.221.148.248:84/api/v1/Brand/AddModel`,
+        {
+          // name: `${singleModelName}`,
+          // model: `${singleModel}`,
+          // brandId: `${selectedBrand}`
+          name: singleModelName,
+          model: singleModel,
+          brandId: selectedBrand,
+        }
+      );
+      if (response.status === 200) {
+        console.log(response);
+        toast.success('Model Created Successfully');
+        getDevicesData();
+        setSingleModelName("");
+        setSingleModel("");
+        elemHandleToggle();
+        handleRepToggle();
+        console.log("Success:", response.data);
+      } else {
+        console.log("Unexpected response status:", response.status);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   const saveModel = async (e) => {
     e.preventDefault();
     try {
-      let formData = new FormData()
-    formData.append('file',selectedFile)
-    // formData.append('brandId', selectedBrand)
-    console.log([...formData])
+      let formData = new FormData();
+      formData.append("file", selectedFile);
+      formData.append("brandId", selectedBrand);
+      // console.log([...formData]);
       const response = await axios.post(
-        `http://18.221.148.248:84/api/v1/Brand/AddModels?brandId=${selectedBrand}`,
-       formData
+        `http://18.221.148.248:84/api/v1/Brand/AddModels?brandId=${selectedBrand}
+        `,
+        formData
       );
       if (response.status === 200) {
+        toast.success('Model CSV Created Successfully');
         setSelectedBrand("");
-        setSelectedFile(null);
+        setSelectedFile();
         getDevicesData();
         handleRepToggle();
       }
@@ -114,13 +139,16 @@ const repdevices = () => {
       console.error(error);
     }
   };
-
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
 
   const dropDownData = async () => {
     try {
       const getDrop = await axios.get(
-        `http://18.221.148.248:84/api/v1/Brand/GetBrandsforDropdown`);
-       console.log(getDrop)
+        `http://18.221.148.248:84/api/v1/Brand/GetBrandsforDropdown`
+      );
+      //  console.log(getDrop)
       if (getDrop.status == 200) {
         let data = getDrop.data.data;
         setDropData(data);
@@ -142,17 +170,20 @@ const repdevices = () => {
 
       if (response.status === 200) {
         let data = response?.data?.data?.data;
+       
+
         setGetDevices(data);
         setQueryData(data);
         setRepData(data);
-
-        let cPage = response.data.data.currentPage
-        let tPage = response.data.data.totalPages
-        tPage= tPage*pagesize
+        
+        console.log(data)
+        let cPage = response.data.data.currentPage;
+        let tPage = response.data.data.totalPages;
+        tPage = tPage * pagesize;
         // console.log("Current: ", cPage)
         // console.log("Total: ", tPage)
-        setCurrentPage(cPage)
-        setTotalPage(tPage)
+        setCurrentPage(cPage);
+        setTotalPage(tPage);
       }
     } catch (error) {
       console.log("Error", error);
@@ -191,30 +222,23 @@ const repdevices = () => {
     setRepModal(!repModal);
   };
 
-    //  delete brand
-    const deleteModel = async (brandId) => {
-      // console.log(brandId)
-      try {
-        const response = await axios.post(
-          `http://18.221.148.248:84/api/v1/Brand/DeleteModel?Id=${brandId}`
-        );
-        if (response.status === 200) {
-          console.log("deleted brand successfully");
-          toast.success('Brand deleted successfully');
-          getDevicesData();
-        } 
-      } catch (error) {
-        console.error("Error", error);
-      }
-    };
-
-  const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
-  };
-
   // Code Started after return
   return (
     <>
+
+      <ToastContainer
+                  position="top-center"
+                  autoClose={2000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="light"
+                  progressBarStyle={{ backgroundColor: 'red' }}
+                  />
       {/* create button and thier modal */}
       <div className="rep-device-container">
         <div className="rep-devices-section">
@@ -285,7 +309,7 @@ const repdevices = () => {
                       placeholder="Enter Your Brand Name"
                       type="name"
                       value={singleModelName}
-                      onChange={(e)=>setSingleModelName(e.target.value)}
+                      onChange={(e) => setSingleModelName(e.target.value)}
                     />
                     <br />
                     <Label for="exampleEmail">Modal</Label>
@@ -295,19 +319,22 @@ const repdevices = () => {
                       placeholder="Enter Your Brand Modal"
                       type="text"
                       value={singleModel}
-                      onChange={(e)=>setSingleModel(e.target.value)}
+                      onChange={(e) => setSingleModel(e.target.value)}
                     />
                     <br />
                     <FormGroup>
                       <Label for="exampleFile">Image</Label>
-                      <Input id="exampleFile" name="file"
-                      value={selectedFile}
-                       />
-                    </FormGroup> 
+                      <Input
+                        id="exampleFile"
+                        name="file"
+                        // value={selectedFile}
+                        // onClick={handleFileChange}
+                      />
+                    </FormGroup>
                   </div>
                 </div>
               </ModalBody>
-              <ModalFooter style={{ border: "none" }}>
+              <ModalFooter style={{ border: "none" }} onClick={handleRepToggle}>
                 <Button
                   color="primary"
                   style={{ backgroundColor: "blue" }}
@@ -327,7 +354,7 @@ const repdevices = () => {
                 }}
               ></ModalHeader>
               <ModalBody style={{ border: "none" }}>
-                <div className="create-modal-content">
+                
                   <div className="brand-info-content">
                     <h2>Batch Entries With CSV Import</h2>
                     <p>
@@ -347,11 +374,11 @@ const repdevices = () => {
                         value={selectedBrand}
                         onChange={(e) => setSelectedBrand(e.target.value)}
                       >
-                        <option value="">Select a brand</option>{" "}
+                        <option value="">Select a brand</option>
                         {/* Add an initial empty option */}
                         {dropData &&
                           dropData.map((item, index) => (
-                            <option key={index} value={item.value}>
+                            <option key={index} value={item.id}>
                               {item.text}
                             </option>
                           ))}
@@ -360,18 +387,22 @@ const repdevices = () => {
                     <br />
                     <FormGroup>
                       <Label for="exampleFile">Image</Label>
-                      <Input id="exampleFile" name="file" type="file" accept={".csv"}
-                      onChange={handleFileChange}
+                      <Input
+                        id="exampleFile"
+                        name="file"
+                        type="file"
+                        // value={selectedFile}
+                        onChange={handleFileChange}
                       />
                     </FormGroup>
                   </div>
-                </div>
+                
               </ModalBody>
-              <ModalFooter style={{ border: "hidden" }}>
+              <ModalFooter style={{ border: "hidden" }} onClick={handleRepToggle}>
                 <Button
                   color="secondary"
-                  onClick={saveModel}
                   style={{ backgroundColor: "blue" }}
+                  onClick={saveModel}
                 >
                   Upload
                 </Button>
@@ -424,7 +455,7 @@ const repdevices = () => {
           <div
             className="container repdevices-data"
             key={index}
-            onClick={elemHandleToggle}
+            // onClick={elemHandleToggle}
             style={{ height: "auto", overflowY: "auto", width: "1050px" }}
           >
             <div className="brand-section" key={index}>
@@ -447,30 +478,31 @@ const repdevices = () => {
                 </div>
               </div>
               <div className="brand-arrow-icon">
-                <button onClick={()=> elemHandleToggle(elem, 'edit')}>
+                <button onClick={() => elemHandleToggle(elem, "edit")}>
                   <i>
                     <IoIosArrowDroprightCircle />
                   </i>
                 </button>
                 <button
-                    className="trash-button"
-                    onClick={()=>deleteModel(elem.id)}
-                  >
-                    <BsFillTrashFill />
+                  className="trash-button"
+                  onClick={() => deleteModel(elem.id)}
+                >
+                  <BsFillTrashFill />
                 </button>
               </div>
             </div>
           </div>
         ))}
+
         <Pagination
           total={totalPage}
           current={currentPage}
-          onChange={(page)=>{
-            setCurrentPage(page)
+          onChange={(page) => {
+            setCurrentPage(page);
             // handleBrandData()
           }}
         />
-        
+
         <Modal
           isOpen={elemModal}
           toggle={elemHandleToggle}
@@ -502,24 +534,24 @@ const repdevices = () => {
               </div>
 
               <div className="brand-input-field">
-              <FormGroup>
-                      <Label for="exampleSelect">Select Brand</Label>
-                      <Input
-                        type="select"
-                        name="select"
-                        id="select"
-                        value={selectedBrand}
-                        onChange={(e) => setSelectedBrand(e.target.value)}
-                      >
-                        <option value="">Select a brand</option>
-                        {dropData &&
-                          dropData.map((item, index) => (
-                            <option key={index} value={item.value}>
-                              {item.text}
-                            </option>
-                          ))}
-                      </Input>
-                    </FormGroup>
+                <FormGroup>
+                  <Label for="exampleSelect">Select Brand</Label>
+                  <Input
+                    type="select"
+                    name="select"
+                    id="select"
+                    value={selectedBrand}
+                    onChange={(e) => setSelectedBrand(e.target.value)}
+                  >
+                    <option value="">Select a brand</option>
+                    {dropData &&
+                      dropData.map((item, index) => (
+                        <option key={index} value={item.value}>
+                          {item.text}
+                        </option>
+                      ))}
+                  </Input>
+                </FormGroup>
                 <br />
                 <Label for="exampleName">Name</Label>
                 <Input
@@ -528,7 +560,7 @@ const repdevices = () => {
                   placeholder="Enter Your Brand Name"
                   type="name"
                   value={singleModelName}
-                  onChange={(e)=> setSingleModelName(e.target.value)}
+                  onChange={(e) => setSingleModelName(e.target.value)}
                 />
                 <br />
                 <Label for="exampleEmail">Modal</Label>
@@ -555,13 +587,13 @@ const repdevices = () => {
             >
               Edit
             </Button>
-            <Button
+            {/* <Button
               color="secondary"
               onClick={elemHandleToggle}
               style={{ backgroundColor: "blue" }}
             >
               Update
-            </Button>
+            </Button> */}
           </ModalFooter>
         </Modal>
 
