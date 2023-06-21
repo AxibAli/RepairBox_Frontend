@@ -427,7 +427,7 @@ color: black
         display: flex !important;
         align-items: center;
         justify-content: center;
-        border-radius: 10px;
+        border-radius: 5px;
         /* padding-inline: 20px; */
         padding: 22px 0px;
         /* width: 100px; */
@@ -529,7 +529,7 @@ color: black
             /* line-height: 2rem; */
          }
          .brand-input-field input{
-            width: 100%;
+            width: 100% !important;
          }
          .brand-info-content h2{
             font-size: 1.2rem;
@@ -595,7 +595,7 @@ color: black
           color: #fff;
           border-radius: 5px;
           padding: 10px 50px;
-            margin-left: 49rem;     
+            margin-left: 50rem;     
          }
          .users-create-button button:hover{
           color: #fff;

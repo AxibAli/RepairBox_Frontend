@@ -25,6 +25,8 @@ const brands = () => {
     const [otherModal, setOtherModal] = useState(false);
     const [brandId, setBrandId] = useState('')
     const [selectedFile, setSelectedFile] = useState(null)
+    // const [brandModelsCount, setBrandModelsCount] = useState({});
+
 
     // Pagination Code States 
     const [currentPage, setCurrentPage] = useState(1);
@@ -105,13 +107,15 @@ const brands = () => {
           tPage= tPage*pagesize
           // console.log("Current: ", cPage)
           // console.log("Total: ", tPage)
-          setCurrentPage(cPage)
-          setTotalPage(tPage)
+          setCurrentPage(cPage);
+          setTotalPage(tPage);
+         
          }
       } catch (error) {
          console.log("Errors", error) 
       }
     }
+   
     
     // Update API
     const EditForm = async (e) =>{
@@ -299,6 +303,7 @@ const brands = () => {
                           <div className="brand-name-logo d-flex">
                           <i><BiStar /></i>
                           <h1>{brand.name}</h1>
+                      
                           </div>
                         </div>
                         
@@ -318,6 +323,7 @@ const brands = () => {
                            
                       </div>
                     </div>
+                
                   </div>
                </div>   
                </div>      

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { FaUsers, RxCross2} from "react-icons/all";
+// import { NavLink } from "react-router-dom";
+import { FaUsers, RxCross2, BsSortDownAlt } from "react-icons/all";
 import {
   Button,
   Modal,
@@ -10,8 +10,12 @@ import {
   Input,
   Label,
   FormGroup,
+  Col,
+  Container,
+  Row,
   Form,
 } from "reactstrap";
+// import { Col, Container, Input, Label, Row } from 'reactstrap';
 
 export default function users() {
   const [modal, setModal] = useState(false);
@@ -19,9 +23,6 @@ export default function users() {
   const toggle = () => setModal(!modal);
   // const handleToggle = () => setOtherModal(!otherModal);
 
-
-
-  
   return (
     <>
       <div className="main-users-container">
@@ -52,21 +53,54 @@ export default function users() {
                 </Button>
               </ModalHeader>
               <ModalBody>
-                <div className="create-modal-content">
-                  <div className="brand-info-content">
-                    <h2>User Information</h2>
-                    <p>Enter information for new User.</p>
-                  </div>
-                  <div className="brand-input-field">
-                    <Label for="exampleEmail">Name :</Label>
-                    <Input
-                      id="name"
-                      name="name"
-                      placeholder="Enter Your Name"
-                      type="name"
-                    />
-                  </div>
-                </div>
+                <Container>
+                  <Row>
+                    <Col md={6}>
+                      <div className="create-modal-content">
+                        <div className="brand-info-content">
+                          <h2>User Information</h2>
+                          <p>Enter information for new User.</p>
+                        </div>
+                      </div>
+                    </Col>
+                    <Col md={6}>
+                      <Row className="g-4 pt-4">
+                        <div className="brand-input-field">
+                          <Label for="name">Name :</Label>
+                          <Input
+                            id="name"
+                            name="name"
+                            placeholder="Enter Your Name"
+                            type="text"
+                          />
+                        </div>
+
+                        <div className="brand-input-field">
+                          <Label for="email">Email :</Label>
+                          <Input
+                            id="email"
+                            name="email"
+                            placeholder="Enter Your Email"
+                            type="text"
+                          />
+                        </div>
+
+                        <div className="brand-input-field">
+                          <Label for="password">Password :</Label>
+                          <Input
+                            id="password"
+                            name="password"
+                            placeholder="Enter Your Password"
+                            type="password"
+                          />
+                        </div>
+                      </Row>
+                    </Col>
+                  </Row>
+                </Container>
+                <br />
+                <br />
+                {/* </div> */}
               </ModalBody>
               <ModalFooter style={{ border: "hidden" }}>
                 <Button
@@ -80,24 +114,20 @@ export default function users() {
 
               <hr />
               <ModalBody>
-                <div className="create-modal-content">
-                  <div className="brand-info-content">
-                    <h2>
-                      Batch Entries With <br /> CSV Import
-                    </h2>
-                    <p>
-                      Upload file for batch entries. A file should be CSV with
-                      format. A file must have only one column with title of
-                      "name"
-                    </p>
-                  </div>
-                  <div className="brand-input-field">
-                    <FormGroup>
-                      <Label for="exampleFile">File</Label>
-                      <Input id="exampleFile" name="file" type="file" />
-                    </FormGroup>
-                  </div>
-                </div>
+              <div className="create-modal-content">
+      <Row>
+        <Col md={6} className="brand-info-content">
+          <h2>Users Settings</h2>
+          <p>User access and permission settings.</p>
+        </Col>
+        <Col md={6} className="brand-input-field">
+          <FormGroup>
+            <Label for="exampleFile">File</Label>
+            <Input id="exampleFile" name="file" type="file" />
+          </FormGroup>
+        </Col>
+      </Row>
+    </div>
               </ModalBody>
               <ModalFooter style={{ border: "hidden" }}>
                 <Button
@@ -120,12 +150,12 @@ export default function users() {
             <input
               type="text"
               className="form-control search-input"
-              placeholder="Search"
+              placeholder="Search User"
               aria-label="Username"
             />
 
             {/*dropDOWN  */}
-
+            {/* 
             <select
               className="form-select"
               aria-label="Default select example"
@@ -136,13 +166,13 @@ export default function users() {
               <option value="1">Name</option>
               <option value="2">Modal</option>
               <option value="3">Created At</option>
-            </select>
+            </select> */}
           </form>
 
           {/* Sorting Page */}
           <div className="sort-page">
             <BsSortDownAlt />
-            <button onClick={handleSort}>Sort</button>
+            <button>Sort</button>
           </div>
         </div>
       </div>
