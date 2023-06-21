@@ -615,3 +615,35 @@ color: black
         .Toastify__toast--success .Toastify__toast-body::before {
           color: blue !important; /* Change the color here */
         }
+        .user-content-container .container{
+          width: 1040px;
+          /* padding:10px; */
+          /* padding-top: 30px; */
+          /* padding: 12px 24px; */
+          border: 1px solid lightgray;
+          padding-top: 2rem;
+        }
+        .avatar img{
+          border-radius: 50%;
+          width: 14%;
+        }
+        .users__name{
+          transform: translate(56px, -43px);
+        }
+        .users__name h5,p{
+          font-size: 0.9rem;
+        }
+        .user_arrow{
+          font-size: 1.4rem;
+          margin-top: 0.8rem;
+          color: #3aa8f7;
+        }
+        .user_trash{
+          font-size: 1.4rem;
+          margin-top: 0.8rem;
+          color: red;
+        }
+        .user_role{
+          margin-left: 4.3rem;
+          margin-top: 0.3rem;
+        }

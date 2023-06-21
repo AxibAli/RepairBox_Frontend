@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 // import { NavLink } from "react-router-dom";
-import { FaUsers, RxCross2, BsSortDownAlt } from "react-icons/all";
+import { FaUsers, RxCross2, BsSortDownAlt,BsFillEnvelopeFill, 
+  IoIosArrowDroprightCircle,  BsFillTrashFill} from "react-icons/all";
+import Avatar1 from "../images/avatar1.png"
+import Avatar2 from "../images/avatar2.png"
 import {
   Button,
   Modal,
@@ -113,7 +116,7 @@ export default function users() {
               </ModalFooter>
 
               <hr />
-              <ModalBody>
+              {/* <ModalBody>
               <div className="create-modal-content">
       <Row>
         <Col md={6} className="brand-info-content">
@@ -137,7 +140,7 @@ export default function users() {
                 >
                   Upload
                 </Button>
-              </ModalFooter>
+              </ModalFooter> */}
             </Modal>
           </div>
         </div>
@@ -174,6 +177,75 @@ export default function users() {
             <BsSortDownAlt />
             <button>Sort</button>
           </div>
+        </div>
+
+        <div className="user-content-container">
+          <Container className="container">
+            <Row>
+              {/* <Col md={1}>
+                hello
+              </Col> */}
+              <Col md={4} >
+              <div className="users">
+                  <div className="avatar">
+                    <img src={Avatar1} alt="" />
+                  </div>
+                  <div className="users__name">
+                    <p>Rosh Finch</p>
+                    <p>admin@admin.com</p>
+                  </div>
+                  </div>
+              </Col>
+              <Col md={6}>
+                <div className="user_role">
+                  <p>The user has a role : <strong>Admin</strong></p>
+                  <p>User is activated</p>
+                </div>
+              </Col>
+              <Col md={1} >
+                <span>
+               <IoIosArrowDroprightCircle className="user_arrow" />
+                </span>
+              </Col>
+              <Col md={1} >
+                <span><BsFillTrashFill className="user_trash"/></span>
+              </Col>
+            </Row>
+          </Container>
+        </div>
+        <div className="user-content-container">
+          <Container className="container">
+            <Row>
+              {/* <Col md={1}>
+                hello
+              </Col> */}
+              <Col md={4} >
+              <div className="users">
+                  <div className="avatar">
+                    <img src={Avatar2} alt="" />
+                  </div>
+                  <div className="users__name">
+                    <p>Technician</p>
+                    <p>user@user.com</p>
+                  </div>
+                  </div>
+              </Col>
+              <Col md={6}>
+                <div className="user_role">
+                  <p>The user has a role : <strong>Technician</strong></p>
+                  <p>User is activated</p>
+                </div>
+              </Col>
+              <Col md={1} >
+                <span>
+               <IoIosArrowDroprightCircle className="user_arrow" />
+                </span>
+              </Col>
+              <Col md={1} >
+                <span><BsFillTrashFill className="user_trash"/></span>
+              </Col>
+            </Row>
+          </Container>
         </div>
       </div>
     </>

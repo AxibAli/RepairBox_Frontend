@@ -35,7 +35,7 @@ const repdevices = () => {
   // const [singleRepModel, setSingleRepModel] = useState("")
   const [singleModelName, setSingleModelName] = useState("");
   const [singleModel, setSingleModel] = useState("");
-  // const [elemBrandId, setElemBrandId] = useState('')
+  const [elemBrandId, setElemBrandId] = useState('');
   const [idDelete, setIdDelete] = useState("");
 
   // Pagination Code States
@@ -49,7 +49,9 @@ const repdevices = () => {
     {
       if (type == "edit") {
         setSingleModelName(item.name);
+        setElemBrandId(item.id)
         setIdDelete(item.id);
+
         //  console.log(item.name, item.id)
       }
       setElemModal(!elemModal);
@@ -58,11 +60,10 @@ const repdevices = () => {
   const updateModel = async () => {
     try {
       const editForm = await axios.post(
-        `http://18.221.148.248:84/api/v1/Brand/UpdateModel?Id=${idDelete}&Name=${singleModelName}`
+        `http://18.221.148.248:84/api/v1/Brand/UpdateModel?Id=${elemBrandId}&Name=${singleModelName}`
       );
       if (editForm.status === 200) {
         toast.success('Model Update Successfully');
-
         getDevicesData();
         elemHandleToggle();
       }
@@ -91,12 +92,12 @@ const repdevices = () => {
       const response = await axios.post(
         `http://18.221.148.248:84/api/v1/Brand/AddModel`,
         {
-          // name: `${singleModelName}`,
-          // model: `${singleModel}`,
-          // brandId: `${selectedBrand}`
-          name: singleModelName,
-          model: singleModel,
-          brandId: selectedBrand,
+          name: `${singleModelName}`,
+          model: `${singleModel}`,
+          brandId: `${selectedBrand}`
+          // name: singleModelName,
+          // model: singleModel,
+          // brandId: selectedBrand,
         }
       );
       if (response.status === 200) {
@@ -121,7 +122,7 @@ const repdevices = () => {
     try {
       let formData = new FormData();
       formData.append("file", selectedFile);
-      formData.append("brandId", selectedBrand);
+      // formData.append("brandId", selectedBrand);
       // console.log([...formData]);
       const response = await axios.post(
         `http://18.221.148.248:84/api/v1/Brand/AddModels?brandId=${selectedBrand}
@@ -131,7 +132,7 @@ const repdevices = () => {
       if (response.status === 200) {
         toast.success('Model CSV Created Successfully');
         setSelectedBrand("");
-        setSelectedFile();
+        setSelectedFile(null);
         getDevicesData();
         handleRepToggle();
       }
@@ -170,13 +171,10 @@ const repdevices = () => {
 
       if (response.status === 200) {
         let data = response?.data?.data?.data;
-       
-
         setGetDevices(data);
         setQueryData(data);
         setRepData(data);
-        
-        console.log(data)
+        // console.log(data)
         let cPage = response.data.data.currentPage;
         let tPage = response.data.data.totalPages;
         tPage = tPage * pagesize;
@@ -327,14 +325,14 @@ const repdevices = () => {
                       <Input
                         id="exampleFile"
                         name="file"
-                        // value={selectedFile}
+                        value={selectedFile}
                         // onClick={handleFileChange}
                       />
                     </FormGroup>
                   </div>
                 </div>
               </ModalBody>
-              <ModalFooter style={{ border: "none" }} onClick={handleRepToggle}>
+              <ModalFooter style={{ border: "none" }}>
                 <Button
                   color="primary"
                   style={{ backgroundColor: "blue" }}
@@ -375,7 +373,6 @@ const repdevices = () => {
                         onChange={(e) => setSelectedBrand(e.target.value)}
                       >
                         <option value="">Select a brand</option>
-                        {/* Add an initial empty option */}
                         {dropData &&
                           dropData.map((item, index) => (
                             <option key={index} value={item.id}>
@@ -391,6 +388,7 @@ const repdevices = () => {
                         id="exampleFile"
                         name="file"
                         type="file"
+                        accept={".csv"}
                         // value={selectedFile}
                         onChange={handleFileChange}
                       />
@@ -398,11 +396,11 @@ const repdevices = () => {
                   </div>
                 
               </ModalBody>
-              <ModalFooter style={{ border: "hidden" }} onClick={handleRepToggle}>
+              <ModalFooter style={{ border: "hidden" }}>
                 <Button
                   color="secondary"
-                  style={{ backgroundColor: "blue" }}
                   onClick={saveModel}
+                  style={{ backgroundColor: "blue" }}
                 >
                   Upload
                 </Button>
