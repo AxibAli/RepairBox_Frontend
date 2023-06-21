@@ -79,6 +79,7 @@ const repdevices = () => {
       );
       if (response.status === 200) {
         console.log(response)
+        setSelectedBrand('');
             getDevicesData();
             setSingleModelName('')
             setSingleModel('')
@@ -123,6 +124,7 @@ const repdevices = () => {
        console.log(getDrop)
       if (getDrop.status == 200) {
         let data = getDrop.data.data;
+        // console.log(data)
         setDropData(data);
       }
     } catch (error) {}
@@ -191,27 +193,6 @@ const repdevices = () => {
     setRepModal(!repModal);
   };
 
-    //  delete brand
-    const deleteModel = async (brandId) => {
-      // console.log(brandId)
-      try {
-        const response = await axios.post(
-          `http://18.221.148.248:84/api/v1/Brand/DeleteModel?Id=${brandId}`
-        );
-        if (response.status === 200) {
-          console.log("deleted brand successfully");
-          toast.success('Brand deleted successfully');
-          getDevicesData();
-        } 
-      } catch (error) {
-        console.error("Error", error);
-      }
-    };
-
-  const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
-  };
-
   // Code Started after return
   return (
     <>
@@ -270,7 +251,7 @@ const repdevices = () => {
                         <option value="">Select a brand</option>
                         {dropData &&
                           dropData.map((item, index) => (
-                            <option key={index} value={item.value}>
+                            <option key={index} value={item.brandId}>
                               {item.text}
                             </option>
                           ))}
