@@ -80,6 +80,15 @@ const repdevices = () => {
         // console.log("deleted brand successfully");
         toast.success("Model deleted successfully");
         getDevicesData();
+        console.log(response)
+        setSelectedBrand('');
+            getDevicesData();
+            setSingleModelName('')
+            setSingleModel('')
+            handleRepToggle();
+        console.log('Success:', response.data);
+      } else {
+        console.log('Unexpected response status:', response.status);
       }
     } catch (error) {
       console.error("Error", error);
@@ -152,6 +161,7 @@ const repdevices = () => {
       //  console.log(getDrop)
       if (getDrop.status == 200) {
         let data = getDrop.data.data;
+        // console.log(data)
         setDropData(data);
       }
     } catch (error) {}
@@ -292,7 +302,7 @@ const repdevices = () => {
                         <option value="">Select a brand</option>
                         {dropData &&
                           dropData.map((item, index) => (
-                            <option key={index} value={item.value}>
+                            <option key={index} value={item.brandId}>
                               {item.text}
                             </option>
                           ))}
