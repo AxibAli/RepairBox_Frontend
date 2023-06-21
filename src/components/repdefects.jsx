@@ -72,6 +72,9 @@ export default function repdefects() {
   const [query, setQuery] = useState(getDefects);
   const [repData, setRepData] = useState(repDefectData);
 
+
+  const [pageData, setpageData] = useState([]);
+
   const handleSearch = (text) => {
     setSearch(text);
     // console.log(text)
@@ -87,6 +90,41 @@ export default function repdefects() {
 
   //  Search Box State End
 
+
+  // Repairable Defects Code 
+  const getDefectsDataFunc = async () => {
+    try {
+      const response = await axios.get(
+        `http://18.221.148.248:84/api/v1/Brand/GetDefects?pageNo=1`
+      );
+      if (response.status === 200) {
+        console.log(response);
+        let data = response.data.data.data;
+        setpageData(data);
+        // setGetDevices(data);
+        // setQueryData(data);
+        // setGetDefectData(data);
+
+        // let cPage = response.data.data.currentPage
+        // let tPage = response.data.data.totalPages
+        // tPage= tPage*pagesize
+        // // console.log("Current: ", cPage)
+        // // console.log("Total: ", tPage)
+        // setCurrentPage(cPage)
+        // setTotalPage(tPage)
+
+
+      }
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
+  console.log(pageData)
+
+  useEffect(() => {
+    getDefectsDataFunc();
+    // dropDownData();
+  }, []);
   // Code Start
   return (
     <>
@@ -276,7 +314,42 @@ export default function repdefects() {
 
         {/* map end */}
 
-        {query.map((elem, index) => (
+
+        {/* TRY TO run ghe MAP code */}
+
+        {pageData.map((elem, index) => (
+          <div
+            className="container repdevices-data"
+            key={index}
+            // onClick={elemHandleToggle}
+            style={{ height: "auto", overflowY: "auto", width: "1050px" }}
+          >
+            <div className="brand-section" key={index}>
+              <div className="brand-logo-info" style={{ display: "flex" }}>
+                <i>
+                  {/* <TbBallFootball /> */}
+                </i>
+                <div className="model" style={{ marginLeft: "0.9rem" }}>
+                  <h3 style={{ display: "flex" }}>{elem.defectName}</h3>
+                  <h5>${elem.price}</h5>
+                </div>
+              </div>
+              <div className="brand-arrow-icon">
+                <button onClick={()=> elemHandleToggle(elem, 'edit')}>
+                  <i>
+                    <IoIosArrowDroprightCircle />
+                  </i>
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+
+
+
+        
+        {/* Qazi's map code */}
+        {/* {query.map((elem, index) => (
           <div
             className="container repdevices-data"
             key={index}
@@ -286,7 +359,7 @@ export default function repdefects() {
               <div className="brand-logo-info" style={{ display: "flex" }}>
                 <div className="model" style={{ marginLeft: "0.9rem" }}>
                   <h3 style={{ display: "flex", fontWeight: "600" }}>
-                    {elem.name}
+                    {elem.defectName}
                   </h3>
                   <NavLink>
                     <div className="sub-name-sec">
@@ -320,7 +393,9 @@ export default function repdefects() {
               </div>
             </div>
           </div>
-        ))}
+        ))} */}
+
+
         <Modal isOpen={newModal} toggle={newToggle} style={{ maxWidth: "70%" }}>
           <ModalHeader
             style={{
