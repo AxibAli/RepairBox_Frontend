@@ -81,11 +81,6 @@ const repdevices = () => {
         toast.success("Model deleted successfully");
         getDevicesData();
         console.log(response)
-        setSelectedBrand('');
-            getDevicesData();
-            setSingleModelName('')
-            setSingleModel('')
-            handleRepToggle();
         console.log('Success:', response.data);
       } else {
         console.log('Unexpected response status:', response.status);
@@ -115,7 +110,6 @@ const repdevices = () => {
         getDevicesData();
         setSingleModelName("");
         setSingleModel("");
-        elemHandleToggle();
         handleRepToggle();
         console.log("Success:", response.data);
       } else {
@@ -134,8 +128,7 @@ const repdevices = () => {
       // formData.append("brandId", selectedBrand);
       // console.log([...formData]);
       const response = await axios.post(
-        `http://18.221.148.248:84/api/v1/Brand/AddModels?brandId=${selectedBrand}
-        `,
+        `http://18.221.148.248:84/api/v1/Brand/AddModels?brandId=${selectedBrand}`,
         formData
       );
       if (response.status === 200) {
@@ -302,7 +295,7 @@ const repdevices = () => {
                         <option value="">Select a brand</option>
                         {dropData &&
                           dropData.map((item, index) => (
-                            <option key={index} value={item.brandId}>
+                            <option key={index} value={item.value}>
                               {item.text}
                             </option>
                           ))}
@@ -330,7 +323,7 @@ const repdevices = () => {
                       onChange={(e) => setSingleModel(e.target.value)}
                     />
                     <br />
-                    <FormGroup>
+                    {/* <FormGroup>
                       <Label for="exampleFile">Image</Label>
                       <Input
                         id="exampleFile"
@@ -338,7 +331,7 @@ const repdevices = () => {
                         value={selectedFile}
                         // onClick={handleFileChange}
                       />
-                    </FormGroup>
+                    </FormGroup> */}
                   </div>
                 </div>
               </ModalBody>
@@ -385,7 +378,7 @@ const repdevices = () => {
                         <option value="">Select a brand</option>
                         {dropData &&
                           dropData.map((item, index) => (
-                            <option key={index} value={item.id}>
+                            <option key={index} value={item.value}>
                               {item.text}
                             </option>
                           ))}
@@ -393,7 +386,7 @@ const repdevices = () => {
                     </FormGroup>
                     <br />
                     <FormGroup>
-                      <Label for="exampleFile">Image</Label>
+                      <Label for="exampleFile">File</Label>
                       <Input
                         id="exampleFile"
                         name="file"
