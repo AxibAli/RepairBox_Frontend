@@ -47,7 +47,14 @@ export default function BasicSelect({value}) {
       }
     }
     console.log(showData, "showData")
-   
+    // useEffect(()=>{
+    //   if(new_value){
+    //     setisbrand(true)
+    //   }else{
+    //     setisbrand(false)
+    //   }
+    // },[new_value])
+    
 
     return (
         <div  className='dropdown'>

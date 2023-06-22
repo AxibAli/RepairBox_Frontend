@@ -39,70 +39,16 @@ useEffect(()=>{
   }
 },[new_value])
 
-
-
-    let mobiles=[
-      {
-        disabled: false,
-        group: null,
-        selected: false, 
-        text: 'Samsung', 
-        value: '292'
-      },
-      {
-        disabled: false,
-        group: null,
-        selected: false, 
-        text: 'apple', 
-        value: '293'
-      },
-  
-
-    ]
-
-    let data=[
-      {
-        disabled: false,
-        group: null,
-        selected: false, 
-        text: 'SA-12', 
-        value: '292'
-      },
-      {
-        disabled: false,
-        group: null,
-        selected: false, 
-        text: 'SA-123', 
-        value: '292'
-      },
-      {
-        disabled: false,
-        group: null,
-        selected: false, 
-        text: 'Apple-12', 
-        value: '293'
-      },
-      {
-        disabled: false,
-        group: null,
-        selected: false, 
-        text: 'Apple-123', 
-        value: '293'
-      },
-
-    ]
-
-
   useEffect(() => {
     FetchApiData();
-  }, [])
+  }, [new_value])
   const FetchApiData = async () => {
     try {
       const response = await axios.get("http://18.221.148.248:84/api/v1/Brand/GetBrandsforDropdown");
       // console.log(response.data.data);
 
       SetshowData(response.data.data);
-      console.log("==================>data",response?.data?.data)
+      // console.log("==================>data",response?.data?.data)
       
     } catch (err) {
       console.log(err)

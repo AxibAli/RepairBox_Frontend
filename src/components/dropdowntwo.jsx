@@ -28,15 +28,12 @@ export default function Basic({ value }) {
     },
   };
   const [showData, SetshowData] = React.useState([]);
-  useEffect(() => {
-    FetchApiData();
-  }, [])
   const FetchApiData = async () => {
     try {
       const response = await axios.get(`http://18.221.148.248:84/api/v1/Brand/GetModelDefectsforDropdown?modelId=${value}`);
 
       SetshowData(response.data.data);
-      console.log(response.data.data);
+      // console.log(response.data.data[{value}]);
 
     } catch (err) {
       console.log(err)
@@ -47,15 +44,20 @@ export default function Basic({ value }) {
 
 
   const handleChange = (event) => {
+    // console.log(event)
     const {
-      target: { value },
+      target:{  value },
     } = event;
+    console.log(event)
     setissueName(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
   };
- 
+  useEffect(() => {
+    FetchApiData();
+  }, [issueName[0]])
+  console.log(issueName[0])
   return (
     <Box sx={{ marginTop: '30px', paddingLeft: '100px', width: '100%', display: 'flex', justifyContent: 'center', textAlign: 'justify', fontFamily: 'sans-serif', fontSize: '14px', color: '#4B5563' }}>
       <Box sx={{ width: '30%' }} ><h4 className="DropSelect">Select Repairable Issues</h4>
@@ -76,7 +78,7 @@ export default function Basic({ value }) {
         >
           {showData.map((item, index) => (
             <MenuItem key={index} value={item.text}>
-              <Checkbox checked={issueName.indexOf(item.value) > -1} />
+              <Checkbox checked={issueName.indexOf(item.text) > -1} />
               <ListItemText primary={item.text} />
             </MenuItem>
           ))}
@@ -85,7 +87,3 @@ export default function Basic({ value }) {
     </Box>
   );
 }
-
-
-
-

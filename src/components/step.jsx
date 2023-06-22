@@ -1,11 +1,13 @@
+
 import React, { useState } from "react";
+import BasicSelect from "./dropdownone";
 import MultipleSelect from "./dropdown";
 import Information from "./Information";
 import Priority from "./Priority";
 import Nextbtn from "./Nextbtn";
 import { TiTick } from "react-icons/ti";
 
-const Stepper = () => {
+const Stepper = ({age}) => {
   const [selectedPriority, setSelectedPriority] = useState("$0.00");
   const steps = ["REPAIR DEVICE", "PRIORITY LEVEL", "INFORMATION & PAYMENT"];
   const [currentStep, setCurrentStep] = useState(1);
@@ -26,6 +28,26 @@ const Stepper = () => {
       }
     }
   };
+  // const NextBtn = () => {
+  //   if (currentStep === steps.length) {
+  //     setComplete(true);
+  //   } else {
+  //     setCurrentStep((prev) => prev + 1);
+  //     if (currentComponent === "MultipleSelect") {
+  //       setCurrentComponent("Priority");
+  //     } else if (currentComponent === "Priority") {
+  //       setCurrentComponent("Information");
+  //     }
+  //   }
+  
+  //   // Check if all dropdowns are selected in the "MultipleSelect" component
+  //   if (currentComponent === "MultipleSelect" && age.length < mobiles.length) {
+  //     alert("Please select all dropdown values");
+  //     return; // Stop execution of the function if not all dropdowns are selected
+  //   }
+  // };
+  
+  
   
   
   
@@ -45,8 +67,10 @@ const Stepper = () => {
 
   const renderComponent = () => {
     switch (currentComponent) {
-      case "MultipleSelect":
-        return <MultipleSelect setisbrand={setIsbrand} />;
+     
+        case "MultipleSelect":
+          return <MultipleSelect setisbrand={setIsbrand} />;
+       
       case "Priority":
         return <Priority  setSelectedPriority={setSelectedPriority}/>;
       case "Information":
