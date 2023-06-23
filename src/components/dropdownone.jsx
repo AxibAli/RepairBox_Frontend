@@ -12,13 +12,11 @@ import axios from "axios";
 export default function BasicSelect({value}) {
     const [age, setAge] = React.useState('');
   const [new_value,setnew_value]= React.useState("");
-  // const [setOff, SetOn] = useState(false);
   const [showData, SetshowData] = React.useState([]);
 
 
   const handleChange = (event) => {
     setAge(event.target.value);
-    // console.log(event)
     const {
       target: { value },
     } = event;
@@ -65,6 +63,7 @@ export default function BasicSelect({value}) {
                 <FormControl sx={{ width: "70%",  marginRight:30 }} fullWidth>
                     <InputLabel id="demo-simple-select-label">Device</InputLabel>
                     <Select
+                   
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={age}

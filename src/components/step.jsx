@@ -1,19 +1,23 @@
-
 import React, { useState } from "react";
 import BasicSelect from "./dropdownone";
 import MultipleSelect from "./dropdown";
 import Information from "./Information";
 import Priority from "./Priority";
 import Nextbtn from "./Nextbtn";
+import { ToastContainer, toast } from 'react-toastify';
+
 import { TiTick } from "react-icons/ti";
 
-const Stepper = ({age}) => {
+
+const Stepper = () => {
   const [selectedPriority, setSelectedPriority] = useState("$0.00");
   const steps = ["REPAIR DEVICE", "PRIORITY LEVEL", "INFORMATION & PAYMENT"];
   const [currentStep, setCurrentStep] = useState(1);
   const [complete, setComplete] = useState(false);
   const [isbrand, setIsbrand] = useState(false);
   const [currentComponent, setCurrentComponent] = useState("MultipleSelect");
+  const [nextBtnClicked, setNextBtnClicked] = useState(false);
+
 
   const NextBtn = () => {
     if (currentStep === steps.length) {
@@ -27,44 +31,28 @@ const Stepper = ({age}) => {
         setCurrentComponent("Information");
       }
     }
+    setNextBtnClicked(true);
   };
-  // const NextBtn = () => {
-  //   if (currentStep === steps.length) {
-  //     setComplete(true);
-  //   } else {
-  //     setCurrentStep((prev) => prev + 1);
-  //     if (currentComponent === "MultipleSelect") {
-  //       setCurrentComponent("Priority");
-  //     } else if (currentComponent === "Priority") {
-  //       setCurrentComponent("Information");
-  //     }
-  //   }
-  
-  //   // Check if all dropdowns are selected in the "MultipleSelect" component
-  //   if (currentComponent === "MultipleSelect" && age.length < mobiles.length) {
-  //     alert("Please select all dropdown values");
-  //     return; // Stop execution of the function if not all dropdowns are selected
-  //   }
-  // };
-  
-  
-  
-  
-  
   const PrevBtn = () => {
-    if (currentStep === 1) {
-      setCurrentStep(steps.length);
-    } else {
-      setCurrentStep((prev) => prev - 1);
-    }
-  
-    if (currentComponent === "Priority") {
-      setCurrentComponent("MultipleSelect");
-    } else if (currentComponent === "Information") {
-      setCurrentComponent("Priority");
+    if (nextBtnClicked) {
+     
+        if (currentStep === 1) {
+          setCurrentStep(steps.length);
+        } else {
+          setCurrentStep((prev) => prev - 1);
+        }
+      
+        if (currentComponent === "Priority") {
+          setCurrentComponent("MultipleSelect");
+        } else if (currentComponent === "Information") {
+          setCurrentComponent("Priority");
+        }
+
+
+      // Reset the flag after executing PrevBtn logic
+      setNextBtnClicked(false);
     }
   };
-
   const renderComponent = () => {
     switch (currentComponent) {
      
@@ -82,6 +70,19 @@ const Stepper = ({age}) => {
 
   return (
     <>
+     <ToastContainer
+                  position="top-center"
+                  autoClose={2000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="light"
+                  progressBarStyle={{ backgroundColor: 'red' }}
+                  />
       <div className="flex justify-between">
         {steps?.map((step, i) => (
           <div
@@ -98,7 +99,7 @@ const Stepper = ({age}) => {
         ))}
       </div>
       {renderComponent()}
-      {!complete && <Nextbtn t={PrevBtn} n={isbrand?NextBtn:()=>{alert("select firsts")}}  />}
+      {!complete && <Nextbtn t={PrevBtn} n={isbrand?NextBtn:()=>{ toast.success('Select All DropDown First');}}  />}
     </>
   );
 };
