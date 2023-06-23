@@ -8,20 +8,33 @@ import {
     BsFillTrashFill 
 } from "react-icons/all";
 import axios from "axios"
+import { Pagination } from "antd";
 
 export default function repDefectsFurqan() {
     const [Data, setData] = useState([])
     // const [Id, setId] = useState(null)
+
+    // Pagination Code States
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPage, setTotalPage] = useState();
+    const [pagesize, setpagesize] = useState(10);
   
     const handleDefectData = async () =>{
       try {
-         const getResponse = await axios.get(`http://18.221.148.248:84/api/v1/Brand/GetDefects?pageNo=1`)
+         const getResponse = await axios.get(`http://18.221.148.248:84/api/v1/Brand/GetDefects?pageNo=${currentPage}`)
          console.log(getResponse.data.data?.data,"response")
          if (getResponse.status==200) {
           console.log("Render")
           let data=getResponse.data.data.data
           console.log(data)
             setData(data)
+            let cPage = getResponse.data.data.currentPage;
+            let tPage = getResponse.data.data.totalPages;
+            tPage = tPage * pagesize;
+            // console.log("Current: ", cPage)
+            // console.log("Total: ", tPage)
+            setCurrentPage(cPage);
+            setTotalPage(tPage);
          }
       } catch (error) {
          console.log("Errors", error) 
@@ -46,7 +59,7 @@ export default function repDefectsFurqan() {
   
     useEffect(() => {
       handleDefectData()
-    }, []);
+    }, [currentPage]);
 
   return (
     <div className='w-[1050px] h-[100%] flex flex-col justify-start items-center'>
@@ -91,6 +104,14 @@ export default function repDefectsFurqan() {
           </div>            
         ))
       }
+        <Pagination
+          total={totalPage}
+          current={currentPage}
+          onChange={(page) => {
+            setCurrentPage(page);
+            // handleBrandData()
+          }}
+        />
     </div>
 
   </div>

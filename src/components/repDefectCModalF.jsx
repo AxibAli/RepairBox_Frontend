@@ -42,7 +42,7 @@ export default function repDefectCModalF(props) {
         try {
           const getDrop = await axios.get(
             `http://18.221.148.248:84/api/v1/Brand/GetModelsforDropdown`);
-          //  console.log(getDrop)
+           console.log(getDrop)
           if (getDrop.status == 200) {
             let data = getDrop.data.data;
             setDropData(data);
@@ -95,8 +95,8 @@ export default function repDefectCModalF(props) {
           if (response.status === 200) {
             setSelectedBrand("");
             setSelectedFile(null);
-            getDevicesData();
-            handleRepToggle();
+            props.getData();
+            toggle();
           }
         } catch (error) {
           console.error(error);
@@ -252,7 +252,7 @@ export default function repDefectCModalF(props) {
                             {/* Add an initial empty option */}
                             {dropData &&
                             dropData.map((item, index) => (
-                                <option key={index} value={item.id}>
+                                <option key={index} value={item.value}>
                                 {item.text}
                                 </option>
                             ))}

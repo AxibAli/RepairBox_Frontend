@@ -48,7 +48,7 @@ const repdevices = () => {
     // console.log(item)
     {
       if (type == "edit") {
-        setSingleModelName(item.name);
+        // setSingleModelName(item.name);
         setElemBrandId(item.id)
         setIdDelete(item.id);
 
@@ -60,10 +60,18 @@ const repdevices = () => {
   const updateModel = async () => {
     try {
       const editForm = await axios.post(
-        `http://18.221.148.248:84/api/v1/Brand/UpdateModel?Id=${elemBrandId}&Name=${singleModelName}`
+        `http://18.221.148.248:84/api/v1/Brand/UpdateModel`,
+        {
+          id: `${selectedBrand}`,
+          name: `${singleModelName}`,
+          modelName: `${singleModel}`
+        }
       );
       if (editForm.status === 200) {
         toast.success('Model Update Successfully');
+        setSingleModelName("");
+        setSingleModel("");
+        setSelectedBrand()
         getDevicesData();
         elemHandleToggle();
       }
@@ -564,18 +572,20 @@ const repdevices = () => {
                   onChange={(e) => setSingleModelName(e.target.value)}
                 />
                 <br />
-                <Label for="exampleEmail">Modal</Label>
+                <Label for="exampleEmail">Model</Label>
                 <Input
                   id="exampleModal"
                   name="modal"
                   placeholder="Enter Your Brand Modal"
                   type="name"
+                  value={singleModel}
+                  onChange={(e) => setSingleModel(e.target.value)}
                 />
                 <br />
-                <FormGroup>
+                {/* <FormGroup>
                   <Label for="exampleFile">Image</Label>
                   <Input id="exampleFile" name="file" type="file" />
-                </FormGroup>
+                </FormGroup> */}
               </div>
             </div>
           </ModalBody>
