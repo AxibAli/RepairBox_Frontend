@@ -9,6 +9,7 @@ import {
 } from "react-icons/all";
 import axios from "axios"
 import { Pagination } from "antd";
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function repDefectsFurqan() {
     const [Data, setData] = useState([])
@@ -43,25 +44,42 @@ export default function repDefectsFurqan() {
 
 
   
-    // const handleStatusDataDelete = async (e) =>{
-    //   const ID = e.currentTarget.getAttribute('ID');
-    //   console.log(ID);
-    //   try {
-    //      const getResponse = await axios.delete(`http://18.221.148.248:84/api/v1/Order/DeleteStatus?statusId=${ID}`)
-    //     //  console.log(getResponse.data.data?.data,"response")
-    //      if (getResponse.status==200) {
-    //         handleStatusData()
-    //      }
-    //   } catch (error) {
-    //      console.log("Errors", error) 
-    //   }
-    // }
+    const handleStatusDataDelete = async (e) =>{
+      const ID = e.currentTarget.getAttribute('ID');
+      console.log(ID);
+      try {
+         const getResponse = await axios.post(`http://18.221.148.248:84/api/v1/Brand/DeleteDefect?Id=${ID}`)
+        //  console.log(getResponse.data.data?.data,"response")        
+        toast.success("Model deleted successfully");
+
+         if (getResponse.status==200) {
+            handleDefectData()
+         }
+      } catch (error) {
+         console.log("Errors", error) 
+      }
+    }
   
     useEffect(() => {
       handleDefectData()
     }, [currentPage]);
 
   return (
+    <>
+    
+    <ToastContainer
+                  position="top-center"
+                  autoClose={2000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="light"
+                  progressBarStyle={{ backgroundColor: 'red' }}
+                  />
     <div className='w-[1050px] h-[100%] flex flex-col justify-start items-center'>
     <div className='w-[1010px] h-[60px] mt-[20px] flex items-center justify-between'>
       <div class='w-[350px] h-[100%] flex items-center justify-normal'>
@@ -87,17 +105,20 @@ export default function repDefectsFurqan() {
               </div>
 
             </div>
+            {/* {console.log(item)} */}
             <div className='w-[80px] flex justify-between items-center'>
               <UModal 
-                status={item.name} 
+                dName= {item.defectName}
+                dPrice ={item.price}
+                dTime ={item.repairTime} 
                 Iid={item.id} 
-                // getData={handleStatusData}
+                getData={handleDefectData}
                 />
               <BsFillTrashFill 
                 className='text-red-500' 
                 style={{fontSize:"18px"}} 
                 ID={item.id} 
-                // onClick={handleStatusDataDelete}
+                onClick={handleStatusDataDelete}
                 />
             </div>
 
@@ -115,5 +136,6 @@ export default function repDefectsFurqan() {
     </div>
 
   </div>
+  </>
   )
 }
