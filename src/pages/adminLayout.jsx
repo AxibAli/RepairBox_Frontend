@@ -60,7 +60,7 @@ export default function adminLayout() {
                       <WidgetsIcon fontSize='large' style={{ color: '#FFFF' }}/>
                   </div>
                   <div className='ml-[15px] mr-[5px] border-1 border-red'>
-                      <p className='text-white text-[24px]'>Joytel</p>
+                      <p className='text-white text-[24px]'>ReparatiePunten</p>
                   </div>      
               </div>
               <div className='max-w-screen-[auto] w-[300px] h-[100%] flex justify-end items-center border-b-4 border-[#0096FF]'>

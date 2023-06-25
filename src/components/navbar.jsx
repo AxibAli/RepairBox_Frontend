@@ -9,7 +9,7 @@ export default function navbar() {
                 <WidgetsIcon fontSize='large' style={{ color: '#FFFF' }}/>
             </div>
             <div className='ml-[15px] border-1 border-red'>
-                <p className='text-white text-[24px]'>Joytel</p>
+                <p className='text-white text-[24px]'>ReparatiePunten</p>
             </div>      
         </div>
         <div className='w-[80%] h-[100%] flex justify-end items-center border-b-4 border-[#0096FF]'>
