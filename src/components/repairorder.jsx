@@ -1,7 +1,11 @@
 import React from 'react'
 
-export default function repairorder() {
+const repairorder = () => {
   return (
-    <div>repairorder</div>
+    <div>
+      <h1>repair orders</h1>
+    </div>
   )
 }
+
+export default repairorder

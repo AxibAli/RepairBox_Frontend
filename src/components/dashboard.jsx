@@ -2,6 +2,8 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import Select from "react-dropdown-select";
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import BarChart from './BarChart';
+
 
 function Card(props){
   return(
@@ -184,8 +186,8 @@ export default function dashboard() {
           <Card title="DEVICES" content={Devices}/>
           <Card title="DEFECTS" content={Defects}/>
         </div>
-        <div className='w-[100%] h-[500px] mt-[20px] bg-blue-100'>
-
+        <div className='w-[100%] h-[500px] mt-[40px] bg-blue-100 rounded-3'>
+          <BarChart/>
         </div>
       </div>
     </div>
