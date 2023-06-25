@@ -47,26 +47,9 @@ const repdevices = () => {
   const [UmodelId, setUmodelId] = useState();
   const [Uname, setUname] = useState();
   const [UmodelName, setUmodelName] = useState();
-  const [UbrandID, setUbrandID] = useState();
+  // const [UbrandID, setUbrandID] = useState();
 
   const [elemModal, setElemModal] = useState(false);
-  
-
-  const getBrandName= async (branid) => {
-    try {
-      const getDrop = await axios.get(
-        `http://18.221.148.248:84/api/v1/Brand/GetBrand?brandId=${branid}`
-      );
-      //  console.log(getDrop)
-      if (getDrop.status == 200) {
-        let data = getDrop.data.data;
-        console.log(data.name)
-        setSelectedBrand(data.name)
-        // setDropData(data);
-      }
-    } catch (error) {}
-  };
-
   
   
   const elemHandleToggle = (item, type) =>
@@ -78,13 +61,14 @@ const repdevices = () => {
         // setIdDelete(item.id);
 
         setUmodelId(item.id)
-        setUbrandID(item.brandId)
+        // setUbrandID(item.brandId)
         setUname(item.name)
         setUmodelName(item.modelName)
-        getBrandName(item.brandId)
+        setSelectedBrand(item.brandId)
+        console.log(selectedBrand)
 
 
-        console.log(item.name, item.id, item.brandId, item.modelName)
+        // console.log(item.name, item.id, item.brandId, item.modelName)
       }
       setElemModal(!elemModal);
     };
@@ -107,7 +91,7 @@ const repdevices = () => {
         setUname("");
         setSelectedBrand();
         setUmodelId();
-        setUbrandID();
+        // setUbrandID();
         getDevicesData();
         elemHandleToggle();
       }
