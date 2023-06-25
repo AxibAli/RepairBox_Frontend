@@ -19,32 +19,64 @@ import {
   FormGroup,
 } from "reactstrap";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
 
-export default function repDefectUModalF() {
+export default function repDefectUModalF(props) {
     const [modal, setModal] = useState(false);
-    const [selectedBrand, setSelectedBrand] = useState("");
+    const [name, setName] = useState(props.dName);
+    const [time, setTime] = useState(props.dTime);
+    const [price, setPrice] = useState(props.dPrice);
+    const [cost, setCost] = useState(0);
+    const [id, setId] = useState(props.Iid);
+    // const [selectedBrand, setSelectedBrand] = useState("");
+    
     const toggle = () => setModal(!modal);
 
-    const [dropData, setDropData] = useState([]);
-
-    const dropDownData = async () => {
-        try {
-          const getDrop = await axios.get(
-            `http://18.221.148.248:84/api/v1/Brand/GetModelsforDropdown`);
-          //  console.log(getDrop)
-          if (getDrop.status == 200) {
-            let data = getDrop.data.data;
-            setDropData(data);
+    const handleDefectUpdate = async (e) =>{
+      e.preventDefault();
+      try {
+          const response = await axios.post(`http://18.221.148.248:84/api/v1/Brand/UpdateDefect`, {id:`${id}`, defectName:`${name}`, repairTime:`${time}`, cost:`${cost}`, price:`${parseInt(price, 10)}`});
+          // Handle the response
+          // console.log(response.data);
+          
+          if (response.status==200) {
+              console.log(response?.data?.message)
+              // toggle()
+              // state b khali kr do
+              // handleBrandData()
+              toast.success('Model Update Successfully');
+              props.getData()
+              toggle()
+              setId();
+              setCost();
+              setPrice();
+              setTime();
+              setName();
+              // settext() 
+              // this.reset()
           }
-        } catch (error) {}
-    };
-
-    useEffect(() => {
-        dropDownData();
-    }, []);
+      } catch (error) {
+          // Handle any errors
+          console.error(error);
+      }
+  };
 
 
     return (
+      <>
+            <ToastContainer
+                  position="top-center"
+                  autoClose={2000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="light"
+                  progressBarStyle={{ backgroundColor: 'red' }}
+                  />
     <div>
         <div className='w-[50px] h-[50] flex justify-center items-center group' onClick={toggle}>
             <IoIosArrowDroprightCircle className='text-blue-500 group-hover:text-black' style={{fontSize: '20px' }}/>
@@ -80,62 +112,43 @@ export default function repDefectUModalF() {
               </div>
 
               <div className="brand-input-field">
-              {/* <FormGroup>
-                      <Label for="exampleSelect">Select Brand</Label>
-                      <Input
-                        type="select"
-                        name="select"
-                        id="select"
-                        value={selectedBrand}
-                        onChange={(e) => setSelectedBrand(e.target.value)}
-                      >
-                        <option value="">Select a brand</option>
-                        {dropData &&
-                          dropData.map((item, index) => (
-                            <option key={index} value={item.value}>
-                              {item.text}
-                            </option>
-                          ))}
-                      </Input>
-                    </FormGroup> */}
                 <br />
-                <Label for="exampleName">Name</Label>
+                <Label for="exampleName">Defect Name</Label>
                 <Input
                   id="exampleName"
                   name="name"
-                  placeholder="Enter Your Brand Name"
+                  placeholder="Enter Your Defect Name"
                   type="name"
-                //   value={singleModelName}
-                //   onChange={(e)=> setSingleModelName(e.target.value)}
+                  value={name}
+                  onChange={(e)=> setName(e.target.value)}
                 />
                 <br />
-                <Label for="exampleEmail">Modal</Label>
+                <Label for="exampleEmail">Enter Repairable Time</Label>
                 <Input
                   id="exampleModal"
                   name="modal"
-                  placeholder="Enter Your Brand Modal"
+                  placeholder="Enter Repairable Time"
                   type="name"
+                  value={time}
+                  onChange={(e)=> setTime(e.target.value)}
                 />
                 <br />
-                <FormGroup>
-                  <Label for="exampleFile">Image</Label>
-                  <Input id="exampleFile" name="file" type="file" />
-                </FormGroup>
+                <Label for="exampleEmail">Enter Price</Label>
+                <Input
+                  id="exampleModal"
+                  name="modal"
+                  placeholder="Enter Price"
+                  type="name"
+                  value={price}
+                  onChange={(e)=> setPrice(e.target.value)}
+                />
               </div>
             </div>
           </ModalBody>
           <ModalFooter style={{ border: "hidden" }}>
-            {/* <Button
-              color="primary"
-              // onClick={elemHandleToggle}
-              style={{ backgroundColor: "blue" }}
-            //   onClick={updateModel}
-            >
-              Edit
-            </Button> */}
             <Button
               color="secondary"
-              onClick={toggle}
+              onClick={handleDefectUpdate}
               style={{ backgroundColor: "blue" }}
             >
               Update
@@ -143,5 +156,6 @@ export default function repDefectUModalF() {
           </ModalFooter>
         </Modal>
     </div>
+    </>
   )
 }

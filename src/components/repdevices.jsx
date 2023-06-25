@@ -43,35 +43,71 @@ const repdevices = () => {
   const [totalPage, setTotalPage] = useState();
   const [pagesize, setpagesize] = useState(10);
 
+  // Update States 
+  const [UmodelId, setUmodelId] = useState();
+  const [Uname, setUname] = useState();
+  const [UmodelName, setUmodelName] = useState();
+  const [UbrandID, setUbrandID] = useState();
+
   const [elemModal, setElemModal] = useState(false);
+  
+
+  const getBrandName= async (branid) => {
+    try {
+      const getDrop = await axios.get(
+        `http://18.221.148.248:84/api/v1/Brand/GetBrand?brandId=${branid}`
+      );
+      //  console.log(getDrop)
+      if (getDrop.status == 200) {
+        let data = getDrop.data.data;
+        console.log(data.name)
+        setSelectedBrand(data.name)
+        // setDropData(data);
+      }
+    } catch (error) {}
+  };
+
+  
+  
   const elemHandleToggle = (item, type) =>
     // console.log(item)
     {
       if (type == "edit") {
         // setSingleModelName(item.name);
-        setElemBrandId(item.id)
-        setIdDelete(item.id);
+        // setElemBrandId(item.id)
+        // setIdDelete(item.id);
 
-        //  console.log(item.name, item.id)
+        setUmodelId(item.id)
+        setUbrandID(item.brandId)
+        setUname(item.name)
+        setUmodelName(item.modelName)
+        getBrandName(item.brandId)
+
+
+        console.log(item.name, item.id, item.brandId, item.modelName)
       }
       setElemModal(!elemModal);
     };
 
   const updateModel = async () => {
+    console.log(UmodelId, Uname, UmodelName, selectedBrand)
     try {
       const editForm = await axios.post(
         `http://18.221.148.248:84/api/v1/Brand/UpdateModel`,
         {
-          id: `${selectedBrand}`,
-          name: `${singleModelName}`,
-          modelName: `${singleModel}`
+          id: `${UmodelId}`,
+          name: `${Uname}`,
+          modelName: `${UmodelName}`,
+          brandId: `${selectedBrand}`
         }
       );
       if (editForm.status === 200) {
         toast.success('Model Update Successfully');
-        setSingleModelName("");
-        setSingleModel("");
-        setSelectedBrand()
+        setUmodelName("");
+        setUname("");
+        setSelectedBrand();
+        setUmodelId();
+        setUbrandID();
         getDevicesData();
         elemHandleToggle();
       }
@@ -467,6 +503,7 @@ const repdevices = () => {
             // onClick={elemHandleToggle}
             style={{ height: "auto", overflowY: "auto", width: "1050px" }}
           >
+            {/* {console.log(elem)} */}
             <div className="brand-section" key={index}>
               <div className="brand-logo-info" style={{ display: "flex" }}>
                 <i>
@@ -523,7 +560,7 @@ const repdevices = () => {
               fontWeight: "500",
             }}
           >
-            CREATE REPAIRABLE DEVICE
+            Update REPAIRABLE DEVICE
             <Button
               color="primary"
               onClick={elemHandleToggle}
@@ -568,8 +605,8 @@ const repdevices = () => {
                   name="name"
                   placeholder="Enter Your Brand Name"
                   type="name"
-                  value={singleModelName}
-                  onChange={(e) => setSingleModelName(e.target.value)}
+                  value={Uname}
+                  onChange={(e) => setUname(e.target.value)}
                 />
                 <br />
                 <Label for="exampleEmail">Model</Label>
@@ -578,8 +615,8 @@ const repdevices = () => {
                   name="modal"
                   placeholder="Enter Your Brand Modal"
                   type="name"
-                  value={singleModel}
-                  onChange={(e) => setSingleModel(e.target.value)}
+                  value={UmodelName}
+                  onChange={(e) => setUmodelName(e.target.value)}
                 />
                 <br />
                 {/* <FormGroup>

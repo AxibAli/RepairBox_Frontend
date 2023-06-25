@@ -19,7 +19,7 @@ import {
   FormGroup,
 } from "reactstrap";
 import axios from "axios";
-
+import { ToastContainer, toast } from 'react-toastify';
 
 {/* <div className="rep-create-button" onClick={handleRepToggle}>
 <button>Create</button> */}
@@ -64,8 +64,9 @@ export default function repDefectCModalF(props) {
     
           );
           if (response.status === 200) {
-            console.log(response)
+            // console.log(response)
             props.getData()
+            toast.success('Model Created Successfully');
             settitle('')
             setprice('')
             setcost('')
@@ -93,6 +94,7 @@ export default function repDefectCModalF(props) {
            formData
           );
           if (response.status === 200) {
+            toast.success('Model CSV Created Successfully');
             setSelectedBrand("");
             setSelectedFile(null);
             props.getData();
@@ -111,6 +113,20 @@ export default function repDefectCModalF(props) {
         dropDownData();
     }, []);
   return (
+    <>
+          <ToastContainer
+                  position="top-center"
+                  autoClose={2000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="light"
+                  progressBarStyle={{ backgroundColor: 'red' }}
+                  />
     <div >
         <div className="brand-create-button">
             <button 
@@ -279,8 +295,7 @@ export default function repDefectCModalF(props) {
             </ModalFooter>
         </Modal>
     </div>
+    </>
   )
 }
 
-
-// </div>
