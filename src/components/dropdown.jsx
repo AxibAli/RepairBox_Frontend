@@ -10,13 +10,14 @@ import axios from "axios";
 
 
 
-export default function MultipleSelect({setisbrand}) {
+export default function MultipleSelect({setisbrand,Togg,CollectBrands,CollectModels,CollectDefects,varaiableBrand,varaiableModel,varaiableDefect}) {
 
   const [age, setAge] = React.useState([]);
   const [showData, SetshowData] = React.useState([]);
   const [new_value, setnew_value] = React.useState("")
 
   const handleChange = (event) => {
+    console.log("newValue========aneeeq>", new_value) 
     setAge(event.target.value);
     // console.log(event.target.value)
     const {
@@ -24,12 +25,15 @@ export default function MultipleSelect({setisbrand}) {
     } = event;
     setAge(
       typeof value === 'string' ? value.split(',') : value,
-      console.log(value, "value"),
+
+      // console.log(value, "value"),
       // console.log(value, "value"),
 
-      setnew_value(value)
+      setnew_value(value),
+      CollectBrands(value)
 
     );
+
 
   };
 useEffect(()=>{
@@ -68,7 +72,7 @@ useEffect(()=>{
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={age}
+            value={varaiableBrand}
             label="Age"
             onChange={handleChange}
           >
@@ -82,7 +86,7 @@ useEffect(()=>{
       {new_value ?
 
 
-        <BasicSelect value={new_value} /> : null
+        <BasicSelect value1={new_value} tog={Togg} CollBrands={CollectBrands} CollModels={CollectModels} CollDefects={CollectDefects} varaiaBrand={varaiableBrand} varaiModel={varaiableModel}  varaiDefect={varaiableDefect}  /> : null
       }
     </div>
   );
