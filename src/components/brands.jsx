@@ -55,7 +55,7 @@ const brands = () => {
           let formData = new FormData()
         formData.append('file',selectedFile)
         // formData.append('brandId', selectedBrand)
-        console.log([...formData])
+        // console.log([...formData])
           const response = await axios.post(
             'http://18.221.148.248:84/api/v1/Brand/AddBrands',
            formData
@@ -146,7 +146,7 @@ const brands = () => {
             `http://18.221.148.248:84/api/v1/Brand/DeleteBrand?Id=${brandId}`
           );
           if (response.status === 200) {
-            console.log("deleted brand successfully");
+            // console.log("deleted brand successfully");
             toast.success('Brand deleted successfully');
             handleBrandData();
           } 
@@ -303,7 +303,6 @@ const brands = () => {
                           <div className="brand-name-logo d-flex">
                           <i><BiStar /></i>
                           <h1>{brand.name}</h1>
-                      
                           </div>
                         </div>
                         

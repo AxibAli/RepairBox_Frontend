@@ -650,7 +650,8 @@ color: black
        .users-container{
         width: 1080px;
         height: 100%;
-        overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: auto;
         background-color: #f1f1f1;
        }
        .user-role-icon{
@@ -778,4 +779,15 @@ color: black
       position: relative;
       flex: 1 1 auto;
       padding: 20px !important;
+  }
+  .user_first .user__email{
+    transform: translate(10px 10px);
+    margin-top: 3rem;
+    margin-left: -3rem;
+  }
+  
+  .user___content h2{
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+    text-transform:capitalize;
   }
