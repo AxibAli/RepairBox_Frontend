@@ -17,9 +17,32 @@ const Stepper = () => {
   const [isbrand, setIsbrand] = useState(false);
   const [currentComponent, setCurrentComponent] = useState("MultipleSelect");
   const [nextBtnClicked, setNextBtnClicked] = useState(false);
+  const[Toggle,SetToggle]=useState(false);
+  const[brand,SetBrand]=useState([]);
+  const[model,SetModel]=useState([]);
+  const[defect,SetDefect]=useState([]);
+
+  const CollectBrand=(x)=>{
+     SetBrand(x)
+  }
+  console.log(brand)
+  const CollectModel=(y)=>{
+    SetModel(y)
+  }
+  console.log(model)
+
+  const CollectDefect=(z)=>{
+    SetDefect(z)
+  }
+  console.log(defect)
+
+  const AlertToggle=()=>{
+    SetToggle(true)
+  }
 
 
   const NextBtn = () => {
+    console.log("isbrand================>",isbrand)
     if (currentStep === steps.length) {
       setComplete(true);
     } else {
@@ -33,6 +56,8 @@ const Stepper = () => {
     }
     setNextBtnClicked(true);
   };
+
+    
   const PrevBtn = () => {
     if (nextBtnClicked) {
      
@@ -57,7 +82,8 @@ const Stepper = () => {
     switch (currentComponent) {
      
         case "MultipleSelect":
-          return <MultipleSelect setisbrand={setIsbrand} />;
+          return <MultipleSelect setisbrand={setIsbrand} Togg={AlertToggle} CollectBrands={CollectBrand}  CollectModels={CollectModel} CollectDefects={CollectDefect} varaiableBrand={brand} varaiableModel={model} 
+          varaiableDefect={defect}   />;
        
       case "Priority":
         return <Priority  setSelectedPriority={setSelectedPriority}/>;
@@ -67,6 +93,10 @@ const Stepper = () => {
         return null;
     }
   };
+  const Toast=()=>{
+
+     toast.success('Select All DropDown First');
+  }
 
   return (
     <>
@@ -99,7 +129,14 @@ const Stepper = () => {
         ))}
       </div>
       {renderComponent()}
-      {!complete && <Nextbtn t={PrevBtn} n={isbrand?NextBtn:()=>{ toast.success('Select All DropDown First');}}  />}
+      {/* {!Toggle && } */}
+      {/* if (Toggle) {
+    <Nextbtn t={PrevBtn} n={isbrand?NextBtn:Toast}  />
+  } */}
+      {Toggle
+        ?  <Nextbtn  t={PrevBtn} n={isbrand?NextBtn:Toast}  />
+        : <></>
+      }
     </>
   );
 };

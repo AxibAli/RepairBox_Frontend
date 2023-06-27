@@ -9,10 +9,11 @@ import axios from "axios";
 
 
 
-export default function BasicSelect({value}) {
+export default function BasicSelect({value1,tog,CollBrands,CollModels,CollDefects,varaiaBrand,varaiDefect,varaiModel}) {
     const [age, setAge] = React.useState('');
   const [new_value,setnew_value]= React.useState("");
   const [showData, SetshowData] = React.useState([]);
+  
 
 
   const handleChange = (event) => {
@@ -23,19 +24,20 @@ export default function BasicSelect({value}) {
     setAge(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
-      console.log(value,"value"),
-      setnew_value(value)
+      console.log("value=============aneeq2>",value,),
+      setnew_value(value),
+      CollModels(value)
       
     );
   };
   
     useEffect(() => {
       FetchApiData();
-    }, [value])
+    }, [value1])
     const FetchApiData = async () => {
       try {
-        const response = await axios.get(`http://18.221.148.248:84/api/v1/Brand/GetBrandModelsforDropdown?brandId=${value}`);
-        console.log(value)
+        const response = await axios.get(`http://18.221.148.248:84/api/v1/Brand/GetBrandModelsforDropdown?brandId=${value1}`);
+        console.log(value1)
         // console.log(new_value)
         // console.log(response.data.data);
         // ?.filter((val)=>val.value==value)
@@ -66,7 +68,7 @@ export default function BasicSelect({value}) {
                    
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={age}
+            value={varaiModel}
             label="Age"
             onChange={handleChange}
           >
@@ -83,7 +85,7 @@ export default function BasicSelect({value}) {
             {new_value ?
 
 
-                <Basic value={new_value}  /> : null
+                <Basic value2={{new_value,value1}} tg={tog}  Brands={CollBrands} Models={CollModels}   Defects={CollDefects} varBrand={varaiaBrand}  varDefect={varaiDefect} varModel={varaiModel} /> : null
             }
 
         </div>
