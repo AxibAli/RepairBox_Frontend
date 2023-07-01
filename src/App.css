@@ -3,9 +3,16 @@
     padding: 0;
     box-sizing: border-box;
 }
+.form-error{
+  color: red;
+  font-family: Poppins, sans-serif;
+  font-size: 12px;
+padding-top: 5px;
+}
 .container{
     max-width: 1100px;
 }
+
 .brand-container{
   width: 1080px !important;
 }
@@ -518,9 +525,9 @@ color: black
          .create-modal-content{
             display: grid;
             grid-template-columns: repeat( 12,1fr);
-            padding: 30px 50px;
+            padding: 30px 12px;
             align-content: center;
-            gap: 30px;
+            gap: 50px;
          }
          .brand-info-content{
             grid-column: span 6;
@@ -535,11 +542,12 @@ color: black
             width: 100% !important;
          }
          .brand-info-content h2{
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: 600;
+            font-family: Poppins, sans sans-serif;
          }
          .brand-info-content p{
-            font-size: 0.6rem;
+            font-size: 0.9rem;
          }
          .cross-button{
           position: absolute;
@@ -791,3 +799,13 @@ color: black
     margin-bottom: 0.2rem;
     text-transform:capitalize;
   }
+  .p-4.user_role_container.container {
+    border-bottom: 1px solid lightgray;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.users_content.container {
+  border-bottom: 1px solid lightgray;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}

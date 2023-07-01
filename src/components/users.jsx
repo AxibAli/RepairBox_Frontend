@@ -28,15 +28,50 @@ import {
   Form,
 } from "reactstrap";
 
+
+
+
 export default function users() {
+  
+
   const [getUsers, setGetUsers] = useState([]);
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
-  const [userPassword, setUserPassword] = useState("");
-  const [userRole, setUserRole] = useState(1);
+  const [userRole, setUserRole] = useState("");
   const [userStatus, setUserStatus] = useState("Active");
   const [role, setGetRole] = useState([]);
   const [userId, setUserId] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword1, setNewPassword1] = useState("");
+  const [newPassword2, setNewPassword2] = useState("");
+
+  console.log(userName, userEmail, currentPassword, userRole, userStatus)
+  // change password state
+
+
+  const changePassword = async () => {
+    try {
+      const response = await axios.post(
+        "http://18.221.148.248:84/api/v1/User/ChangePassword",
+        {
+          id: userId,
+          currentPassword: currentPassword,
+          newPassword1: newPassword1,
+          newPassword2: newPassword2,
+        }
+      );
+      if (response.status == 200) {
+        // alert(currentPassword, newPassword1, newPassword2)
+        toast.success("Password Change Successfully");
+        setCurrentPassword(""), setNewPassword1(""), setNewPassword2("");
+      } else {
+        toast.error("wrong password");
+      }
+      console.log(userId, currentPassword, newPassword1, newPassword2);
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
 
   const deleteUser = async (userId) => {
     // console.log(userId)
@@ -71,6 +106,7 @@ export default function users() {
       );
       if (response.status == 200) {
         toast.success("User Updated Successfully");
+        changePassword();
         setUserName("");
         setUserEmail("");
         getUsersData();
@@ -83,27 +119,24 @@ export default function users() {
 
   const createUser = async (e) => {
     e.preventDefault();
-    // console.log(userName, userEmail, userPassword, userRole, userStatus)
+    console.log(userName, userEmail, currentPassword, userRole, userStatus);
     try {
-      // const requestBody = {
-
-      // };
       const response = await axios.post(
         "http://18.221.148.248:84/api/v1/User/CreateUser",
         // requestBody
         {
           username: userName,
           email: userEmail,
-          password: userPassword,
+          password: currentPassword,
           userRoleId: userRole,
           status: userStatus,
         }
       );
       if (response.status === 200) {
-        toast.success("User Created Successfully");
+        toast.success("User Created Successfully.");
         setUserName("");
         setUserEmail("");
-        setUserPassword("");
+        setCurrentPassword("");
         getUsersData();
         CreateModal();
       }
@@ -122,7 +155,7 @@ export default function users() {
       const response = await axios.get(
         "http://18.221.148.248:84/api/v1/User/GetRoles"
       );
-      // console.log(response)
+      console.log(response)
       if (response.status == 200) {
         const data = response.data.data;
         setGetRole(data);
@@ -138,7 +171,7 @@ export default function users() {
       );
       console.log(response.data.data);
       if (response.status == 200) {
-        let data = response.data.data.reverse();
+        let data = response.data.data;
         setGetUsers(data);
       }
     } catch (error) {
@@ -160,6 +193,7 @@ export default function users() {
       setUserName(item.username);
       setUserEmail(item.email);
       setUserId(item.id);
+      setCurrentPassword(item.password);
     }
     setArrowModal(!arrowModal);
   };
@@ -201,7 +235,7 @@ export default function users() {
                     fontWeight: "500",
                   }}
                 >
-                  CREATE USER ROLE
+                  CREATE USER
                   <Button
                     color="primary"
                     style={{ backgroundColor: "blue" }}
@@ -211,100 +245,112 @@ export default function users() {
                     <RxCross2 />
                   </Button>
                 </ModalHeader>
-                <ModalBody>
-                  <Container>
-                    <Row>
-                      <Col md={6}>
-                        <div className="create-modal-content">
-                          <div className="brand-info-content">
-                            <h2>User Details</h2>
-                            <p>This Information will be displayed publicly.</p>
+                <Form>
+                  <ModalBody>
+                    <Container>
+                      <Row>
+                        <Col md={6}>
+                          <div className="create-modal-content">
+                            <div className="brand-info-content">
+                              <h2>User Details</h2>
+                              <p>
+                                This Information will be displayed publicly.
+                              </p>
+                            </div>
                           </div>
-                        </div>
-                      </Col>
-                      <Col md={6}>
-                        <Row className="g-4 pt-4">
-                          <div className="brand-input-field">
-                            <Label for="name">Name :</Label>
-                            <Input
-                              id="name"
-                              name="name"
-                              placeholder="Enter Your Name"
-                              type="text"
-                              value={userName}
-                              onChange={(e) => setUserName(e.target.value)}
-                            />
-                          </div>
+                        </Col>
+                        <Col md={6}>
+                          <Row className="g-4 pt-4">
+                            <div className="brand-input-field">
+                              <Label for="name">Name :</Label>
 
-                          <div className="brand-input-field">
-                            <Label for="email">Email :</Label>
-                            <Input
-                              id="email"
-                              name="email"
-                              placeholder="Enter Your Email"
-                              type="text"
-                              value={userEmail}
-                              onChange={(e) => setUserEmail(e.target.value)}
-                            />
-                          </div>
+                              <Input
+                                id="name"
+                                name="name"
+                                placeholder="Enter Your Name"
+                                type="text"
+                                value={userName}
+                                onChange={(e) => setUserName(e.target.value)}
+                              />
+                              
+                            
+                           
+                            </div>
 
-                          <div className="brand-input-field">
-                            <Label for="password">Password :</Label>
-                            <Input
-                              id="password"
-                              name="password"
-                              placeholder="Enter Your Password"
-                              type="password"
-                              value={userPassword}
-                              onChange={(e) => setUserPassword(e.target.value)}
-                            />
+                            <div className="brand-input-field">
+                              <Label for="email">Email :</Label>
+                              <Input
+                                id="email"
+                                name="email"
+                                placeholder="Enter Your Email"
+                                type="text"
+                                value={userEmail}
+                                onChange={(e) => setUserEmail(e.target.value)}
+                              />
+                             
+                              
+                            
+                            </div>
+
+                            <div className="brand-input-field">
+                              <Label for="text">Password :</Label>
+                              <Input
+                                id="password"
+                                name="password"
+                                placeholder="Enter Your Password"
+                                type="password"
+                                value={currentPassword}
+                                onChange={(e) =>
+                                  setCurrentPassword(e.target.value)
+                                }
+                              />
+                              
+                            </div>
+                          </Row>
+                        </Col>
+                      </Row>
+                    </Container>
+                    <br />
+                    <br />
+                    {/* </div> */}
+                  </ModalBody>
+                  {/* <ModalFooter style={{ border: "hidden" }}></ModalFooter> */}
+                  <hr />
+                  <ModalBody>
+                    <Container>
+                      <Row>
+                        <Col md={6}>
+                          <div className="create-modal-content">
+                            <div className="brand-info-content">
+                              <h2>User Setting</h2>
+                              <p>User access and permission settings.</p>
+                            </div>
                           </div>
-                        </Row>
-                      </Col>
-                    </Row>
-                  </Container>
-                  <br />
-                  <br />
-                  {/* </div> */}
-                </ModalBody>
-                <ModalFooter style={{ border: "hidden" }}></ModalFooter>
-                <hr />
-                <ModalBody>
-                  <Container>
-                    <Row>
-                      <Col md={6}>
-                        <div className="create-modal-content">
-                          <div className="brand-info-content">
-                            <h2>User Setting</h2>
-                            <p>User access and permission settings.</p>
-                          </div>
-                        </div>
-                      </Col>
-                      <Col md={6}>
-                        <Row className="g-4 pt-4">
-                          <div>
-                            <Label for="exampleSelect">Role</Label>
-                            <Input
-                              id="exampleSelect"
-                              name="select"
-                              type="select"
-                              value={userRole}
-                              onChange={(e) => setUserRole(e.target.value)}
-                            >
-                              <option>Select a Role</option>
-                              {role.length > 0 &&
-                                role.map((item, index) => (
+                        </Col>
+                        <Col md={6}>
+                          <Row className="g-4 pt-4">
+                            <div>
+                              <Label for="exampleSelect">Role :</Label>
+                              <Input
+                                id="exampleSelect"
+                                name="select"
+                                type="select"
+                                value={userRole}
+                                onChange={(e) => setUserRole(e.target.value)}
+                              >
+                                <option>Select a Role</option>
+                                {role.map((item, index) => (
                                   <option key={index} value={item.id}>
                                     {item.name}
                                   </option>
                                 ))}
-                            </Input>
-                          </div>
-
-                          <div className="radio-select ">
-                            <Label>Status : </Label>
-                            <FormGroup switch>
+                              </Input>
+                            </div>
+                            <div className="radio-select ">
+                              <Label>Status : </Label>
+                              <br />
                               <Input
+                                name="status"
                                 type="switch"
                                 value={userStatus}
                                 onChange={() => {
@@ -313,26 +359,29 @@ export default function users() {
                               />
 
                               <Label check>
-                                {state ? "User is active" : "User is Inactive"}
+                                {userStatus
+                                  ? "User is inactive"
+                                  : "User is active"}
                               </Label>
-                            </FormGroup>
-                          </div>
-                          <Button
-                            type="submit"
-                            color="secondary"
-                            style={{ backgroundColor: "blue" }}
-                            onClick={createUser}
-                          >
-                            Save
-                          </Button>
-                        </Row>
-                      </Col>
-                    </Row>
-                  </Container>
-                  <br />
-                  <br />
-                  {/* </div> */}
-                </ModalBody>
+                            </div>
+                            <Button
+                              type="submit"
+                              color="secondary"
+                              style={{ backgroundColor: "blue" }}
+                              onClick={createUser}
+                            >
+                              Save
+                            </Button>
+                          </Row>
+                        </Col>
+                      </Row>
+                    </Container>
+                    <br />
+
+                    <br />
+                    {/* </div> */}
+                  </ModalBody>
+                </Form>
               </Modal>
             </Col>
           </Row>
@@ -354,19 +403,20 @@ export default function users() {
         </Container>
 
         <div className="main_content mt-5">
-          <Container>
-            {getUsers.map((user, index) => (
-              <Row className="align-items-center p-3 my-4" key={index}>
+          {getUsers.map((user, index) => (
+            <Container className="users_content p-3">
+              <Row className="align-items-center my-2 " key={index}>
                 <Col md={5}>
                   <div className="user_first d-flex align-items-center gap-2">
                     <img
                       src={Avatar1}
-                      alt=""
-                      style={{ borderRadius: "50px", width: "13%" }}
+                      alt="avatar"
+                      style={{ borderRadius: "50px", width: "10%" }}
                     />
                     <div className="user___content">
                       <h2 style={{ color: "blue" }}>{user.username}</h2>
                       <p className="text-muted">{user.email}</p>
+                      {/* <p>{user.password}</p> */}
                     </div>
                   </div>
                 </Col>
@@ -430,80 +480,147 @@ export default function users() {
                   </Modal>
                 </Col>
               </Row>
-            ))}
-            <Modal
-              isOpen={arrowModal}
-              toggle={ArrowModal}
-              style={{ maxWidth: "50%", background: "none", zIndex: 9999 }}
+            </Container>
+          ))}
+          <Modal
+            isOpen={arrowModal}
+            toggle={ArrowModal}
+            style={{ maxWidth: "50%", background: "none", zIndex: 9999 }}
+          >
+            <ModalHeader
+              style={{
+                fontSize: "1rem",
+                fontWeight: "500",
+              }}
             >
-              <ModalHeader
-                style={{
-                  fontSize: "1rem",
-                  fontWeight: "500",
-                }}
+              CREATE USER
+              <Button
+                color="primary"
+                style={{ backgroundColor: "blue" }}
+                className="cross-button"
+                onClick={ArrowModal}
               >
-                CREATE USER
-                <Button
-                  color="primary"
-                  style={{ backgroundColor: "blue" }}
-                  className="cross-button"
-                  onClick={ArrowModal}
-                >
-                  <RxCross2 />
-                </Button>
-              </ModalHeader>
-              <ModalBody>
-                <Container>
-                  <Row>
-                    <Col md={6}>
-                      <div className="create-modal-content">
-                        <div className="brand-info-content">
-                          <h2>User Details</h2>
-                          <p>This Information will be displayed publicly.</p>
-                        </div>
+                <RxCross2 />
+              </Button>
+            </ModalHeader>
+            <ModalBody>
+              <Container>
+                <Row>
+                  <Col md={6}>
+                    <div className="create-modal-content">
+                      <div className="brand-info-content">
+                        <h2>User Details</h2>
+                        <p>This Information will be displayed publicly.</p>
                       </div>
-                    </Col>
-                    <Col md={6}>
-                      <Row className="g-4 pt-4">
-                        <div className="brand-input-field">
-                          <Label for="name">Name:</Label>
-                          <Input
-                            id="name"
-                            name="name"
-                            placeholder="Enter Your Name"
-                            type="text"
-                            value={userName}
-                            onChange={(e) => setUserName(e.target.value)}
-                          />
-                        </div>
-                        <div className="brand-input-field">
-                          <Label for="email">Email:</Label>
-                          <Input
-                            id="email"
-                            name="email"
-                            placeholder="Enter Your Email"
-                            type="text"
-                            value={userEmail}
-                            onChange={(e) => setUserEmail(e.target.value)}
-                          />
-                        </div>
-                      </Row>
-                    </Col>
-                  </Row>
-                </Container>
-              </ModalBody>
-              <ModalFooter style={{ border: "hidden" }}>
-                <Button
-                  type="submit"
-                  color="secondary"
-                  style={{ backgroundColor: "blue" }}
-                  onClick={updateUser}
-                >
-                  Save
-                </Button>
-              </ModalFooter>
-            </Modal>
-          </Container>
+                    </div>
+                  </Col>
+                  <Col md={6}>
+                    <Row className="g-4 pt-4">
+                      <div className="brand-input-field">
+                        <Label for="name">Name:</Label>
+                        <Input
+                          id="name"
+                          name="name"
+                          placeholder="Enter Your Name"
+                          type="text"
+                          value={userName}
+                          onChange={(e) => setUserName(e.target.value)}
+                        />
+                      </div>
+                      <div className="brand-input-field">
+                        <Label for="email">Email:</Label>
+                        <Input
+                          id="email"
+                          name="email"
+                          placeholder="Enter Your Email"
+                          type="text"
+                          value={userEmail}
+                          onChange={(e) => setUserEmail(e.target.value)}
+                        />
+                      </div>
+                      <div className="brand-input-field">
+                        <Label for="password">Password</Label>
+                        <Input
+                          id="password"
+                          name="password"
+                          placeholder="Enter Your Password"
+                          type=""
+                          value={currentPassword}
+                          onChange={(e) => setCurrentPassword(e.target.value)}
+                        />
+                      </div>
+                    </Row>
+                  </Col>
+                </Row>
+              </Container>
+            </ModalBody>
+            <ModalFooter style={{ border: "hidden" }}></ModalFooter>
+            {/* change password */}
+            <ModalBody>
+              <Container>
+                <Row>
+                  <Col md={6}>
+                    <div className="create-modal-content">
+                      <div className="brand-info-content">
+                        <h2>Change Password</h2>
+                        <p>
+                          Change your password for a new one, valid for the next
+                          login.
+                        </p>
+                      </div>
+                    </div>
+                  </Col>
+                  <Col md={6}>
+                    <Row className="g-4 pt-4">
+                      <div className="brand-input-field">
+                        <Label for="currentpassword">Current Password</Label>
+                        <Input
+                          id="currentpassword"
+                          name="currentP"
+                          placeholder="Enter Your Current Password"
+                          type="password"
+                          value={currentPassword}
+                          onChange={(e) => setCurrentPassword(e.target.value)}
+                        />
+                      </div>
+                      <div className="brand-input-field">
+                        <Label for="password">New Password</Label>
+                        <Input
+                          id="newpassword1"
+                          name="newP1"
+                          placeholder="Enter Your New Password"
+                          type="password"
+                          value={newPassword1}
+                          onChange={(e) => setNewPassword1(e.target.value)}
+                        />
+                      </div>
+                      <div className="brand-input-field">
+                        <Label for="password">Confirm Password</Label>
+                        <Input
+                          id="newpassword2"
+                          name="newP2"
+                          placeholder="Enter Your Current Password"
+                          type="password"
+                          value={newPassword2}
+                          onChange={(e) => setNewPassword2(e.target.value)}
+                        />
+                      </div>
+                    </Row>
+                  </Col>
+                </Row>
+              </Container>
+            </ModalBody>
+            <ModalFooter>
+              <Button
+                type="submit"
+                color="secondary"
+                style={{ backgroundColor: "blue" }}
+                onClick={updateUser}
+              >
+                Save
+              </Button>
+            </ModalFooter>
+          </Modal>
         </div>
 
         <div className="main_content showing-users">
@@ -516,37 +633,6 @@ export default function users() {
           </Container>
         </div>
       </div>
-
-      {/* <div className="main_content">
-                <Container>
-                  <Row className=" align-items-center p-3">
-                    <Col md={5}  >
-                    <div className="user_first d-flex align-items-center gap-2">
-                    <img src={Avatar2} alt="" style={{borderRadius:"50px" ,width:"13%"}} />
-                    <h2 style={{color:"blue"}}>Technician</h2>
-                    <p>admin@admin.com</p>
-                    </div>
-                    </Col>
-                    <Col md={5} >
-                    <div className="user-activation">
-                    <p>The user has role the <strong>Admin</strong></p>
-                    <span className="d-flex align-items-center gap-2"><TiTick className="tick" /><p>User is activated</p></span>
-                    </div>
-                    </Col>
-                    <Col md={1} >
-                     <button>
-                     <IoIosArrowDroprightCircle className='users_arrow'/>
-                     </button>
-                    </Col>
-                    <Col md={1}>
-                    <button>
-                      <BsFillTrashFill className='users_trash'/>
-                    </button>
-                    </Col>
-                    
-                  </Row>
-                </Container>
-              </div> */}
     </>
   );
 }
