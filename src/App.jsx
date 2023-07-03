@@ -79,16 +79,16 @@ function App() {
           <Route path="RepairableDevices" element={<RepDevices />} />
           {/* <Route path="RepairableDevices" element={<RepairDevices />} /> */}
           <Route path="RepairableDefects" element={<RepDefects />} />
-          <Route path="QuickReplies" element={<QuickReplies />} />
+          {/* <Route path="QuickReplies" element={<QuickReplies />} /> */}
           <Route path="RepairStatus" element={<RepStatus />} />
           <Route path="RepairPriorities" element={<RepPriorities />} />
-          <Route path="CustomPages" element={<CustPages />} />
-          <Route path="FAQ" element={<FAQ />} />
-          <Route path="Report" element={<Report />} />
+          {/* <Route path="CustomPages" element={<CustPages />} /> */}
+          {/* <Route path="FAQ" element={<FAQ />} /> */}
+          {/* <Route path="Report" element={<Report />} /> */}
           <Route path="Users" element={<Users />} />
           <Route path="UserRoles" element={<UserRole />} />
           <Route path="Settings" element={<Settings />} />
-          <Route path="Backup" element={<Backup />} />
+          {/* <Route path="Backup" element={<Backup />} /> */}
           <Route path="Translations" element={<Translations />} />
         </Route>
       </Routes>

@@ -119,7 +119,7 @@ export default function Admin() {
         </Link>
     
         <p className='text-gray-300 text-[16px] mt-[10px] ml-[15px] mb-[10px]'>TOOLS</p>
-        <Link to="/admin/QuickReplies">
+        {/* <Link to="/admin/QuickReplies">
             <div 
                 className={
                     active === 6 ? 
@@ -131,7 +131,7 @@ export default function Admin() {
                 <ReplyAllIcon style={{ color: '#0096FF', marginLeft: '15px' }}/>
                 <p className='ml-[10px] text-white text-[16px] font-semibold'>Quick Replies</p>
             </div>
-        </Link>
+        </Link> */}
         <Link to="/admin/RepairStatus">
             <div 
                 className={
@@ -158,7 +158,7 @@ export default function Admin() {
                 <p className='ml-[10px] text-white text-[16px] font-semibold'>Repair Priorities</p>
             </div>
         </Link>
-        <Link to="/admin/CustomPages">
+        {/* <Link to="/admin/CustomPages">
             <div 
                 className={
                     active === 9 ? 
@@ -183,8 +183,8 @@ export default function Admin() {
                 <HelpIcon style={{ color: '#0096FF', marginLeft: '15px' }}/>
                 <p className='ml-[10px] text-white text-[16px] font-semibold'>FAQ</p>
             </div>
-        </Link>
-        <Link to="/admin/Report">
+        </Link> */}
+        {/* <Link to="/admin/Report">
             <div 
                 className={
                     active === 11 ? 
@@ -196,7 +196,7 @@ export default function Admin() {
                 <AssignmentIcon style={{ color: '#0096FF', marginLeft: '15px' }}/>
                 <p className='ml-[10px] text-white text-[16px] font-semibold'>Report</p>
             </div>
-        </Link>
+        </Link> */}
 
         <p className='text-gray-300 text-[16px] mt-[10px] ml-[15px] mb-[10px]'>ADMINISTRATION</p>
         <Link to="/admin/Users">
@@ -240,7 +240,7 @@ export default function Admin() {
                 <p className='ml-[10px] text-white text-[16px] font-semibold'>Settings</p>
             </div>
         </Link>
-        <Link to="/admin/Backup">
+        {/* <Link to="/admin/Backup">
             <div 
                 className={
                     active === 15 ? 
@@ -252,7 +252,7 @@ export default function Admin() {
                 <StorageIcon style={{ color: '#0096FF', marginLeft: '15px' }}/>
                 <p className='ml-[10px] text-white text-[16px] font-semibold'>Backup</p>
             </div>
-        </Link>
+        </Link> */}
         <Link to="/admin/Translations">
             <div 
                 className={

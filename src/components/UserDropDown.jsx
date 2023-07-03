@@ -76,7 +76,7 @@ export default function UserDropDown(props) {
             SetDefect([])   
         }
     };
-    console.log(brand)
+    // console.log(brand)
 
     const handleModel = (e) => {
         SetModel(e.target.value)
@@ -86,19 +86,19 @@ export default function UserDropDown(props) {
             SetDefect([])   
         }
     };
-    console.log(model)
+    // console.log(model)
 
     const handleDefect = (e) => {
         let newDefect = e.target.value
-        console.log("Original:", newDefect)
+        // console.log("Original:", newDefect)
         const lastElement = newDefect[newDefect.length - 1];
-        console.log("Last Element:", lastElement)
+        // console.log("Last Element:", lastElement)
 
         let elementFound = false;
 
         if (newDefect.length >=2){
             newDefect.pop()
-            console.log("After Pop:", newDefect)
+            // console.log("After Pop:", newDefect)
             newDefect = newDefect.filter(item => {
                 if (item.id === lastElement.id ) {
                     elementFound = true;
@@ -106,15 +106,15 @@ export default function UserDropDown(props) {
                 }
                 return true; // Include all other elements in the filtered array
             });
-            console.log("After Filter: ", newDefect)
+            // console.log("After Filter: ", newDefect)
             if (elementFound === false){
                 newDefect = [...newDefect, lastElement]; 
             }
-            console.log("After adding Last Element: ", newDefect)
+            // console.log("After adding Last Element: ", newDefect)
         }
-        else {
-            console.log("New:", newDefect)
-        }
+        // else {
+        //     console.log("New:", newDefect)
+        // }
 
 
         SetDefect(null)
@@ -124,7 +124,7 @@ export default function UserDropDown(props) {
         // SetDefect(prevDefect => [...prevDefect, { id: "newId", text: "newText" }]);
         // SetDefect([...defect, newDefect])
     };
-    console.log(defect)
+    // console.log(defect)
 
 
     useEffect(() => {
