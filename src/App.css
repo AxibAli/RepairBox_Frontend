@@ -791,3 +791,17 @@ color: black
     margin-bottom: 0.2rem;
     text-transform:capitalize;
   }
+  .modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 66vw;
+    color: var(--bs-modal-color);
+    pointer-events: auto;
+    background-color: var(--bs-modal-bg);
+    background-clip: padding-box;
+    border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+    border-radius: var(--bs-modal-border-radius);
+    outline: 0;
+    /* height: 109%; */
+  }
