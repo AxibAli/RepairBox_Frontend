@@ -4,42 +4,88 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import { useState } from 'react';
 
 
 
-function Information({selectedPriority}) {
-  console.log(selectedPriority,"========+")
+function Information({PriorityValue}) {
+  console.log(PriorityValue,"========+")
+  const[name,SetName]=useState()
+  const[email,SetEmail]=useState()
+  const[phone,SetPhone]=useState()
+  const[serail,Setserail]=useState()
+  const[home,SetHome]=useState()
+  const[diagnostics,SetDiagnostics]=useState()
+
+  const handleName=(event)=>{
+    SetName(event.target.value)
+    console.log("Name",name);
+  }
+  const handleEmail=(event)=>{
+    SetEmail(event.target.value)
+    console.log("Email",email);
+  }
+  const handlePhone=(event)=>{
+    SetPhone(event.target.value)
+    console.log("phone",phone);
+  }
+  const handleSerail=(event)=>{
+    Setserail(event.target.value)
+    console.log("serail",serail);
+  }
+  const handleHome=(event)=>{
+    SetHome(event.target.value)
+    console.log("home",home);
+  }
+  const handleDiagnostics=(event)=>{
+    SetDiagnostics(event.target.value)
+    console.log("diagnostics",diagnostics);
+  }
+  // Define a function to handle form submission
+const handleSubmit = () => {
+  // Create an empty array
+  const inputValues = [];
+
+  // Push the values of the state variables into the array
+  inputValues.push(name);
+  inputValues.push(email);
+  inputValues.push(phone);
+  inputValues.push(serail);
+  inputValues.push(home);
+  inputValues.push(diagnostics);
+
+  // Display the array in the console
+  console.log(inputValues);
+};
+
   return (
     <Container>
       <Form>
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridName">
             <Form.Label>Name</Form.Label>
-            <Form.Control type="name" placeholder="Enter Your Name" />
+            <Form.Control type="name" onChange={handleName} placeholder="Enter Your Name" />
           </Form.Group>
           <Form.Group as={Col} controlId="formGridEmail">
             <Form.Label>Email Address</Form.Label>
-            <Form.Control type="email" placeholder="Enter Email Address" />
+            <Form.Control onChange={handleEmail} type="email" placeholder="Enter Email Address" />
           </Form.Group>
-
-
-
         </Row>
         <Row>
           <Form.Group as={Col} controlId="formGridPhone">
             <Form.Label>Phone</Form.Label>
-            <Form.Control type="tel" placeholder="Phone" />
+            <Form.Control onChange={handlePhone} type="tel" placeholder="Phone" />
           </Form.Group>
           <Form.Group as={Col} controlId="formGridPhone">
             <Form.Label>Serail number</Form.Label>
-            <Form.Control type="tel" placeholder="Serail number" />
+            <Form.Control  onChange={handleSerail} type="tel" placeholder="Serail number" />
           </Form.Group>
 
         </Row>
 
         <Form.Group className="mb-3" controlId="formGridAddress1">
           <Form.Label>Home Address</Form.Label>
-          <Form.Control placeholder="Home Address" />
+          <Form.Control onChange={handleHome} placeholder="Home Address" />
         </Form.Group>
 
 
@@ -48,8 +94,9 @@ function Information({selectedPriority}) {
 
         <Row >
           <Form.Label>Diagnostics</Form.Label>
-          <FloatingLabel controlId="floatingTextarea2" >
-            <Form.Control
+          <FloatingLabel  controlId="floatingTextarea2" >
+            <Form.Control 
+            onChange={handleDiagnostics}
               as="textarea"
               // placeholder="Leave a comment here"
               style={{ height: '100px' }}
@@ -83,7 +130,7 @@ function Information({selectedPriority}) {
             
           />Cash on delivery</span>
           </div>
-          <div style={{display:'flex',justifyContent:'flex-start',alignItems:'center',backgroundColor:'#fca5a5',border:'1px solid grey',borderRadius:10,marginLeft:'200px',marginTop:10,height:150,width:'700px'}}>
+          <div style={{display:'flex',justifyContent:'flex-start',alignItems:'center',backgroundColor:'#fca5a5',border:'1px solid grey',borderRadius:10,marginLeft:'200px',marginTop:50,height:150,width:'700px'}}>
             <div style={{fontSize:'12px',padding:'10px',}}>
             <p> <b>Warning: This is the demo Mode (Stripe/Braintree Sandbox)</b></p> 
             <p>Card Number : 4111 1111 1111 1111</p>
@@ -93,11 +140,12 @@ function Information({selectedPriority}) {
             </div>
           </div>
         </Row>
-{/* 
-        <Button variant="primary" type="submit">
+
+        <Button onClick={handleSubmit} variant="primary" >
           Submit
-        </Button> */}
+        </Button>
       </Form>
+
     </Container>
   );
 }

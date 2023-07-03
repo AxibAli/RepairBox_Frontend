@@ -82,11 +82,12 @@ export default function BasicSelect({value1,tog,CollBrands,CollModels,CollDefect
                 </FormControl>
 
             </Box>
-            {new_value ?
+            {/* {new_value ? */}
 
 
-                <Basic value2={{new_value,value1}} tg={tog}  Brands={CollBrands} Models={CollModels}   Defects={CollDefects} varBrand={varaiaBrand}  varDefect={varaiDefect} varModel={varaiModel} /> : null
-            }
+                <Basic value2={{new_value,value1}} tg={tog}  Brands={CollBrands} Models={CollModels}   Defects={CollDefects} varBrand={varaiaBrand}  varDefect={varaiDefect} varModel={varaiModel} /> 
+                {/* : null */}
+            {/* } */}
 
         </div>
 

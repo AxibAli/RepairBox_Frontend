@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import BasicSelect from "./dropdownone";
-import MultipleSelect from "./dropdown";
+import UserDropDown from "./UserDropDown";
 import Information from "./Information";
 import Priority from "./Priority";
 import Nextbtn from "./Nextbtn";
@@ -14,7 +13,7 @@ const Stepper = () => {
   const steps = ["REPAIR DEVICE", "PRIORITY LEVEL", "INFORMATION & PAYMENT"];
   const [currentStep, setCurrentStep] = useState(1);
   const [complete, setComplete] = useState(false);
-  const [isbrand, setIsbrand] = useState(false);
+  const [isbrand, setIsbrand] = useState(true);
   const [currentComponent, setCurrentComponent] = useState("MultipleSelect");
   const [nextBtnClicked, setNextBtnClicked] = useState(false);
   const[Toggle,SetToggle]=useState(false);
@@ -82,8 +81,12 @@ const Stepper = () => {
     switch (currentComponent) {
      
         case "MultipleSelect":
-          return <MultipleSelect setisbrand={setIsbrand} Togg={AlertToggle} CollectBrands={CollectBrand}  CollectModels={CollectModel} CollectDefects={CollectDefect} varaiableBrand={brand} varaiableModel={model} 
-          varaiableDefect={defect}   />;
+          return <UserDropDown/>
+          // <> <MultipleSelect setisbrand={setIsbrand} Togg={AlertToggle} CollectBrands={CollectBrand}  CollectModels={CollectModel} CollectDefects={CollectDefect} varaiableBrand={brand} varaiableModel={model} 
+          // varaiableDefect={defect}   />
+          // {/* <BasicSelect/>
+          // <Basic/> */}
+          //  </>;
        
       case "Priority":
         return <Priority  setSelectedPriority={setSelectedPriority}/>;
@@ -100,6 +103,7 @@ const Stepper = () => {
 
   return (
     <>
+    
      <ToastContainer
                   position="top-center"
                   autoClose={2000}
@@ -133,12 +137,94 @@ const Stepper = () => {
       {/* if (Toggle) {
     <Nextbtn t={PrevBtn} n={isbrand?NextBtn:Toast}  />
   } */}
-      {Toggle
+      {/* {Toggle
         ?  <Nextbtn  t={PrevBtn} n={isbrand?NextBtn:Toast}  />
         : <></>
-      }
+      } */}
+<Nextbtn  t={PrevBtn} n={isbrand?NextBtn:Toast}  />
     </>
   );
 };
 
 export default Stepper;
+// import React, { useState } from 'react';
+// import MultipleSelect from './dropdown';
+// import BasicSelect from './dropdownone';
+// import BasicComponent from './dropdowntwo';
+// import NextButton from './Nextbtn';
+
+// const Stepper = () => {
+//   const [currentStep, setCurrentStep] = useState(1);
+//   const [selectedValues, setSelectedValues] = useState({
+//     brands: '',
+//     models: '',
+//     issues: [],
+//   });
+
+//   const steps = [
+//     {
+//       component: <MultipleSelect selectedValues={selectedValues} setSelectedValues={setSelectedValues} />,
+//       label: 'Select Your Device Brand',
+//     },
+//     {
+//       component: <BasicSelect selectedValues={selectedValues} setSelectedValues={setSelectedValues} />,
+//       label: 'Select Your Device Model',
+//     },
+//     {
+//       component: <BasicComponent selectedValues={selectedValues} setSelectedValues={setSelectedValues} />,
+//       label: 'Select Repairable Issues',
+//     },
+//   ];
+
+//   const handleNext = () => {
+//     if (currentStep === steps.length) {
+//       // Perform action on the final step
+//       // e.g., submit form, make API call, etc.
+//       console.log('Form submitted:', selectedValues);
+//     } else {
+//       setCurrentStep((prevStep) => prevStep + 1);
+//     }
+//   };
+
+//   const handlePrevious = () => {
+//     if (currentStep > 1) {
+//       setCurrentStep((prevStep) => prevStep - 1);
+//     }
+//   };
+
+//   return (
+//     <div>
+//       <div className="step-navigation">
+//         {steps.map((step, index) => (
+//           <div
+//             key={index}
+//             className={`step-item ${currentStep === index + 1 ? 'active' : ''} ${
+//               currentStep > index + 1 ? 'completed' : ''
+//             }`}
+//           >
+//             {index + 1}
+//             <span className="step-label">{step.label}</span>
+//           </div>
+//         ))}
+//       </div>
+//       <div className="step-content">{steps[currentStep - 1].component}</div>
+//       <div className="step-actions">
+//         {currentStep > 1 && (
+//           <button className="btn btn-previous" onClick={handlePrevious}>
+//             Previous
+//           </button>
+//         )}
+//         {currentStep < steps.length && (
+//           <NextButton onClick={handleNext} />
+//         )}
+//         {currentStep === steps.length && (
+//           <button className="btn btn-submit" onClick={handleNext}>
+//             Submit
+//           </button>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Stepper;

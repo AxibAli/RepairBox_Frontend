@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, {  useEffect } from 'react';
 import Stack from 'react-bootstrap/Stack';
 import Container from 'react-bootstrap/Container';
 import '../App.css';
 import Information from './Information';
 import axios from "axios";
 
-function Priority({ setSelectedPriority }) {
+function Priority() {
 
+  const [selectedPriority, setSelectedPriority] = React.useState([]);
 
   const [showData, SetshowData] = React.useState([]);
   const handlePriorityChange = (event) => {
@@ -27,6 +28,9 @@ function Priority({ setSelectedPriority }) {
     }
   }
   console.log(showData, "showData")
+  {<Information PriorityValue={selectedPriority} />}
+  console.log("selectedPriority",selectedPriority)
+
   return (
     <Container>
       <h2>Select Priority</h2>

@@ -36,13 +36,13 @@ export default function MultipleSelect({setisbrand,Togg,CollectBrands,CollectMod
 
 
   };
-useEffect(()=>{
-  if(new_value){
-    setisbrand(true)
-  }else{
-    setisbrand(false)
-  }
-},[new_value])
+// useEffect(()=>{
+//   if(new_value){
+//     setisbrand(true)
+//   }else{
+//     setisbrand(false)
+//   }
+// },[new_value])
 
   useEffect(() => {
     FetchApiData();
@@ -83,11 +83,12 @@ useEffect(()=>{
 
         </FormControl>
       </Box>
-      {new_value ?
+      {/* {new_value ? */}
 
 
-        <BasicSelect value1={new_value} tog={Togg} CollBrands={CollectBrands} CollModels={CollectModels} CollDefects={CollectDefects} varaiaBrand={varaiableBrand} varaiModel={varaiableModel}  varaiDefect={varaiableDefect}  /> : null
-      }
+        <BasicSelect value1={new_value} tog={Togg} CollBrands={CollectBrands} CollModels={CollectModels} CollDefects={CollectDefects} varaiaBrand={varaiableBrand} varaiModel={varaiableModel}  varaiDefect={varaiableDefect}  />
+         {/* : null */}
+      {/* } */}
     </div>
   );
 }
