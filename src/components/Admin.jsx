@@ -15,6 +15,7 @@ import LockPersonIcon from '@mui/icons-material/LockPerson';
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 import StorageIcon from '@mui/icons-material/Storage';
 import LanguageIcon from '@mui/icons-material/Language';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 export default function Admin() {
     let history = useNavigate();
@@ -60,6 +61,19 @@ export default function Admin() {
             >
                 <HandymanIcon style={{ color: '#0096FF', marginLeft: '15px' }}/>
                 <p className='ml-[10px] text-white text-[16px] font-semibold'>Repair Orders</p>
+            </div>
+        </Link>
+        <Link to="/admin/CustomerPurchase">
+            <div 
+                className={
+                    active === 2 ? 
+                    'w-[100%] h-[50px] flex justify-start items-center bg-[#2a426d]' :
+                    'w-[100%] h-[50px] flex justify-start items-center hover:bg-[#2a426d] hover:cursor-pointer'
+                } 
+                onClick={() => setactive(17)}
+            >
+                <AddShoppingCartIcon style={{ color: '#0096FF', marginLeft: '15px' }}/>
+                <p className='ml-[10px] text-white text-[16px] font-semibold'>Customer Purchase</p>
             </div>
         </Link>
     

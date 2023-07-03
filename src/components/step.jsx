@@ -8,33 +8,40 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import { TiTick } from "react-icons/ti";
 
+import UserDropDown from "./UserDropDown";
 
 const Stepper = () => {
   const [selectedPriority, setSelectedPriority] = useState("$0.00");
   const steps = ["REPAIR DEVICE", "PRIORITY LEVEL", "INFORMATION & PAYMENT"];
   const [currentStep, setCurrentStep] = useState(1);
   const [complete, setComplete] = useState(false);
-  const [isbrand, setIsbrand] = useState(false);
+  const [isbrand, setIsbrand] = useState(true);
   const [currentComponent, setCurrentComponent] = useState("MultipleSelect");
   const [nextBtnClicked, setNextBtnClicked] = useState(false);
+
   const[Toggle,SetToggle]=useState(false);
-  const[brand,SetBrand]=useState([]);
-  const[model,SetModel]=useState([]);
-  const[defect,SetDefect]=useState([]);
 
-  const CollectBrand=(x)=>{
-     SetBrand(x)
-  }
-  console.log(brand)
-  const CollectModel=(y)=>{
-    SetModel(y)
-  }
-  console.log(model)
+  // State Management for Level 1 
+  const [brandID, setbrandID] = useState()
+  const [modelID, setmodelID] = useState()
+  const [defectID, setdefectID] = useState([])
 
-  const CollectDefect=(z)=>{
-    SetDefect(z)
+  const BrandState=(br)=>{
+    setbrandID(br)
   }
-  console.log(defect)
+  console.log("Level 1 Brand State: ", brandID)
+
+  const ModelState=(mo)=>{
+    setmodelID(mo)
+  }
+  console.log("Level 1 Model State: ", modelID)
+
+  const DefectState=(de)=>{
+    setdefectID(null)
+    setdefectID(de)
+  }
+  console.log("Level 1 Defect State: ", defectID)
+
 
   const AlertToggle=()=>{
     SetToggle(true)
@@ -78,12 +85,17 @@ const Stepper = () => {
       setNextBtnClicked(false);
     }
   };
+  // <MultipleSelect setisbrand={setIsbrand} Togg={AlertToggle} CollectBrands={CollectBrand}  CollectModels={CollectModel} CollectDefects={CollectDefect} varaiableBrand={brand} varaiableModel={model} 
+  //         varaiableDefect={defect}   />
   const renderComponent = () => {
     switch (currentComponent) {
      
-        case "MultipleSelect":
-          return <MultipleSelect setisbrand={setIsbrand} Togg={AlertToggle} CollectBrands={CollectBrand}  CollectModels={CollectModel} CollectDefects={CollectDefect} varaiableBrand={brand} varaiableModel={model} 
-          varaiableDefect={defect}   />;
+      case "MultipleSelect":
+        return <UserDropDown 
+                  BrandFunc={BrandState} BrandCurr={brandID} 
+                  ModelFunc={ModelState} ModelCurr={modelID} 
+                  DefectFunc={DefectState} DefectCurr={defectID} 
+                />;
        
       case "Priority":
         return <Priority  setSelectedPriority={setSelectedPriority}/>;
@@ -133,10 +145,9 @@ const Stepper = () => {
       {/* if (Toggle) {
     <Nextbtn t={PrevBtn} n={isbrand?NextBtn:Toast}  />
   } */}
-      {Toggle
-        ?  <Nextbtn  t={PrevBtn} n={isbrand?NextBtn:Toast}  />
-        : <></>
-      }
+      
+      <Nextbtn  t={PrevBtn} n={isbrand?NextBtn:Toast}  />
+       
     </>
   );
 };

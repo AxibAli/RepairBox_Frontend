@@ -10,7 +10,7 @@ import axios from "axios";
 
 
 
-export default function MultipleSelect({setisbrand,Togg,CollectBrands,CollectModels,CollectDefects,varaiableBrand,varaiableModel,varaiableDefect}) {
+export default function MultipleSelect() {
 
   const [age, setAge] = React.useState([]);
   const [showData, SetshowData] = React.useState([]);
@@ -36,13 +36,13 @@ export default function MultipleSelect({setisbrand,Togg,CollectBrands,CollectMod
 
 
   };
-useEffect(()=>{
-  if(new_value){
-    setisbrand(true)
-  }else{
-    setisbrand(false)
-  }
-},[new_value])
+// useEffect(()=>{
+//   if(new_value){
+//     setisbrand(true)
+//   }else{
+//     setisbrand(false)
+//   }
+// },[new_value])
 
   useEffect(() => {
     FetchApiData();
@@ -50,7 +50,7 @@ useEffect(()=>{
   const FetchApiData = async () => {
     try {
       const response = await axios.get("http://18.221.148.248:84/api/v1/Brand/GetBrandsforDropdown");
-      // console.log(response.data.data);
+      console.log(response.data.data);
 
       SetshowData(response.data.data);
       // console.log("==================>data",response?.data?.data)
@@ -72,7 +72,7 @@ useEffect(()=>{
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={varaiableBrand}
+            // value={}
             label="Age"
             onChange={handleChange}
           >
@@ -83,11 +83,11 @@ useEffect(()=>{
 
         </FormControl>
       </Box>
-      {new_value ?
+      {/* {new_value ?
 
 
         <BasicSelect value1={new_value} tog={Togg} CollBrands={CollectBrands} CollModels={CollectModels} CollDefects={CollectDefects} varaiaBrand={varaiableBrand} varaiModel={varaiableModel}  varaiDefect={varaiableDefect}  /> : null
-      }
+      } */}
     </div>
   );
 }

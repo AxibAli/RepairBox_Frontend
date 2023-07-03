@@ -8,6 +8,7 @@ import CustPages from './components/custompages'
 import FAQ from './components/faq'
 import QuickReplies from './components/quickreplies'
 import RepOrder from './components/repairorder'
+import CustPurch from './components/PurchaseCustomer'
 // import RepDefects from './components/repdefects'
 import RepDefects from './components/repDefectsFurqan'
 import RepDevices from './components/repdevices'
@@ -73,6 +74,7 @@ function App() {
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="Dashboard" element={<Dashboard />} />
           <Route path="RepairOrders" element={<RepOrder />} />
+          <Route path="CustomerPurchase" element={<CustPurch />} />
           <Route path="Brands" element={<Brands />} />
           <Route path="RepairableDevices" element={<RepDevices />} />
           {/* <Route path="RepairableDevices" element={<RepairDevices />} /> */}
