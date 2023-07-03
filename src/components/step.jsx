@@ -15,7 +15,7 @@ const Stepper = () => {
   const steps = ["REPAIR DEVICE", "PRIORITY LEVEL", "INFORMATION & PAYMENT"];
   const [currentStep, setCurrentStep] = useState(1);
   const [complete, setComplete] = useState(false);
-  const [isbrand, setIsbrand] = useState(true);
+  const [isbrand, setIsbrand] = useState(false);
   const [currentComponent, setCurrentComponent] = useState("MultipleSelect");
   const [nextBtnClicked, setNextBtnClicked] = useState(false);
 
@@ -39,6 +39,7 @@ const Stepper = () => {
   const DefectState=(de)=>{
     setdefectID(null)
     setdefectID(de)
+    setIsbrand(true)
   }
   console.log("Level 1 Defect State: ", defectID)
 
@@ -85,6 +86,8 @@ const Stepper = () => {
       setNextBtnClicked(false);
     }
   };
+  console.log("Current Step:", currentStep)
+  
   // <MultipleSelect setisbrand={setIsbrand} Togg={AlertToggle} CollectBrands={CollectBrand}  CollectModels={CollectModel} CollectDefects={CollectDefect} varaiableBrand={brand} varaiableModel={model} 
   //         varaiableDefect={defect}   />
   const renderComponent = () => {
