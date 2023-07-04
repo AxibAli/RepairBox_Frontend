@@ -128,27 +128,64 @@
 //   );
 // }
 // export default ResponsiveAppBar;
+// import Container from 'react-bootstrap/Container';
+// import Navbar from 'react-bootstrap/Navbar';
+// import Nav from 'react-bootstrap/Nav';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import HomeLogo from '../images/logohome.png'
+
+// // import Button from 'react-bootstrap/Button';
+// // import styles from './MyNavbar.module.css'
+// import '../App.css'
+
+
+// function ColorSchemesExample() {
+//   return (
+//     <div>     
+//       <Navbar style={{backgroundColor:'#fff',padding:20}} >
+//         <Container>
+//           <Navbar.Brand href="/" ><img src={HomeLogo} style={{height:'100px',width:'100px'}} /></Navbar.Brand>
+//           <Nav style={{float:'right',fontSize:'16px',fontWeight:'400'}}>
+//             <Nav.Link  href="/about">About Us</Nav.Link>
+//             <Nav.Link href="/book-repair">Booking</Nav.Link>
+//             <Nav.Link href="/track">Track</Nav.Link>      
+//            <Nav.Link className='LoginBtn'   href="/auth/login">LOGIN</Nav.Link> 
+//           </Nav>
+//         </Container>
+//       </Navbar>
+//       </div>
+//   );
+// }
+
+// export default ColorSchemesExample;
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import HomeLogo from '../images/logohome.png'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import HomeLogo from '../images/logohome.png';
+import '../App.css';
 
 function ColorSchemesExample() {
   return (
-    <div>     
-      <Navbar style={{backgroundColor:'#fff',padding:20}} variant="dark">
-        <Container>
-          <Navbar.Brand href="/" style={{color:'#7642FF'}}><img src={HomeLogo} style={{height:'100px',width:'100px'}} /></Navbar.Brand>
-          <Nav style={{float:'right',fontSize:'18px',fontWeight:'400'}}>
-            <Nav.Link  style={{color:'grey'}} href="/about">About Us</Nav.Link>
-            <Nav.Link  style={{color:'grey'}} href="/book-repair">Booking</Nav.Link>
-            <Nav.Link  style={{color:'grey'}} href="/track">Track</Nav.Link>
-            <Nav.Link  style={{color:'grey'}} href="/auth/login">Login</Nav.Link>
+    <Navbar expand="lg" style={{ backgroundColor: '#fff', padding: 20 }}>
+      <Container>
+        <Navbar.Brand href="/">
+          <img src={HomeLogo} style={{ height: '100px', width: '100px' }} alt="Home Logo" />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ml-auto" style={{ fontSize: '16px', fontWeight: '400' }}>
+            <Nav.Link href="/about">About Us</Nav.Link>
+            <Nav.Link href="/book-repair">Booking</Nav.Link>
+            <Nav.Link href="/track">Track</Nav.Link>
+            <Nav.Link className="LoginBtn" href="/auth/login">LOGIN</Nav.Link>
           </Nav>
-        </Container>
-      </Navbar>
-      </div>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }
 
 export default ColorSchemesExample;
+
