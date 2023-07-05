@@ -5,13 +5,16 @@ import '../App.css';
 import Information from './Information';
 import axios from "axios";
 
-function Priority({ setSelectedPriority }) {
+function Priority(props) {
 
 
   const [showData, SetshowData] = React.useState([]);
+
   const handlePriorityChange = (event) => {
-    setSelectedPriority(event.target.value);
+    console.log("Priority: " , event.target.value)
+    props.PS(event.target.value);
   };
+
   useEffect(() => {
     FetchApiData();
   }, [])
@@ -28,7 +31,7 @@ function Priority({ setSelectedPriority }) {
   }
   console.log(showData, "showData")
   return (
-    <Container>
+    <Container >
       <h2>Select Priority</h2>
       <p>Repair processing priority.</p>
       {showData && showData.map((item, value) => (
@@ -38,8 +41,9 @@ function Priority({ setSelectedPriority }) {
             <input
               type="radio"
               name="myRadio"
-              // value={id}
+              value={item.id}
               key={value}
+              checked={props.PriorityCurr == item.id}
               onChange={handlePriorityChange}
             />
           </div>

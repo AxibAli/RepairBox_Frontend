@@ -112,15 +112,15 @@ export default function UserDropDown(props) {
             }
             // console.log("After adding Last Element: ", newDefect)
         }
-        // else {
-        //     console.log("New:", newDefect)
-        // }
+        else {
+            console.log("New:", newDefect)
+        }
 
 
         SetDefect(null)
         SetDefect(newDefect)
         props.DefectFunc(newDefect)
-
+        props.TL()
         // SetDefect(prevDefect => [...prevDefect, { id: "newId", text: "newText" }]);
         // SetDefect([...defect, newDefect])
     };
