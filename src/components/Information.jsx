@@ -77,7 +77,8 @@ function Information({selectedPriority}) {
         </Row>
         <Row  style={{float:'center',marginBottom:20}}>
           <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
-         <span style={{fontSize:'14px',backgroundColor:'#d1d5db',padding:10,border:'1px solid grey',borderRadius:10}}> <input
+         <span style={{fontSize:'14px',backgroundColor:'#d1d5db',padding:10,border:'1px solid grey',borderRadius:10}}> 
+         <input
             type="radio"
             name="myRadio"
             

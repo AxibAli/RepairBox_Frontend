@@ -3,6 +3,7 @@ import Navbar from './navber';
 import 'antd/dist/reset.css';
 import BasicStack from './heading';
 import HorizontalLabelPositionBelowStepper from './step';
+import UserForm from './UserStepForm';
 import MultipleSelect from './dropdown';
 import Types from './typo';
 import AllCollapseExample from './accor';

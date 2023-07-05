@@ -13,6 +13,8 @@ import Footer from './Footer';
 import  Navbar  from './navbar'
 import  Navber  from './navber'
 
+import UserForm from './UserStepForm'
+
 export default function Booking() {
   
 // let navbarCheck = () => {
@@ -34,7 +36,8 @@ export default function Booking() {
         {/* {navbarCheck()} */}
       {/* <Navbar /> */}
      <BasicStack />
-      <HorizontalLabelPositionBelowStepper />
+     <UserForm/>
+      {/* <HorizontalLabelPositionBelowStepper /> */}
       {/* <MultipleSelect /> */}
       {/* <Nextbtn/> */}
       {/* <Types />
