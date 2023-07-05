@@ -96,7 +96,7 @@ const brands = () => {
 
     const handleBrandData = async () =>{
       try {
-         const getResponse = await axios.get(`http://18.221.148.248:84/api/v1/Brand/GetBrands?pageNo=${currentPage}`)
+         const getResponse = await axios.get(`${process.env.REACT_APP_BASE_URL}/Brand/GetBrands?pageNo=${currentPage}`)
         //  console.log(getResponse.data.data?.data,"response")
         // console.log(getResponse.data)
          if (getResponse.status==200) {
