@@ -105,10 +105,10 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { Box } from '@mui/material';
 
-function MiddleSexction() {
+function MiddleSection() {
   return (
     <Container>
-      <Row style={{ height: "500px", backgroundColor: '#f9fafb', marginTop: 100 }}>
+      <Row style={{ height: "500px", backgroundColor: '#f9fafb', }}>
         <Col style={{ backgroundColor: '#f9fafb', fontWeight: 600, margin: '50px 20px', textAlign: 'justify' }} sm={12} md={5}>
           <h1 style={{ fontSize: '3rem', marginBottom: '1rem' }}>
             Services we love to provide
@@ -185,4 +185,4 @@ function MiddleSexction() {
   );
 }
 
-export default MiddleSexction;
+export default MiddleSection;

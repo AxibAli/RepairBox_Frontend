@@ -1,9 +1,27 @@
+/* YOu can Add Global Style to this file And also Import Other Style File  */
+:root{
+  --bs-font:'poppins';
+  --primarytextcolor:#000;
+  --secondarytextcolor:#fff;
+  --largeheadingfontsize:'48px';
+  --normalheadingfontsize:'24px';
+  --generalfontsize:'16px';
+  --bg-gradient:#f8f9fb;
+  --bg-gradientcard:#fff;
+
+  
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: var(--bs-font )!important;
+  background: var( --bg-gradient) ;
 }
-
+.abc{
+  background: var( --bg-gradientcard) !important ;
+}
 .form-error {
   color: red;
   font-family: Poppins, sans-serif;
@@ -110,6 +128,8 @@
   font-size: 14px;
   font-weight: 400;
   padding: 6px 10px;  
+  display: flex;
+  justify-content: center;
   /* padding-left: 500px; */
   /* text-transform: capitalize !important; */
   color: #7642FF !important ;
@@ -117,7 +137,8 @@
   border-radius: 20px;
   height: 35px;
   margin-top: 3px;
-  width: 60px;
+  margin-left: 3;
+  width: 100px;
   border: 1px solid #7642FF;
 
 }
@@ -131,16 +152,31 @@
 
 
 /* ====================Navber End Csss==================== */
+.AskedQues{
+
+  background-color: #f44336;
+}
+@media screen and (max-width: 480px) {
+  #AskedQues {
+    margin-top: 1500px;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+  }
+  #StartFree{
+    font-size: 14px;
+  }
+}
 /* ====================Contact Us Start Csss==================== */
 .contact-form {
-  margin-top: 250px;
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 @media screen and (max-width: 480px) {
   .contact-form {
-    margin-top: 1500px;
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
