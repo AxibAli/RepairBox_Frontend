@@ -84,8 +84,8 @@ function Contact() {
       <Row>
         <Col>
           <div style={{ marginTop: '50px', color: '#69717c' }}>
-            <h2 id='StartFree' style={{ fontSize: '3rem', color: '#3e396b', lineHeight: '2.5', textAlign: 'center' }}>Start your free trial</h2>
-            <h3 style={{ fontSize: '1.5rem', fontWeight: '400', color: '#3e396b', lineHeight: '1', textAlign: 'center' }}>Signup now. It's free and takes less than 3 minutes</h3>
+            <h2 id='StartFree' style={{ fontSize: '3rem', color: '#3e396b', lineHeight: '2.5', textAlign: 'center' }}>Get In Touch</h2>
+            <h3 style={{ fontSize: '1.5rem', fontWeight: '400', color: '#3e396b', lineHeight: '1', textAlign: 'center' }}>Let's Start a Conversation</h3>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', marginTop: '40px' }}>
               <input
                 style={{ width: '100%', maxWidth: '500px', height: '50px', padding: '20px', margin: '5px', border: '1px solid grey', borderRadius: '200px' }}
@@ -104,19 +104,14 @@ function Contact() {
                 onChange={(e) => setEmail(e.target.value)}
               /><br />
               <input
-                style={{ width: '100%', maxWidth: '500px', height: '50px', padding: '20px', margin: '5px', border: '1px solid grey', borderRadius: '200px' }}
+                style={{ width: '100%', maxWidth: '500px', padding: '20px', margin: '5px', border: '1px solid grey', borderRadius: '200px' }}
                 name='password'
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                type="text"
+                placeholder="Your Message"
+                cols="30" rows="10"
               /><br />
-              <button
-                style={{ width: '100%', maxWidth: '500px', color: '#fff', backgroundColor: '#7642ff', height: '60px', margin: '5px', border: '1px solid grey', borderRadius: '200px', fontSize: '1.125rem', fontWeight: '500' }}
-                onClick={handleButtonClick}
-              >
-                GET STARTED FOR FREE
-              </button>
+              <button style={{ width: '100%', maxWidth: '500px', color: '#fff', backgroundColor: '#7642ff', height: '60px', margin: '5px', border: '1px solid grey', borderRadius: '200px', fontSize: '1.125rem', fontWeight: '500' }}
+                onClick={handleButtonClick}>Send Message</button>
             </div>
           </div>
         </Col>

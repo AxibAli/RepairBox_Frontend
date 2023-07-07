@@ -8,8 +8,6 @@
   --generalfontsize:'16px';
   --bg-gradient:#f8f9fb;
   --bg-gradientcard:#fff;
-
-  
 }
 
 * {
@@ -17,7 +15,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: var(--bs-font )!important;
-  background: var( --bg-gradient) ;
+  /* background: var( --bg-gradient) ; */
 }
 .abc{
   background: var( --bg-gradientcard) !important ;
