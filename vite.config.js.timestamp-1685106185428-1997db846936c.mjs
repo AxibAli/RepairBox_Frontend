@@ -2,6 +2,9 @@
 import { defineConfig } from "file:///D:/Final%20Project%20Repairbox/RepairBox_Frontend/node_modules/vite/dist/node/index.js";
 import react from "file:///D:/Final%20Project%20Repairbox/RepairBox_Frontend/node_modules/@vitejs/plugin-react/dist/index.mjs";
 var vite_config_default = defineConfig({
+  define: {
+    'process.env': process.env
+  },
   plugins: [react()]
 });
 export {

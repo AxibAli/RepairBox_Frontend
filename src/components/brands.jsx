@@ -96,6 +96,7 @@ const brands = () => {
 
     const handleBrandData = async () =>{
       try {
+        console.log(process.env.REACT_APP_BASE_URL)
          const getResponse = await axios.get(`${process.env.REACT_APP_BASE_URL}/Brand/GetBrands?pageNo=${currentPage}`)
         //  console.log(getResponse.data.data?.data,"response")
         // console.log(getResponse.data)
