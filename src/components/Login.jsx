@@ -59,7 +59,8 @@ const WorkshopPage = () => {
             </button>
           </div>
           <button
-            className="bg-blue-500 hover:bg-blue-600 text-white rounded mt-6 py-2 px-4 font-semibold"
+          className="LoginBtn"
+            // className="bg-blue-500 hover:bg-blue-600 text-white rounded mt-6 py-2 px-4 font-semibold"
           >
             Sign In
           </button>
