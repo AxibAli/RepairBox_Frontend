@@ -6,7 +6,7 @@ import HorizontalLabelPositionBelowStepper from './step';
 import MultipleSelect from './dropdown';
 import AllCollapseExample from './accor';
 import MiddleSexction from './middlesec';
-import Types from './typo';
+// import Types from './typo';
 import Nextbtn from './Nextbtn';
 import Contact from './Contact';
 import Footer from './Footer';

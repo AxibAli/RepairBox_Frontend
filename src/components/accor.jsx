@@ -38,12 +38,26 @@
 
 // export default AllCollapseExample;
 import React from 'react';
+import Typography from '@mui/material/Typography';
 import Accordion from 'react-bootstrap/Accordion';
 import { Box } from '@mui/material';
+import '../App.css'
 
 function AllCollapseExample() {
   return (
+    <div className='abc'>
+   
+    <Box   sx={{ width: '100%', marginTop: 40, textAlign: 'center' }}>
+<Typography variant="h4" sx={{ fontSize: '2rem', marginBottom: '1rem', '@media (max-width: 600px)': { fontSize: '1.5rem' } }}>
+  Frequently Asked Questions
+</Typography>
+<Typography variant="body1" sx={{ color: 'grey', '@media (max-width: 600px)': { fontSize: '0.9rem' } }}>
+  The most common questions about how our works.
+</Typography>
+</Box>
+    
     <Box sx={{ marginTop: 15, width: '80%', marginLeft: 'auto', marginRight: 'auto' }}>
+     
       <Accordion>
         <Accordion.Item eventKey="0">
           <Accordion.Header>How does it work?</Accordion.Header>
@@ -74,6 +88,7 @@ function AllCollapseExample() {
         </Accordion.Item>
       </Accordion>
     </Box>
+    </div>
   );
 }
 
