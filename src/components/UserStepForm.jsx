@@ -132,11 +132,13 @@ export default function UserStepForm() {
         <div
             style={{
             marginTop: 24,
+
             }}
         >
             {current < steps.length - 1 && (
             <Button 
-                type="primary" 
+            className='LoginBtn'
+                // type="primary" 
                 onClick={
                     steps[current].title === "Repair Device"?
                         toggleNextLevel?
@@ -155,12 +157,13 @@ export default function UserStepForm() {
             </Button>
             )}
             {current === steps.length - 1 && (
-            <Button type="primary" onClick={() => message.success('Processing complete!')}>
+            <Button  className='LoginBtn' type="primary" onClick={() => message.success('Processing complete!')}>
                 Done
             </Button>
             )}
             {current > 0 && (
             <Button
+            // className='LoginBtn'
                 style={{
                 margin: '0 8px',
                 }}
