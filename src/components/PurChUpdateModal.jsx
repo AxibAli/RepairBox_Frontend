@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {RxCross2 } from "react-icons/all";
+import { IoIosArrowDroprightCircle} from "react-icons/all";
 import { Button, Modal } from 'antd';
 import {  
     Input,
@@ -8,9 +9,10 @@ import {
     Form, 
 } from 'reactstrap';
 
+
 import axios from "axios"
 
-export default function PurChCreateModal() {
+export default function PurChUpdateModal() {
     const [modal, setModal] = useState(false);
     const [option, setOption] = useState(true);
     const [selectedImage, setSelectedImage] = useState(null);
@@ -24,26 +26,50 @@ export default function PurChCreateModal() {
     };
 
     const handleImageChange = (event) => {
-        const file = event.target.files[0];
-        setSelectedImage(URL.createObjectURL(file));
+      const file = event.target.files[0];
+      setSelectedImage(URL.createObjectURL(file));
     };
-    //  Create brand API
+          //  Create brand API
+    const handleSave = async (e) =>{
+        e.preventDefault();
+        // try {
+        //     const response = await axios.post(`http://18.221.148.248:84/api/v1/Order/AddStatus`, {name:`${text}`});
+        //     // Handle the response
+        //     // console.log(response.data);
+            
+        //     if (response.status==200) {
+        //         console.log(response?.data?.message)
+        //         toggle()
+        //         // state b khali kr do
+        //         // handleBrandData()
+        //         props.getData()
+        //         settext("") 
+        //         // this.reset()
+        //     }
+        // } catch (error) {
+        //     // Handle any errors
+        //     console.error(error);
+        // }
+    };
   return (
-    <div>
-        <div className="brand-create-button">
+  <div>
+        <div className='w-[50px] h-[50] flex justify-center items-center group' onClick={toggle}>
+          <IoIosArrowDroprightCircle className='text-blue-500 group-hover:text-black' style={{fontSize: '20px' }}/>
+        </div>
+        {/* <div className="brand-create-button">
             <button 
                 onClick={toggle}
             >
                 Create
             </button>
-        </div>
+        </div> */}
 
         <Modal
-            title={<p className='text-[20px]'>Create Customer Product</p>}
+            title={<p className='text-[20px]'>Update Customer Product</p>}
             centered
             open={modal}
             onOk={toggle}
-            okText={"Create"}
+            okText={"Update"}
             onCancel={toggle}
             cancelButtonProps={{ style: { display: 'none' } }}
             width={1000}
@@ -193,5 +219,3 @@ export default function PurChCreateModal() {
     </div>
   )
 }
-
-//   className='w-[160px] h-[40px] bg-[#0096FF] focus-visible:bg-[#0096FF] rounded-[10px] hover:bg-[#3aa8f7] border-none text-white text-[16px] font-semibold' 
