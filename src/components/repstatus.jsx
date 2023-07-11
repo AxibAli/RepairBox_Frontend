@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import dataI from './repstatusData'
+// import dataI from './XrepstatusData'
 import CModal from './repStModalCreate'
 import UModal from './repStModalUpdate'
 
@@ -17,7 +17,7 @@ export default function repstatus() {
 
   const handleStatusData = async () =>{
     try {
-       const getResponse = await axios.get(`http://18.221.148.248:84/api/v1/Order/GetStatuses`)
+       const getResponse = await axios.get(`${process.env.REACT_APP_BASE_URL}/Order/GetStatuses`)
       //  console.log(getResponse.data.data?.data,"response")
        if (getResponse.status==200) {
         console.log("Render")
@@ -33,7 +33,7 @@ export default function repstatus() {
     const ID = e.currentTarget.getAttribute('ID');
     console.log(ID);
     try {
-       const getResponse = await axios.delete(`http://18.221.148.248:84/api/v1/Order/DeleteStatus?statusId=${ID}`)
+       const getResponse = await axios.delete(`${process.env.REACT_APP_BASE_URL}/Order/DeleteStatus?statusId=${ID}`)
       //  console.log(getResponse.data.data?.data,"response")
        if (getResponse.status==200) {
           handleStatusData()

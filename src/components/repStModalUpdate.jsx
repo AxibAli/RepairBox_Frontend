@@ -27,7 +27,7 @@ export default function repStModalUpdate(props) {
     const handleUpdate = async (e) =>{
         e.preventDefault();
         try {
-            const response = await axios.put(`http://18.221.148.248:84/api/v1/Order/UpdateStatus`, {id:`${id}`, name:`${text}`});
+            const response = await axios.put(`${process.env.REACT_APP_BASE_URL}/Order/UpdateStatus`, {id:`${id}`, name:`${text}`});
             // Handle the response
             // console.log(response.data);
             

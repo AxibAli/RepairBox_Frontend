@@ -20,7 +20,7 @@ function Priority(props) {
   }, [])
   const FetchApiData = async () => {
     try {
-      const response = await axios.get("http://18.221.148.248:84/api/v1/Order/GetPriorities");
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/Order/GetPriorities`);
 
       SetshowData(response.data.data);
 

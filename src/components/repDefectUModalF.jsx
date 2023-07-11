@@ -35,7 +35,7 @@ export default function repDefectUModalF(props) {
     const handleDefectUpdate = async (e) =>{
       e.preventDefault();
       try {
-          const response = await axios.post(`http://18.221.148.248:84/api/v1/Brand/UpdateDefect`, {id:`${id}`, defectName:`${name}`, repairTime:`${time}`, cost:`${cost}`, price:`${parseInt(price, 10)}`});
+          const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/Brand/UpdateDefect`, {id:`${id}`, defectName:`${name}`, repairTime:`${time}`, cost:`${cost}`, price:`${parseInt(price, 10)}`});
           // Handle the response
           // console.log(response.data);
           

@@ -77,7 +77,7 @@ const repdevices = () => {
     console.log(UmodelId, Uname, UmodelName, selectedBrand)
     try {
       const editForm = await axios.post(
-        `http://18.221.148.248:84/api/v1/Brand/UpdateModel`,
+        `${process.env.REACT_APP_BASE_URL}/Brand/UpdateModel`,
         {
           id: `${UmodelId}`,
           name: `${Uname}`,
@@ -102,7 +102,7 @@ const repdevices = () => {
     // console.log(brandId)
     try {
       const response = await axios.post(
-        `http://18.221.148.248:84/api/v1/Brand/DeleteModel?Id=${idDelete}`
+        `${process.env.REACT_APP_BASE_URL}/Brand/DeleteModel?Id=${idDelete}`
       );
       if (response.status === 200) {
         // console.log("deleted brand successfully");
@@ -122,7 +122,7 @@ const repdevices = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `http://18.221.148.248:84/api/v1/Brand/AddModel`,
+        `${process.env.REACT_APP_BASE_URL}/Brand/AddModel`,
         {
           name: `${singleModelName}`,
           model: `${singleModel}`,
@@ -156,7 +156,7 @@ const repdevices = () => {
       // formData.append("brandId", selectedBrand);
       // console.log([...formData]);
       const response = await axios.post(
-        `http://18.221.148.248:84/api/v1/Brand/AddModels?brandId=${selectedBrand}`,
+        `${process.env.REACT_APP_BASE_URL}/Brand/AddModels?brandId=${selectedBrand}`,
         formData
       );
       if (response.status === 200) {
@@ -177,7 +177,7 @@ const repdevices = () => {
   const dropDownData = async () => {
     try {
       const getDrop = await axios.get(
-        `http://18.221.148.248:84/api/v1/Brand/GetBrandsforDropdown`
+        `${process.env.REACT_APP_BASE_URL}/Brand/GetBrandsforDropdown`
       );
       //  console.log(getDrop)
       if (getDrop.status == 200) {
@@ -196,7 +196,7 @@ const repdevices = () => {
   const getDevicesData = async () => {
     try {
       const response = await axios.get(
-        `http://18.221.148.248:84/api/v1/Brand/GetModels?query=&pageNo=${currentPage}`
+        `${process.env.REACT_APP_BASE_URL}/Brand/GetModels?query=&pageNo=${currentPage}`
       );
       // console.log(response.data.data.data);
 

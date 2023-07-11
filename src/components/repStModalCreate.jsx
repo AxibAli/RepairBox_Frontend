@@ -26,7 +26,7 @@ export default function repStModalCreate(props) {
     const handleSave = async (e) =>{
         e.preventDefault();
         try {
-            const response = await axios.post(`http://18.221.148.248:84/api/v1/Order/AddStatus`, {name:`${text}`});
+            const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/Order/AddStatus`, {name:`${text}`});
             // Handle the response
             // console.log(response.data);
             
