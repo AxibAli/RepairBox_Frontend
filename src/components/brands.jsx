@@ -57,7 +57,7 @@ const brands = () => {
         // formData.append('brandId', selectedBrand)
         // console.log([...formData])
           const response = await axios.post(
-            'http://18.221.148.248:84/api/v1/Brand/AddBrands',
+            `${process.env.REACT_APP_BASE_URL}/Brand/AddBrands`,
            formData
           );
           if (response.status === 200) {
@@ -74,7 +74,7 @@ const brands = () => {
   const saveForm = async (e) =>{
     e.preventDefault();
     try {
-      const response = await axios.post(`http://18.221.148.248:84/api/v1/Brand/AddBrand?Name=${name}`,
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/Brand/AddBrand?Name=${name}`,
     );
       if (response.status===200) {
         toast.success('Brand Created Successfully');
@@ -122,7 +122,7 @@ const brands = () => {
     const EditForm = async (e) =>{
       e.preventDefault();
       try {
-      const response = await axios.post(`http://18.221.148.248:84/api/v1/Brand/UpdateBrand?Id=${brandId}&Name=${name}`);
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/Brand/UpdateBrand?Id=${brandId}&Name=${name}`);
         // Handle the response
         // console.log(response.data,"datatttattatt");
         if (response.status==200) {
@@ -144,7 +144,7 @@ const brands = () => {
         // console.log(brandId)
         try {
           const response = await axios.post(
-            `http://18.221.148.248:84/api/v1/Brand/DeleteBrand?Id=${brandId}`
+            `${process.env.REACT_APP_BASE_URL}/Brand/DeleteBrand?Id=${brandId}`
           );
           if (response.status === 200) {
             // console.log("deleted brand successfully");

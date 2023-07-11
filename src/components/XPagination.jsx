@@ -1,3 +1,4 @@
+// THIS FILE IS NOT BEING USED
 import React from 'react';
 
 const Pagination = ({ totalPosts, postPerPage, setCurrentPage}) => {

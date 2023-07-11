@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import dataI from './repprioritiesData'
+// import dataI from './XrepprioritiesData'
 import CModal from './repPrModalCreate'
 import UModal from './repPrModalUpdate'
 
@@ -15,7 +15,7 @@ export default function reppriorities() {
 
   const handleStatusData = async () =>{
     try {
-       const getResponse = await axios.get(`http://18.221.148.248:84/api/v1/Order/GetPriorities`)
+       const getResponse = await axios.get(`${process.env.REACT_APP_BASE_URL}/Order/GetPriorities`)
       //  console.log(getResponse.data.data?.data,"response")
        if (getResponse.status==200) {
         console.log("Render")
@@ -31,7 +31,7 @@ export default function reppriorities() {
     const ID = e.currentTarget.getAttribute('ID');
     console.log(ID);
     try {
-       const getResponse = await axios.delete(`http://18.221.148.248:84/api/v1/Order/DeletePriority?priorityId=${ID}`)
+       const getResponse = await axios.delete(`${process.env.REACT_APP_BASE_URL}/Order/DeletePriority?priorityId=${ID}`)
       //  console.log(getResponse.data.data?.data,"response")
        if (getResponse.status==200) {
           handleStatusData()

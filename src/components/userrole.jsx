@@ -50,7 +50,7 @@ const userrole = () => {
   
        const updateRole = async () =>{
         try {
-          const response = await axios.post('http://18.221.148.248:84/api/v1/User/UpdateRole' ,{
+          const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/User/UpdateRole` ,{
             id : roleId,
             name : roleName,
             permissionIds : selectedPermissions,
@@ -69,7 +69,7 @@ const userrole = () => {
     
       const deleteRole = async (roleId) =>{
         try {
-           const response = await axios.post(`http://18.221.148.248:84/api/v1/User/DeleteRole?id=${roleId}`)
+           const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/User/DeleteRole?id=${roleId}`)
            if(response.status ===200){
             GetUserRole();
             toast.success("Role Deleted Successfully")
@@ -99,7 +99,7 @@ const userrole = () => {
 
     const createUserRole = async () =>{
       try {
-         const response = await axios.post('http://18.221.148.248:84/api/v1/User/CreateRole',
+         const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/User/CreateRole`,
          {
           name: roleName,
           permissionIds: selectedPermissions.map((permission) => permission.id),
@@ -125,7 +125,7 @@ const userrole = () => {
  
       const getPermissions = async () =>{
         try {
-           const response = await axios.get('http://18.221.148.248:84/api/v1/User/GetPermissions');
+           const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/User/GetPermissions`);
           //  console.log(response.data.data, "sasa")
            if(response.status===200){
                let data = response?.data?.data;
@@ -139,7 +139,7 @@ const userrole = () => {
          
            const GetUserRole = async () =>{
           try {
-             const response = await axios.get("http://18.221.148.248:84/api/v1/User/GetRoles");
+             const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/User/GetRoles`);
               // console.log(response.data.data , "sasa")
              if(response.status === 200){
                const data = response.data.data; 

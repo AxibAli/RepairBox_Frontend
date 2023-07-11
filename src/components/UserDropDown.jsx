@@ -36,7 +36,7 @@ export default function UserDropDown(props) {
 
     const FetchApiData = async () => {
         try {
-          const response = await axios.get("http://18.221.148.248:84/api/v1/Brand/GetBrandsforDropdown");
+          const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/Brand/GetBrandsforDropdown`);
           console.log(response.data.data);
     
           setBrandData(response.data.data);
@@ -48,7 +48,7 @@ export default function UserDropDown(props) {
 
     const FetchApiDataModels = async () => {
         try {
-          const response = await axios.get(`http://18.221.148.248:84/api/v1/Brand/GetBrandModelsforDropdown?brandId=${brand}`);
+          const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/Brand/GetBrandModelsforDropdown?brandId=${brand}`);
           console.log(response.data.data);
           setBrandModelsData(response.data.data);
         } catch (err) {
@@ -58,7 +58,7 @@ export default function UserDropDown(props) {
 
     const FetchApiDataDefects = async () => {
         try {
-            const response = await axios.get(`http://18.221.148.248:84/api/v1/Brand/GetModelDefectsforDropdown?modelId=${model}`);
+            const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/Brand/GetModelDefectsforDropdown?modelId=${model}`);
             console.log(response.data.data);    
             setBMDefectsData(response.data.data);
 

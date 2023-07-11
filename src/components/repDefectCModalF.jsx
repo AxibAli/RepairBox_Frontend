@@ -41,7 +41,7 @@ export default function repDefectCModalF(props) {
     const dropDownData = async () => {
         try {
           const getDrop = await axios.get(
-            `http://18.221.148.248:84/api/v1/Brand/GetModelsforDropdown`);
+            `${process.env.REACT_APP_BASE_URL}/Brand/GetModelsforDropdown`);
            console.log(getDrop)
           if (getDrop.status == 200) {
             let data = getDrop.data.data;
@@ -54,7 +54,7 @@ export default function repDefectCModalF(props) {
     const singleDefectCreate = async (e) =>{
         e.preventDefault()
         try {
-          const response = await axios.post(`http://18.221.148.248:84/api/v1/Brand/AddDefect`, {
+          const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/Brand/AddDefect`, {
             title: `${title}`,
             price: `${price}`,
             cost: `${cost}`,
@@ -90,7 +90,7 @@ export default function repDefectCModalF(props) {
         // formData.append('brandId', selectedBrand)
         console.log([...formData])
           const response = await axios.post(
-            `http://18.221.148.248:84/api/v1/Brand/AddDefects?modelId=${selectedBrand}`,
+            `${process.env.REACT_APP_BASE_URL}/Brand/AddDefects?modelId=${selectedBrand}`,
            formData
           );
           if (response.status === 200) {

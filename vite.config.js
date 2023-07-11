@@ -10,7 +10,7 @@ export default defineConfig({
   // global api call
   define: {
     'process.env': {
-      REACT_APP_BASE_URL:"http://18.221.148.248:84/api/v1"
+      REACT_APP_BASE_URL:"http://13.48.193.17:81/api/v1"
     }
   },
   build: {

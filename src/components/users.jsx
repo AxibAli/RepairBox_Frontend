@@ -52,7 +52,7 @@ export default function users() {
   const changePassword = async () => {
     try {
       const response = await axios.post(
-        "http://18.221.148.248:84/api/v1/User/ChangePassword",
+        `${process.env.REACT_APP_BASE_URL}/User/ChangePassword`,
         {
           id: userId,
           currentPassword: currentPassword,
@@ -77,7 +77,7 @@ export default function users() {
     // console.log(userId)
     try {
       const response = await axios.post(
-        `http://18.221.148.248:84/api/v1/User/DeleteUser?Id=${userId}`
+        `${process.env.REACT_APP_BASE_URL}/User/DeleteUser?Id=${userId}`
       );
       if (response.status == 200) {
         toast.success("User Deleted Successfully");
@@ -97,7 +97,7 @@ export default function users() {
   const updateUser = async () => {
     try {
       const response = await axios.post(
-        "http://18.221.148.248:84/api/v1/User/UpdateSelfUser",
+        `${process.env.REACT_APP_BASE_URL}/User/UpdateSelfUser`,
         {
           id: userId,
           username: userName,
@@ -122,7 +122,7 @@ export default function users() {
     console.log(userName, userEmail, currentPassword, userRole, userStatus);
     try {
       const response = await axios.post(
-        "http://18.221.148.248:84/api/v1/User/CreateUser",
+        `${process.env.REACT_APP_BASE_URL}/User/CreateUser`,
         // requestBody
         {
           username: userName,
@@ -153,7 +153,7 @@ export default function users() {
   const GetRole = async () => {
     try {
       const response = await axios.get(
-        "http://18.221.148.248:84/api/v1/User/GetRoles"
+        `${process.env.REACT_APP_BASE_URL}/User/GetRoles`
       );
       console.log(response)
       if (response.status == 200) {
@@ -167,7 +167,7 @@ export default function users() {
   const getUsersData = async () => {
     try {
       const response = await axios.get(
-        "http://18.221.148.248:84/api/v1/User/GetUsers"
+        `${process.env.REACT_APP_BASE_URL}/User/GetUsers`
       );
       console.log(response.data.data);
       if (response.status == 200) {

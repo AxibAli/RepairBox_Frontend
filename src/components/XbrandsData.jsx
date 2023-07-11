@@ -1,7 +1,4 @@
-
-
-
-
+// THIS FILE IS NOT USED
 const brandsData =[
     {
         name: "konka"

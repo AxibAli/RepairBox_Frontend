@@ -22,7 +22,7 @@ export default function repDefectsFurqan() {
   
     const handleDefectData = async () =>{
       try {
-         const getResponse = await axios.get(`http://18.221.148.248:84/api/v1/Brand/GetDefects?pageNo=${currentPage}`)
+         const getResponse = await axios.get(`${process.env.REACT_APP_BASE_URL}/Brand/GetDefects?pageNo=${currentPage}`)
          console.log(getResponse.data.data?.data,"response")
          if (getResponse.status==200) {
           console.log("Render")
@@ -48,7 +48,7 @@ export default function repDefectsFurqan() {
       const ID = e.currentTarget.getAttribute('ID');
       console.log(ID);
       try {
-         const getResponse = await axios.post(`http://18.221.148.248:84/api/v1/Brand/DeleteDefect?Id=${ID}`)
+         const getResponse = await axios.post(`${process.env.REACT_APP_BASE_URL}/Brand/DeleteDefect?Id=${ID}`)
         //  console.log(getResponse.data.data?.data,"response")        
         toast.success("Model deleted successfully");
 
