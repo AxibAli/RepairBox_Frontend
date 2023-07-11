@@ -5,7 +5,7 @@ import UserDropDown from './UserDropDown';
 import Information from "./Information";
 import Priority from "./Priority";
 import { ToastContainer, toast } from 'react-toastify';
-import { Toast } from 'reactstrap';
+// import { Toast } from 'reactstrap';
 
 const steps = [
     {
@@ -45,6 +45,7 @@ export default function UserStepForm() {
       borderRadius: token.borderRadiusLG,
       border: `1px dashed ${token.colorBorder}`,
       marginTop: 16,
+      paddingBottom:30,
     };
 
 
@@ -126,19 +127,19 @@ export default function UserStepForm() {
             :
             <></>
             }
-        </div>
-
-
-        <div
+            <div
             style={{
             marginTop: 24,
+            display:'flex',
+            justifyContent:'center',
+            alignItems:'center'
 
             }}
         >
             {current < steps.length - 1 && (
             <Button 
             className='LoginBtn'
-                // type="primary" 
+                
                 onClick={
                     steps[current].title === "Repair Device"?
                         toggleNextLevel?
@@ -157,13 +158,13 @@ export default function UserStepForm() {
             </Button>
             )}
             {current === steps.length - 1 && (
-            <Button  className='LoginBtn' type="primary" onClick={() => message.success('Processing complete!')}>
+            <Button  className='LoginBtn' onClick={() => message.success('Processing complete!')}>
                 Done
             </Button>
             )}
             {current > 0 && (
             <Button
-            // className='LoginBtn'
+            className='LoginBtn'
                 style={{
                 margin: '0 8px',
                 }}
@@ -173,6 +174,10 @@ export default function UserStepForm() {
             </Button>
             )}
         </div>
+        </div>
+
+
+        
     </div>
     </>
    

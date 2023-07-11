@@ -204,7 +204,17 @@
   line-height: 1.5rem;
   text-transform: capitalize;
 }
+/* @media screen and (max-width: 480px) {
+  .DropSelect {
+    font-size: .7rem;
+    width: 30%;
+    font-weight: 300;
+    line-height: 1.5rem;
+    text-transform: capitalize;
+  }
 
+
+} */
 .StepsCss {
   /* background-color: #3aa8f7; */
   /* font-size: 2.5rem; */
@@ -1092,6 +1102,11 @@ color: #69717c;
     text-align: center;
   
   }
+  /* .dropdownforbrand{
+    width: 100%;
+    background-color: #3aa8f7;
+    font-size: 20px;
+  } */
 
 
 }
