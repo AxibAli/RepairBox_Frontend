@@ -140,12 +140,17 @@
   border: 1px solid #7642FF;
 }
 
+.stepsnumbercolor {
+  background-color: #7642FF;
+}
+
 .LoginBtn:hover {
   /* text-transform: capitalize !important; */
   color: #fff !important;
   background-color: #7642FF;
 
 }
+
 .loginbtncontactform {
   font-size: 14px;
   font-weight: 400;
@@ -158,13 +163,14 @@
   margin-top: 3px;
   margin-left: 3;
   border: 1px solid #7642FF;
-    max-width: 500px;
-    height: 60px;
-    margin: 5px;
-    border-radius: 200px;
-    font-size: 1.125rem;
-    font-weight: 500;
+  max-width: 500px;
+  height: 60px;
+  margin: 5px;
+  border-radius: 200px;
+  font-size: 1.125rem;
+  font-weight: 500;
 }
+
 .loginbtncontactform:hover {
   /* text-transform: capitalize !important; */
   color: #fff !important;
@@ -188,6 +194,7 @@
 
 
 }
+
 /* ==============Defective Heading cSS===================== */
 .defectHead {
   /* background-color: #f44336; */
@@ -200,10 +207,11 @@
 
 .DropSelect {
   font-size: 1.125rem;
-  font-weight: 500;
+  font-weight: 800;
   line-height: 1.5rem;
   text-transform: capitalize;
 }
+
 /* @media screen and (max-width: 480px) {
   .DropSelect {
     font-size: .7rem;
@@ -1047,7 +1055,7 @@ p {
 }
 
 /* =============Contact page Css Start========= */
-.contactforminputfields{
+.contactforminputfields {
   width: 100%;
   max-width: 500px;
   height: 50px;
@@ -1056,52 +1064,56 @@ p {
   border: 1px solid grey;
   border-radius: 200px;
 }
-.contactformheading{
+
+.contactformheading {
   font-size: 3rem;
   color: rgb(62, 57, 107);
   line-height: 2.5;
   text-align: center;
 }
-.contactmainsection{
-margin-top: 50px;
-color: #69717c;
-}
-@media screen and (max-width: 480px) {
-  
 
-
+.contactmainsection {
+  margin-top: 50px;
+  color: #69717c;
 }
+
+@media screen and (max-width: 480px) {}
+
 /* =============Contact page Css End========= */
 /* =============MiddleSection page Css Start========= */
-.middlesectioncards{
+.middlesectioncards {
   min-width: 200px;
   height: 300px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   margin-bottom: 40px;
   background-color: #fff;
 }
+
 /* =============MiddleSection page Css End========= */
 /* =============accor page Css Start========= */
-.frequentheadindcss{
+.frequentheadindcss {
   margin-top: 300px;
   width: 100%;
   text-align: center;
 
 }
-.accordianmainbox{
+
+.accordianmainbox {
   margin-top: 40px;
   width: 80%;
   margin-left: auto;
   margin-right: auto;
- 
+
 }
+
 @media screen and (max-width: 480px) {
-  .frequentheadindcss{
+  .frequentheadindcss {
     margin-top: 1500px;
     width: 100%;
     text-align: center;
-  
+
   }
+
   /* .dropdownforbrand{
     width: 100%;
     background-color: #3aa8f7;
@@ -1110,4 +1122,98 @@ color: #69717c;
 
 
 }
+
+.userdropdownlayoutcss {
+  padding-left: '10px';
+  width: 100%;
+  display: 'flex';
+  flex-direction: 'column';
+  align-items: 'center';
+  margin-top: '30px';
+  font-family: 'sans-serif';
+  font-size: '14px';
+  color: '#4B5563';
+  font-weight: 600
+}
+
 /* =============accor page Css End========= */
+/* TrackPage.css */
+
+/* TrackPage.css */
+
+.track-container {
+  background-color: #fafafa;
+  width: 100%;
+  border-radius: 20px;
+  margin: 20px;
+  padding: 20px;
+  border: 1px dashed grey;
+}
+
+.track-heading {
+  font-size: 30px;
+  font-family: sans-serif;
+  font-weight: bolder;
+  line-height: 1.5;
+}
+
+.track-description {
+  font-size: 18px;
+  font-family: sans-serif;
+  font-weight: 500;
+  margin-top: 20px;
+  color: #4b5563;
+}
+
+.track-label {
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+.track-input {
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid grey;
+  border-radius: 10px;
+}
+
+.track-button {
+  background-color: #6b7280;
+  border-radius: 10px;
+  color: #fff;
+  border: 1px solid blue;
+  padding: 8px 16px;
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 480px) {
+  /* Styles for screens with a width of 480px or larger (including mobile screens) */
+  .track-container {
+    width: 400px;
+    margin: 20px auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .track-button {
+    background-color: #6b7280;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+    margin-top: 12px;
+    color: #fff;
+    border: 1px solid blue;
+    padding: 8px 16px;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+
+}

@@ -11,7 +11,7 @@ function Priority(props) {
   const [showData, SetshowData] = React.useState([]);
 
   const handlePriorityChange = (event) => {
-    console.log("Priority: " , event.target.value)
+    console.log("Priority: ", event.target.value)
     props.PS(event.target.value);
   };
 
@@ -31,9 +31,20 @@ function Priority(props) {
   }
   console.log(showData, "showData")
   return (
-    <Container >
-      <h2>Select Priority</h2>
-      <p>Repair processing priority.</p>
+    <Container style={{
+      paddingLeft: '10px',
+      width: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      marginTop: '30px',
+      fontFamily: 'sans-serif',
+      fontSize: '14px',
+      fontWeight: 600,
+      color: '#4B5563',
+    }} >
+      <h2 style={{ fontWeight: 800 }}>Select Priority</h2>
+      <p style={{ fontWeight: 600 }}>Repair processing priority.</p>
       {showData && showData.map((item, value) => (
 
         <Stack className='PriorityCss' direction="horizontal" gap={3}>
