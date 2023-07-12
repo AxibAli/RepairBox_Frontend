@@ -207,25 +207,27 @@ function Information(props) {
             <h2> <strong>Total Amount</strong> <span> : ${amount}</span> </h2>
           </div>
         </Row>
-        <Row  style={{float:'center',marginBottom:20}}>
-          <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
-         <span style={{fontSize:'14px',backgroundColor:'#d1d5db',padding:10,border:'1px solid grey',borderRadius:10}}> 
+        <Row >
+          <div style={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%'}}>
+         <span style={{fontSize:'14px',color:'#fff',width:'160px',backgroundColor:'#7642FF',padding:10,border:'1px solid grey',borderRadius:10}}> 
          <input
+         
             type="radio"
             name="myRadio"
             onChange={handlePayMethod}  
           />Cash on delivery</span>
           </div>
-          <div style={{display:'flex',justifyContent:'flex-start',alignItems:'center',backgroundColor:'#fca5a5',border:'1px solid grey',borderRadius:10,marginLeft:'200px',marginTop:10,height:150,width:'700px'}}>
-            <div style={{fontSize:'12px',padding:'10px',}}>
+          </Row>
+          <Row >
+            <div style={{display:'flex',justifyContent:'center',alignItems:'center',backgroundColor:'#fff',border: "1px dashed #ebebeb",borderRadius:10,marginTop:10,height:150,width:'80%'}}>
             <p> <b>Warning: This is the demo Mode (Stripe/Braintree Sandbox)</b></p> 
             <p>Card Number : 4111 1111 1111 1111</p>
             <p>Expiration Date : 05/29</p>
             <p>CVV : 258</p>
             <p>Don't use your original card data while the demo mode ,use only above information or click here for braintree and here for stripe to see full list of available test cards with different scenarios.</p>
             </div>
-          </div>
-        </Row>
+            </Row>
+        
 {/* 
         <Button variant="primary" type="submit">
           Submit

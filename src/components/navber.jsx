@@ -168,17 +168,17 @@ import '../App.css';
 
 function ColorSchemesExample() {
   return (
-    <Navbar expand="lg" style={{ backgroundColor: '#fff', padding: 20 }}>
+    <Navbar expand="lg" style={{ backgroundColor: '#fff' }}>
       <Container>
         <Navbar.Brand href="/">
           <img src={HomeLogo} style={{ height: '100px', width: '100px' }} alt="Home Logo" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ml-auto" style={{ fontSize: '16px', fontWeight: '400' }}>
+          <Nav className="ml-auto">
             <Nav.Link href="/about">About Us</Nav.Link>
             <Nav.Link href="/book-repair">Booking</Nav.Link>
-            <Nav.Link href="/track">Track</Nav.Link>
+            <Nav.Link href="/track" style={{paddingRight:30}}>Track</Nav.Link>
             <Nav.Link className="LoginBtn" href="/auth/login">LOGIN</Nav.Link>
           </Nav>
         </Navbar.Collapse>

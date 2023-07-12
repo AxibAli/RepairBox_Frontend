@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import LoginLogo from '../images/logohome.png';
+import Navber from '../components/navber'
 import '../App.css';
 
 const WorkshopPage = () => {
@@ -17,6 +18,8 @@ const WorkshopPage = () => {
   };
 
   return (
+    <>
+    <Navber/>
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white rounded-lg shadow-lg p-8 w-80">
         <div className="flex justify-center items-center">
@@ -71,6 +74,7 @@ const WorkshopPage = () => {
         </p>
       </div>
     </div>
+    </>
   );
 };
 
