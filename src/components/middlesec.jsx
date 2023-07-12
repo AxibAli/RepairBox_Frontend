@@ -9,14 +9,14 @@ import '../App.css'
 
 function MiddleSection() {
   return (
-    <Container>
-      <Row style={{ height: "500px", backgroundColor: '#f9fafb' }}>
-        <Col style={{ backgroundColor: '#f9fafb', fontWeight: 600, margin: '50px 20px', textAlign: 'justify' }} sm={12} md={5}>
-          <h1 style={{ fontSize: '3rem', marginBottom: '1rem' }}>Services we love to provide</h1>
-          <h5 style={{ fontSize: '1rem', fontWeight: '400', color: 'grey', lineHeight: '2', textAlign: 'justify', alignItems: 'center' }}>
+    // <Container>
+      <Row style={{  backgroundColor: '#f9fafb',paddingLeft:'30px',paddingTop:'30px' }}>
+        <Col style={{ backgroundColor: '#f9fafb', fontWeight: 600, textAlign: 'center' }} sm={12} md={5}>
+          <h1 style={{fontSize:'3rem'}}>Services we love to provide</h1>
+          <h4 style={{ fontSize: '1rem',color: 'grey', lineHeight: '2', textAlign: 'justify', alignItems: 'center' }}>
             We have been in the business, and our clients cherish us for the promising service we deliver.
-          </h5>
-          <h4 style={{ fontSize: '1rem', fontWeight: '600', color: '#6B7280', lineHeight: '2', textAlign: 'justify', alignItems: 'center' }}>
+          </h4>
+          <h4 style={{ fontSize: '1rem',  color: '#6B7280', lineHeight: '2', textAlign: 'justify', alignItems: 'center' }}>
             - We take care of your data privacy
             <br />
             - We provide professional solutions
@@ -81,7 +81,7 @@ function MiddleSection() {
           </Card>
         </Col>
       </Row>
-    </Container>
+    // </Container>
   );
 }
 
