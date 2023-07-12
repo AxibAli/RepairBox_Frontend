@@ -54,6 +54,9 @@ export default function UserStepForm() {
     const [defectID, setdefectID] = useState([])
     const [toggleNextLevel, settoggleNextLevel] = useState(false)
 
+    //State Management for Level 3
+    const [toggleComplete, setToggleComplete] = useState(false)
+
     const BrandState=(br)=>{
         setbrandID(br)
     }
@@ -85,7 +88,10 @@ export default function UserStepForm() {
     console.log("Level 2 Priority State: ", priorityID)
 
 
-
+    const ToggleDone=()=>{
+        message.success('Processing complete!')
+        setToggleComplete(!toggleComplete)
+    }
 
     const Toast=()=>{
         toast.success('Select All DropDown First');
@@ -122,7 +128,13 @@ export default function UserStepForm() {
                     PS={PriorityState}
                 />
             :steps[current].title === "Information & Payment"?
-                <Information/>
+                <Information
+                    BrandFunc={BrandState} BrandCurr={brandID} 
+                    ModelFunc={ModelState} ModelCurr={modelID} 
+                    DefectFunc={DefectState} DefectCurr={defectID} 
+                    PS={PriorityState} PriorityCurr={priorityID}   
+                    Done={toggleComplete}                
+                />
             :
             <></>
             }
@@ -157,7 +169,7 @@ export default function UserStepForm() {
             </Button>
             )}
             {current === steps.length - 1 && (
-            <Button  className='LoginBtn' type="primary" onClick={() => message.success('Processing complete!')}>
+            <Button  className='LoginBtn' type="primary" onClick={ToggleDone}>
                 Done
             </Button>
             )}
