@@ -7,7 +7,7 @@ import '../App.css'
 
 export default function BasicStack() {
   return (
-    <Box sx={{ width: '100%',display:'flex',justifyContent:'flex-start',paddingLeft:3,paddingTop:2 }}>
+    <Box sx={{ width: '100%',display:'flex',justifyContent:'center',alignItems:'center',paddingLeft:3,paddingTop:2 }}>
       <Stack spacing={2}>
          <h1 className='defectHead'>Book your defective or repairable device</h1>
       </Stack>

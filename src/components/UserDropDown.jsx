@@ -233,7 +233,6 @@
 // }
 import React from 'react';
 import { useEffect } from 'react';
-import '../App.css';
 import axios from 'axios';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -242,6 +241,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import ListItemText from '@mui/material/ListItemText';
 import Select from '@mui/material/Select';
 import { Checkbox, Box } from '@mui/material';
+import '../App.css';
 
 export default function UserDropDown(props) {
   const ITEM_HEIGHT = 48;
@@ -356,7 +356,7 @@ export default function UserDropDown(props) {
   return (
     <div>
       <div className="dropdownforbrand">
-        <Box
+        <Box  className='userdropdownlayoutcss'
           sx={{
             paddingLeft: '10px',
             width: '100%',
@@ -367,11 +367,12 @@ export default function UserDropDown(props) {
             fontFamily: 'sans-serif',
             fontSize: '14px',
             color: '#4B5563',
+            fontWeight:600
           }}
         >
           <h2 className="DropSelect">Select Your Device Brand</h2>
           <p>Brands we repair.</p>
-          <FormControl sx={{ width: '100%', marginBottom: '15px' }}>
+          <FormControl sx={{ width: '80%', marginBottom: '15px' }}>
             <InputLabel id="demo-simple-select-label">Brands</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -394,6 +395,7 @@ export default function UserDropDown(props) {
       {brand ? (
         <div className="dropdown">
           <Box
+          // className='userdropdownlayoutcss'
             sx={{
               paddingLeft: '10px',
               width: '100%',
@@ -403,12 +405,13 @@ export default function UserDropDown(props) {
               marginTop: '30px',
               fontFamily: 'sans-serif',
               fontSize: '14px',
+              fontWeight:600,
               color: '#4B5563',
             }}
           >
             <h4 className="DropSelect">Select Your Device</h4>
             <p>Available devices for selected brand.</p>
-            <FormControl sx={{ width: '100%', marginBottom: '15px' }}>
+            <FormControl sx={{ width: '80%', marginBottom: '15px' }}>
               <InputLabel id="demo-simple-select-label">Device</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -441,11 +444,12 @@ export default function UserDropDown(props) {
             fontFamily: 'sans-serif',
             fontSize: '14px',
             color: '#4B5563',
+            fontWeight:600
           }}
         >
           <h4 className="DropSelect">Select Repairable Issues</h4>
           <p>Available services/defects for selected device.</p>
-          <FormControl sx={{ width: '100%', marginBottom: '15px' }}>
+          <FormControl sx={{ width: '80%', marginBottom: '15px' }}>
             <InputLabel id="demo-multiple-checkbox-label">Issues</InputLabel>
             <Select
               labelId="demo-multiple-checkbox-label"

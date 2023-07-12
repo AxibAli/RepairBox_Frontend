@@ -37,15 +37,17 @@ export default function UserStepForm() {
     const items = steps.map((item) => ({
       key: item.title,
       title: item.title,
+
     }));
     const contentStyle = {
-      textAlign: 'center',
+        
       color: token.colorTextTertiary,
       backgroundColor: token.colorFillAlter,
       borderRadius: token.borderRadiusLG,
       border: `1px dashed ${token.colorBorder}`,
       marginTop: 16,
       paddingBottom:30,
+    
     };
 
 
@@ -106,7 +108,7 @@ export default function UserStepForm() {
             theme="light"
             progressBarStyle={{ backgroundColor: 'red' }}
         />
-    <div className='w-[98%] h-auto ml-[1%]'>
+    <div className='w-[85%] h-auto ml-[7%]'>
         <Steps current={current} items={items} />
 
         <div style={contentStyle}>
