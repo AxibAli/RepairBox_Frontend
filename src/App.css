@@ -29,8 +29,8 @@
 }
 .brand-create-button button{  
   float: right;
-  padding: 10px 50px;
-  background-color: #3aa8f7;
+  padding: 10px 30px;
+  background-color: #0c82d6;
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
@@ -791,3 +791,8 @@ color: black
     margin-bottom: 0.2rem;
     text-transform:capitalize;
   }
+.card{
+  margin-left:-100px !important;
+  width: 300px !important;
+  height: 250px !important;
+}
