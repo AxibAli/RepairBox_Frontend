@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { useState, useEffect } from 'react'
 import axios from "axios";
+import '../App.css'
 
 
 function Information(props) {
@@ -207,25 +208,20 @@ function Information(props) {
             <h2> <strong>Total Amount</strong> <span> : ${amount}</span> </h2>
           </div>
         </Row>
-        <Row >
-          <div style={{display:'flex',justifyContent:'center',alignItems:'center',width:'100%'}}>
-         <span style={{fontSize:'14px',color:'#fff',width:'160px',backgroundColor:'#7642FF',padding:10,border:'1px solid grey',borderRadius:10}}> 
-         <input
+        <Row className='cash-delivery' >
          
-            type="radio"
-            name="myRadio"
-            onChange={handlePayMethod}  
-          />Cash on delivery</span>
-          </div>
+         <span className='Cash-section'> 
+         <input type="radio" name="myRadio"onChange={handlePayMethod}/>Cash on delivery</span>
+          
           </Row>
-          <Row >
-            <div style={{display:'flex',justifyContent:'center',alignItems:'center',backgroundColor:'#fff',border: "1px dashed #ebebeb",borderRadius:10,marginTop:10,height:150,width:'80%'}}>
+          <Row className='Warning-section-row'>
+           
             <p> <b>Warning: This is the demo Mode (Stripe/Braintree Sandbox)</b></p> 
             <p>Card Number : 4111 1111 1111 1111</p>
             <p>Expiration Date : 05/29</p>
             <p>CVV : 258</p>
             <p>Don't use your original card data while the demo mode ,use only above information or click here for braintree and here for stripe to see full list of available test cards with different scenarios.</p>
-            </div>
+           
             </Row>
         
 {/* 

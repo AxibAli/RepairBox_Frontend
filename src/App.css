@@ -1221,4 +1221,29 @@ p {
 /* .navbertracktab{
   padding-right: 30px;
 } */
+.cash-delivery{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+}
+.Warning-section-row{
+ 
+  background-color: rgb(255, 255, 255);
+  border: 1px dashed rgb(235, 235, 235);
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-left: 50px;
+  height: auto;
+  width: 80%;
+}
+.Cash-section{
+  font-size: 14px;
+  color: rgb(255, 255, 255);
+  width: 160px;
+  background-color: rgb(118, 66, 255);
+  padding: 5px;
+  border: 1px solid grey;
+  border-radius: 10px;
+}
 
