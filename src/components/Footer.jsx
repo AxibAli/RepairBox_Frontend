@@ -36,7 +36,7 @@ function Footer() {
         </ul></Col>
       </Row>
       <Row xs="auto" style={{ display: 'flex', color: 'grey', backgroundColor: '#f8faff', fontSize: '18px', fontWeight: 400, justifyContent: 'space-around', alignItems: 'center', paddingBottom: '50px', paddingTop: "50px" }}>
-        <p>Copyright © 2023 All rights reserved. Start.ly</p>
+        <p>Copyright © {new Date().getFullYear()} All rights reserved. Start.ly</p>
       </Row>
     </div>
 
