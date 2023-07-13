@@ -164,15 +164,16 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HomeLogo from '../images/logohome.png';
+import { NavLink } from 'react-router-dom';
 import '../App.css';
 
 function ColorSchemesExample() {
   return (
     <Navbar expand="lg" style={{ backgroundColor: '#fff' }}>
       <Container>
-        <Navbar.Brand href="/">
+        <NavLink to="/">
           <img src={HomeLogo} style={{ height: '100px', width: '100px' }} alt="Home Logo" />
-        </Navbar.Brand>
+        </NavLink>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
