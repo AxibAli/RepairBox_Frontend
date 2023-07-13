@@ -19,7 +19,7 @@ const WorkshopPage = () => {
 
   return (
     <>
-    <Navber/>
+    {/* <Navber/> */}
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white rounded-lg shadow-lg p-8 w-80">
         <div className="flex justify-center items-center">
