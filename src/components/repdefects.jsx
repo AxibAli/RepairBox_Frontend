@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import repDefectData from "./RepDefectData";
 import {
@@ -20,12 +20,16 @@ import {
   FormGroup,
   Col
 } from "reactstrap";
+import { AppContext } from "../context";
 
 export default function repdefects() {
   const [getDefects, setGetDefetcs] = useState([])
   const [getDefectsData, setGetDefectData] = useState("")
    const [brandModel, setGetBrandModel] = useState();
-
+   const { user } = useContext(AppContext);
+  //  console.log(user, "defects")
+ 
+  const userResources = user.resources;
     useEffect(()=>{
       getBrandModels();
     },[])
@@ -137,7 +141,11 @@ export default function repdefects() {
             <h1>REPAIRABLE DEFECTS</h1>
           </div>
           <div className="rep-create-button" onClick={defHandleToggle}>
+          {userResources['AddDefect'] && (
+            <>
             <button>Create</button>
+            </>
+            )}
             {/* Create Button Modal Start */}
             <Modal
               isOpen={defModal}
@@ -334,13 +342,18 @@ export default function repdefects() {
                   <h5>${elem.price}</h5>
                 </div>
               </div>
+              {userResources['UpdateDefect'] && (
+                <>
               <div className="brand-arrow-icon">
                 <button onClick={()=> elemHandleToggle(elem, 'edit')}>
                   <i>
                     <IoIosArrowDroprightCircle />
                   </i>
                 </button>
+          
               </div>
+              </>
+          )}
             </div>
           </div>
         ))}
