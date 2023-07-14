@@ -1,4 +1,4 @@
-import { Route, Routes, } from "react-router-dom"
+import { Navigate, Route, Routes, } from "react-router-dom"
 // import HomePage from './components/Booking'
 import AdminLayout from './pages/adminLayout'
 import Dashboard from './components/dashboard'
@@ -29,6 +29,7 @@ import Login from './components/Login';
 import Booking from './components/Booking';
 import About from "./components/about"
 import './App.css'
+import AppProvider from "./context"
 
 
 let navbarCheck = () => {
@@ -54,15 +55,28 @@ let navbarCheck = () => {
   //   return <Navbar />
   // }
 
+
 }
+
 
 function App() {
 
+
+  const isUserAuthenticatd=()=>{
+    const userData=JSON.parse(localStorage.getItem("users"))
+    if(userData){
+      <Navigate to="/track" replace/>
+    }
+    return userData;
+  }
+
+  const isAuthenticatd=isUserAuthenticatd();
+// console.log(isAuthenticatd,"dldlkldldklddkdldlkdkdkdkldldldl");
   return (
 
     <>
+      <AppProvider>
       {navbarCheck()}
-
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/book-repair" element={<Booking />} />
@@ -92,6 +106,7 @@ function App() {
           <Route path="Translations" element={<Translations />} />
         </Route>
       </Routes>
+      </AppProvider>
     </>
   )
 }

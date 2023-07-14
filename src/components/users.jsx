@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
@@ -27,13 +27,15 @@ import {
   Row,
   Form,
 } from "reactstrap";
+import { AppContext } from "../context";
 
 
 
 
 export default function users() {
   
-
+  const {user} = useContext(AppContext)
+  const userResources = user.resources;
   const [getUsers, setGetUsers] = useState([]);
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
@@ -44,8 +46,9 @@ export default function users() {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword1, setNewPassword1] = useState("");
   const [newPassword2, setNewPassword2] = useState("");
-
-  console.log(userName, userEmail, currentPassword, userRole, userStatus)
+ 
+     
+  // console.log(userName, userEmail, currentPassword, userRole, userStatus)
   // change password state
 
 
@@ -223,7 +226,11 @@ export default function users() {
               <h1>USERS</h1>
             </Col>
             <Col md={6} className="text-end">
+            {userResources['CreateUser'] && (
+              <>
               <Button onClick={CreateModal}>Create</Button>
+              </>
+              )}
               <Modal
                 isOpen={createModal}
                 toggle={CreateModal}
@@ -357,11 +364,10 @@ export default function users() {
                                   setUserStatus(!userStatus);
                                 }}
                               />
-
                               <Label check>
                                 {userStatus
-                                  ? "User is inactive"
-                                  : "User is active"}
+                                  ? "User is InActive"
+                                  : "User is Active"}
                               </Label>
                             </div>
                             <Button
@@ -405,7 +411,7 @@ export default function users() {
         <div className="main_content mt-5">
           {getUsers.map((user, index) => (
             <Container className="users_content p-3">
-              <Row className="align-items-center my-2 " key={index}>
+              <Row className="align-items-center my-2" key={index}>
                 <Col md={5}>
                   <div className="user_first d-flex align-items-center gap-2">
                     <img
@@ -424,24 +430,32 @@ export default function users() {
                   <div className="user-activation">
                     <p>
                       The user has the role:{" "}
-                      <strong>{user.isActive}Admin</strong>
+                      <strong>{user.userRoleName}</strong>
                     </p>
                     <span className="d-flex align-items-center gap-2">
                       <TiTick className="tick" />
-                      <p>{user.isActive} User is active</p>
+                      <p>{user.isActive}User is Active</p>
                     </span>
                   </div>
                 </Col>
                 <Col md={1}>
+                {userResources['UpdateOtherUser'] && (
+              <>
                   <button onClick={() => ArrowModal(user, "edit")}>
                     {/* <p>{user.id}</p> */}
                     <IoIosArrowDroprightCircle className="users_arrow" />
                   </button>
+                  </>
+                )}
                 </Col>
                 <Col md={1}>
+                {userResources['DeleteUser'] && (
+              <>
                   <button onClick={areYourSure}>
                     <BsFillTrashFill className="users_trash" />
                   </button>
+                  </>
+                )}
                   <Modal
                     isOpen={deleteModal}
                     toggle={areYourSure}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -24,9 +24,12 @@ import {
   BiError,
 } from "react-icons/all";
 import axios from "axios";
+import { AppContext } from "../context";
 
 
 const userrole = () => {
+  const {user} = useContext(AppContext);
+  const userResources = user.resources;
   const [getRole, setGetRole] = useState([]);
   const [createModal, setCreateModal] = useState("");
   const [arrowModal, setArrowModal] = useState("");
@@ -191,7 +194,11 @@ const userrole = () => {
                 <h1>USER ROLE</h1>
               </Col>
               <Col md={6} className="text-end">
+              {userResources['CreateRole'] && (
+                <>
                 <Button onClick={CreateModal}>Create</Button>
+                </>
+                )}
                 <Modal
                   isOpen={createModal}
                   toggle={CreateModal}
@@ -339,14 +346,22 @@ const userrole = () => {
                 <p>assigned user</p>
               </Col>
               <Col md={1}>
+              {userResources['UpdateRole'] && (
+                <>
               <button onClick={() => ArrowModal(role, "edit")}>
                 <IoIosArrowDroprightCircle className="users_arrow" />
               </button>
+              </>
+              )}
               </Col>
               <Col md={1}>
+              {userResources['DeleteRole'] && (
+                <>
                 <button onClick={()=>deleteRole(role.id)}>
                   <BsFillTrashFill className="users_trash" />
                 </button>
+                </>
+              )}
                 <Modal
                   isOpen={deleteModal}
                   toggle={areYourSure}

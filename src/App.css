@@ -32,6 +32,9 @@ body{
   font-size: 12px;
   padding-top: 5px;
 }
+.error{
+  color:red;
+}
 
 .container {
   max-width: 1100px;
@@ -759,6 +762,35 @@ body{
   font-size: 0.9rem;
 }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.avatar {
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  display: none;
+  background-color: #f9f9f9;
+  padding: 8px 0;
+  border: 1px solid #ddd;
+  min-width: 120px;
+}
+
+.dropdown-menu li {
+  padding: 8px 16px;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
 .cross-button {
   position: absolute;
   right: 3%;
@@ -1035,11 +1067,29 @@ p {
 .delete-body span {
   gap: 5px;
 }
+:focus-visible {
+  /* Add your styles here */
+  outline: none;
+  /* other styles */
+}
 
 .delete-footer {
   background-color: #f3f4f6 !important;
 }
-
+ul.profile-menu {
+  background-color: #fff;
+  font-weight: 800;
+  transform: translate(-70px) !important;
+}
+ul.profile-menu a:hover {
+color: skyblue;
+}
+/* .modal-dialog.image-modal {
+  width: 43vw  !important;
+} */
+.logout-li li:hover{
+  color: skyblue;
+}
 .modal-body {
   position: relative;
   flex: 1 1 auto;
@@ -1053,11 +1103,24 @@ p {
 }
 
 .user___content h2 {
-  font-size: 1.1rem;
+  font-size: 1rem;
   margin-bottom: 0.2rem;
   text-transform: capitalize;
 }
-
+.username-label{
+  font-size: 1rem;
+  font-weight: 500;
+  font-weight: 600;
+  font-style: italic;
+  color: skyblue;
+}
+.username {
+  font-size: 0.9rem;
+  color: #1C3053;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-style: italic;
+}
 .modal-content {
   position: relative;
   display: flex;

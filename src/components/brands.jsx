@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useContext} from "react";
 import { BiStar } from "react-icons/bi";
 import { IoIosArrowDroprightCircle, RxCross2,BsFillTrashFill } from "react-icons/all";
 import { AiFillFolderOpen } from "react-icons/ai";
@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios"
 import { Pagination } from 'antd'
 import {
-  Button,
+  Button, 
   Modal,
   ModalHeader,
   ModalBody,
@@ -17,6 +17,7 @@ import {
   FormGroup,
   Form,
 } from "reactstrap";
+import { AppContext } from "../context";
 
 const brands = () => {
     const [name, setName] = useState("");
@@ -25,7 +26,8 @@ const brands = () => {
     const [otherModal, setOtherModal] = useState(false);
     const [brandId, setBrandId] = useState('')
     const [selectedFile, setSelectedFile] = useState(null)
-    // const [brandModelsCount, setBrandModelsCount] = useState({});
+    const { user } = useContext(AppContext);
+    // console.log(user, "context")
 
 
     // Pagination Code States 
@@ -162,6 +164,7 @@ const brands = () => {
         setSelectedFile(event.target.files[0]);
       };
 
+        const userResources = user.resources;
     
   return ( 
     <>
@@ -191,9 +194,13 @@ const brands = () => {
               </div> 
               <div className="col-10 col-md-6 mx-auto ">
                 <div className="brand-create-button" onClick={toggle}>
+                 {userResources['AddBrand'] && (
+                  <>
                   <button>
                     Create
                   </button>
+                  </>
+                  ) }
                   <Modal
                         isOpen={modal}
                         toggle={toggle}
@@ -309,15 +316,23 @@ const brands = () => {
                         
                         <div className="col-10 col-md-2 mx-auto">
                          <div className="brand-arrow d-flex ">
+                         {userResources['UpdateBrand'] && (
+                          <>
                          <button className="arrow-button" onClick={()=>handleToggle(brand,"edit")}>
                          <IoIosArrowDroprightCircle />
                             </button>
+                            </>
+                         )}
+                        {userResources['DeleteBrand'] && (
+                          <>
                             <button
                             className="trash-button"
                            onClick={()=>deleteBrand(brand.id)}
                           >
                             <BsFillTrashFill />
                           </button>
+                          </>
+                        )}
                          </div>
                         </div>
                            
